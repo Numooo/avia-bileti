@@ -17,7 +17,6 @@ import {
   Info,
   ChevronDown,
   ChevronUp,
-  User,
   Globe,
 } from "lucide-react";
 import { Button } from "./primitives/button";

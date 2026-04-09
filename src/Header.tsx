@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   Menu,
   X,
@@ -67,7 +68,7 @@ export function Header({ onNavigate }: HeaderProps = {}) {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <div className="flex items-center">
-              <a
+              <Link
                 href="/"
                 onClick={(e) => handleNavClick("/", e)}
                 className="flex items-center gap-2.5 group"
@@ -84,13 +85,13 @@ export function Header({ onNavigate }: HeaderProps = {}) {
                     Your Journey Begins
                   </p>
                 </div>
-              </a>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex lg:items-center lg:gap-1">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(item.href, e)}
@@ -101,7 +102,7 @@ export function Header({ onNavigate }: HeaderProps = {}) {
                   </span>
                   {item.label}
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-3/4 transition-all duration-300"></span>
-                </a>
+                </Link>
               ))}
 
               {/* AI Trip Planner Button */}
@@ -200,7 +201,7 @@ export function Header({ onNavigate }: HeaderProps = {}) {
               >
                 <div className="space-y-1 pb-4 pt-2 border-t border-gray-100">
                   {navItems.map((item) => (
-                    <a
+                    <Link
                       key={item.label}
                       href={item.href}
                       onClick={(e) => {
@@ -211,7 +212,7 @@ export function Header({ onNavigate }: HeaderProps = {}) {
                     >
                       <span className="text-gray-500">{item.icon}</span>
                       {item.label}
-                    </a>
+                    </Link>
                   ))}
 
                   {/* Mobile AI Trip Planner */}

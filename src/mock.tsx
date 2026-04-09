@@ -28,6 +28,14 @@ type Page =
   | "booking-hotel"
   | "booking-package";
 
+interface BookingMetadata {
+  checkInDate?: string;
+  checkOutDate?: string;
+  rooms?: number;
+  guests?: number;
+  passengers?: number;
+}
+
 function MockApp() {
   const [currentPage, setCurrentPage] = useState<Page>("home");
   const [selectedFlight, setSelectedFlight] = useState<FlightOffer | null>(
@@ -38,7 +46,7 @@ function MockApp() {
   const [selectedVisa, setSelectedVisa] = useState<VisaRequirement | null>(
     null
   );
-  const [bookingMetadata, setBookingMetadata] = useState<any>({});
+  const [bookingMetadata, setBookingMetadata] = useState<BookingMetadata>({});
 
   const handleBookFlight = (flight: FlightOffer) => {
     setSelectedFlight(flight);

@@ -14,13 +14,11 @@ import type {
 interface BookingFlowProps {
   flight: FlightOffer;
   passengerCount?: number;
-  onComplete?: () => void;
 }
 
 export function BookingFlow({
   flight,
   passengerCount = 1,
-  onComplete,
 }: BookingFlowProps) {
   const [currentStep, setCurrentStep] = useState(1);
   const [travelers, setTravelers] = useState<TravelerDetails[]>([]);

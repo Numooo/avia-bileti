@@ -377,7 +377,7 @@ export function PaymentPage({
                     Processing Payment...
                   </h3>
                   <p className="mt-2 text-gray-600">
-                    Please don't close or refresh this page
+                    Please don&apos;t close or refresh this page
                   </p>
                   <p className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-500">
                     <span>⚡</span>

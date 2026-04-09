@@ -11,7 +11,6 @@ import {
   Calendar,
   Home,
   Users,
-  IndianRupee,
   Shield,
   Clock,
   CheckCircle2,
@@ -47,9 +46,7 @@ export function HotelBookingFlow({
   checkOutDate,
   rooms,
   guests,
-  selectedRoom,
   onBack,
-  onComplete,
 }: HotelBookingFlowProps) {
   const [step, setStep] = useState<"details" | "payment" | "confirmation">(
     "details"
@@ -385,7 +382,7 @@ export function HotelBookingFlow({
                         </h3>
                         <p className="text-sm text-gray-600">
                           This is a demo booking flow. No actual payment will be
-                          processed. Click "Complete Booking" to simulate a
+                          processed. Click &quot;Complete Booking&quot; to simulate a
                           successful payment.
                         </p>
                       </div>
@@ -664,3 +661,4 @@ export function HotelBookingFlow({
     </div>
   );
 }
+

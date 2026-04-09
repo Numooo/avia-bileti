@@ -319,7 +319,7 @@ export function TravelerDetailsForm({
               Contact Information
             </h2>
             <p className="mt-1 text-sm text-gray-600">
-              We'll send booking confirmation here
+              We&apos;ll send booking confirmation here
             </p>
           </div>
 

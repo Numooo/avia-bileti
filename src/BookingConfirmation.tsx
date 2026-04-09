@@ -111,7 +111,7 @@ export function BookingConfirmation({
           transition={{ delay: 0.4 }}
           className="text-gray-600"
         >
-          We've sent confirmation to {booking.contact.email}
+          We&apos;ve sent confirmation to {booking.contact.email}
         </motion.p>
       </div>
 
@@ -291,7 +291,7 @@ export function BookingConfirmation({
           className="mx-auto max-w-4xl"
         >
           <h2 className="mb-8 text-3xl font-bold text-gray-900">
-            What's Next?
+            What&apos;s Next?
           </h2>
 
           <div className="space-y-8">
@@ -308,7 +308,7 @@ export function BookingConfirmation({
                 </h3>
                 <p className="mb-1 text-gray-600">48 hours before departure</p>
                 <p className="text-sm text-gray-500">
-                  We'll send you a reminder
+                  We&apos;ll send you a reminder
                 </p>
               </div>
             </div>

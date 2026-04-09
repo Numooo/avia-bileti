@@ -5,9 +5,6 @@ import {
   Send,
   Sparkles,
   MapPin,
-  Calendar,
-  DollarSign,
-  Users,
   Heart,
   Plane,
   Hotel,
@@ -189,7 +186,6 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
     const hasBeachInterest = prefs.interests?.some((i) => i.includes("Beach"));
     const hasAdventure = prefs.interests?.some((i) => i.includes("Adventure"));
     const hasCulture = prefs.interests?.some((i) => i.includes("Culture"));
-    const hasFood = prefs.interests?.some((i) => i.includes("Food"));
 
     if (day === 1) {
       return [
@@ -361,7 +357,6 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
     if (!inputValue.trim()) return;
 
     addMessage("user", inputValue);
-    const userInput = inputValue.toLowerCase();
     setInputValue("");
 
     await simulateTyping();
@@ -749,7 +744,6 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
           className="bg-white rounded-2xl shadow-2xl w-full max-w-6xl h-[90vh] flex flex-col overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header */}
           <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 p-6 text-white">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -773,9 +767,7 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
           </div>
 
           <div className="flex-1 flex overflow-hidden">
-            {/* Chat Section */}
             <div className="flex-1 flex flex-col">
-              {/* Messages */}
               <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
                 {messages.map((message) => (
                   <div
@@ -822,7 +814,7 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
                                 onClick={() => handleQuickReply(option)}
                                 className={`text-xs font-medium px-3 py-2 rounded-full transition-all hover:scale-105 ${
                                   isDoneButton
-                                    ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:shadow-lg"
+                                    ? "bg-gradient-to-r from-green-50 to-emerald-600 text-white hover:shadow-lg"
                                     : isSelected
                                     ? "bg-purple-600 text-white border-2 border-purple-600"
                                     : "bg-purple-100 hover:bg-purple-200 text-purple-700 border-2 border-transparent"
@@ -850,7 +842,6 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
                   </div>
                 )}
 
-                {/* Quick Suggestions (only show at start) */}
                 {messages.length <= 2 && (
                   <div className="flex flex-wrap gap-2 pt-2">
                     {quickQuestions.map((question, idx) => (
@@ -868,7 +859,6 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Input */}
               <div className="p-4 bg-white border-t border-gray-200">
                 <div className="flex gap-3">
                   <input
@@ -892,7 +882,6 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
               </div>
             </div>
 
-            {/* Itinerary Preview */}
             {currentStep === "complete" && itinerary.length > 0 && (
               <motion.div
                 initial={{ x: 100, opacity: 0 }}
