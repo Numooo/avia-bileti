@@ -1,0 +1,290 @@
+{
+  "Header": {
+    "flights": "Flights",
+    "hotels": "Hotels",
+    "holidays": "Holidays",
+    "visa": "Visa",
+    "aiPlanner": "AI Trip Planner",
+    "signIn": "Sign In",
+    "tagline": "Your Journey Begins"
+  },
+  "Hero": {
+    "title": "Discover Your Next Adventure",
+    "subtitle": "Book flights, hotels, and holiday packages at the best prices"
+  },
+  "Search": {
+    "tabs": {
+      "flights": "Flights",
+      "hotels": "Hotels",
+      "holidays": "Holidays",
+      "visa": "Visa"
+    },
+    "flights": {
+      "oneWay": "One-way",
+      "roundTrip": "Round-trip",
+      "from": "From",
+      "to": "To",
+      "departure": "Departure",
+      "return": "Return",
+      "date": "Date",
+      "passengers": "Passengers",
+      "passenger": "Passenger",
+      "adults": "Adults",
+      "children": "Children",
+      "age12Plus": "12+ years",
+      "age2To11": "2-11 years",
+      "maxPassengers": "Maximum 9 passengers allowed per booking",
+      "cabinClass": "Cabin Class",
+      "economy": "Economy",
+      "premiumEconomy": "Premium Economy",
+      "business": "Business Class",
+      "first": "First Class",
+      "search": "Search Flights"
+    },
+    "hotels": {
+      "destination": "Destination",
+      "destinationPlaceholder": "City, hotel name, or landmark",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "rooms": "Rooms",
+      "room": "Room",
+      "guests": "Guests",
+      "guest": "Guest",
+      "search": "Search Hotels"
+    },
+    "holidays": {
+      "destination": "Destination / Theme",
+      "destinationPlaceholder": "Beach, Mountains, Adventure...",
+      "budget": "Budget Range",
+      "budgetRange": {
+        "budget": "Budget (₹10,000 - ₹25,000)",
+        "medium": "Mid-Range (₹25,000 - ₹50,000)",
+        "luxury": "Luxury (₹50,000+)"
+      },
+      "travelStart": "Travel Start",
+      "travelEnd": "Travel End",
+      "travelers": "Travelers",
+      "traveler": "Traveler",
+      "search": "Search Holiday Packages"
+    },
+    "visa": {
+      "destination": "Destination Country",
+      "selectCountry": "Select Country",
+      "visaType": "Visa Type",
+      "types": {
+        "tourist": "Tourist Visa",
+        "business": "Business Visa",
+        "student": "Student Visa",
+        "work": "Work Visa",
+        "transit": "Transit Visa"
+      },
+      "travelDate": "Planned Travel Date",
+      "applicants": "Number of Applicants",
+      "applicant": "Applicant",
+      "check": "Check Visa Requirements"
+    }
+  },
+  "Featured": {
+    "badge": "Trending Now",
+    "title": "Featured Holiday Packages",
+    "subtitle": "Handpicked destinations for your next unforgettable vacation",
+    "viewAll": "View All Packages",
+    "startingFrom": "Starting from",
+    "perPerson": "per person",
+    "viewDetails": "View Details"
+  },
+  "Flights": {
+    "editSearch": "Edit Search",
+    "foundFlights": "{count} flights found",
+    "oneFlightFound": "1 flight found",
+    "filters": "Filters",
+    "sortBy": {
+      "label": "Sort by",
+      "price": "Cheapest First",
+      "duration": "Shortest First",
+      "departure": "Earliest First"
+    },
+    "noFlightsFound": "No flights found",
+    "adjustFilters": "Try adjusting your filters or search criteria",
+    "clearAllFilters": "Clear All Filters",
+    "showResults": "Show {count} Results",
+    "showOneResult": "Show 1 Result",
+    "filtersSidebar": {
+      "title": "Filters",
+      "clearAll": "Clear All",
+      "priceRange": "Price Range",
+      "stops": "Stops",
+      "airlines": "Airlines",
+      "departureTime": "Departure Time",
+      "arrivalTime": "Arrival Time",
+      "duration": "Duration",
+      "cabinClass": "Cabin Class",
+      "stopTypes": {
+        "nonStop": "Non-stop",
+        "oneStop": "1 Stop",
+        "twoPlus": "2+ Stops"
+      }
+    },
+    "resultCard": {
+      "book": "Book Now",
+      "nonStop": "Non-stop",
+      "stops": "{count} stops",
+      "oneStop": "1 stop",
+      "details": "Details",
+      "hide": "Hide",
+      "flightDetails": "Flight Details",
+      "layover": "Layover in {city}",
+      "baggage": "Baggage Allowance",
+      "cabin": "Cabin",
+      "checked": "Check-in",
+      "fareRules": "Fare Rules",
+      "refundable": "Refundable",
+      "nonRefundable": "Non-refundable",
+      "changeAllowed": "Date change allowed",
+      "changeNotAllowed": "Date change not allowed",
+      "amenities": "Amenities",
+      "perAdult": "per adult"
+    }
+  },
+  "Hotels": {
+    "destination": "DESTINATION",
+    "destinationPlaceholder": "Where are you going?",
+    "checkIn": "CHECK-IN",
+    "checkOut": "CHECK-OUT",
+    "search": "Search",
+    "hotelsFound": "{count} Hotels in {location}",
+    "savingsSubtitle": "Great savings on hotels in {location} online",
+    "sortBy": {
+      "label": "Sort by",
+      "rating": "Rating",
+      "price": "Price",
+      "distance": "Distance"
+    },
+    "filters": "Filters",
+    "pricePerNight": "Price per night",
+    "starRating": "Star Rating",
+    "amenities": "Amenities",
+    "night": "night",
+    "roomsLeft": "Only {count} rooms left!",
+    "viewDetails": "View Details",
+    "bookNow": "Book Now",
+    "starCount": "{count} star",
+    "more": "+{count} more"
+  },
+  "Holidays": {
+    "title": "Holiday Packages",
+    "subtitle": "Curated experiences for every traveler",
+    "packagesAvailable": "{count} Packages Available",
+    "discoverSubtitle": "Discover handpicked holiday packages across India",
+    "daysCount": "{count}D",
+    "nightsCount": "{count}N",
+    "fromPrice": "From ₹{price}",
+    "reviews": "({count} reviews)",
+    "inclusions": "Inclusions",
+    "highlights": "Highlights",
+    "bookNow": "Book Now",
+    "themes": {
+      "All": "All",
+      "Beach": "Beach",
+      "Adventure": "Adventure",
+      "Heritage": "Heritage",
+      "Wellness": "Wellness",
+      "Mountains": "Mountains",
+      "Wildlife": "Wildlife",
+      "Honeymoon": "Honeymoon",
+      "Family": "Family"
+    }
+  },
+  "Visa": {
+    "title": "Visa Services",
+    "subtitle": "Quick and hassle-free visa processing for your international travel",
+    "searchPlaceholder": "Search for a country (e.g., USA, UK, Dubai)",
+    "servicesAvailable": "{count} Visa Services Available",
+    "selectSubtitle": "Select a destination to view visa requirements and apply",
+    "howItWorks": "How It Works",
+    "steps": {
+      "step1": "Choose Destination",
+      "desc1": "Select the country you want to visit",
+      "step2": "Upload Documents",
+      "desc2": "Submit required documents online",
+      "step3": "Make Payment",
+      "desc3": "Secure online payment",
+      "step4": "Get Visa",
+      "desc4": "Receive approved visa via email"
+    },
+    "importantInfo": "Important Information",
+    "infoList": {
+      "item1": "Processing times are approximate and may vary based on embassy workload",
+      "item2": "Ensure your passport has at least 6 months validity from travel date",
+      "item3": "All documents should be clear scanned copies in PDF format",
+      "item4": "Visa approval is subject to embassy discretion and documentation"
+    },
+    "processingTime": "Processing Time",
+    "validity": "Validity",
+    "processingFee": "Processing Fee",
+    "requirements": "Requirements",
+    "viewDetails": "View Details",
+    "hide": "Hide",
+    "view": "View"
+  },
+  "Testimonials": {
+    "badge": "Testimonials",
+    "title": "What Our Travelers Say",
+    "subtitle": "Real experiences from thousands of happy travelers"
+  },
+  "Stats": {
+    "happyTravelers": "Happy Travelers",
+    "averageRating": "Average Rating",
+    "destinations": "Destinations",
+    "support": "Support Available"
+  },
+  "WhyChooseUs": {
+    "title": "Why Choose Suvidha Escapes?",
+    "subtitle": "Your trusted travel partner for seamless journeys",
+    "features": {
+      "prices": {
+        "title": "Best Prices Guaranteed",
+        "description": "Get the lowest fares with our price match guarantee and exclusive deals."
+      },
+      "support": {
+        "title": "24/7 Customer Support",
+        "description": "Our travel experts are available round the clock to assist you."
+      },
+      "secure": {
+        "title": "Secure Booking",
+        "description": "Your data is protected with industry-standard encryption and security."
+      }
+    }
+  },
+  "Footer": {
+    "description": "Your trusted travel partner for unforgettable journeys. We offer the best deals on flights, hotels, and holiday packages across India and around the world.",
+    "followUs": "Follow Us:",
+    "subscribe": "Subscribe",
+    "emailPlaceholder": "Enter your email",
+    "allRightsReserved": "All rights reserved.",
+    "sections": {
+      "company": "Company",
+      "support": "Support",
+      "services": "Services",
+      "legal": "Legal"
+    },
+    "links": {
+      "aboutUs": "About Us",
+      "careers": "Careers",
+      "press": "Press",
+      "blog": "Blog",
+      "helpCenter": "Help Center",
+      "contactUs": "Contact Us",
+      "faqs": "FAQs",
+      "cancellation": "Cancellation Policy",
+      "terms": "Terms & Conditions",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Policy",
+      "refund": "Refund Policy",
+      "flights": "Flights",
+      "hotels": "Hotels",
+      "holidays": "Holiday Packages",
+      "visa": "Visa Services"
+    }
+  }
+}

@@ -7,6 +7,7 @@ import { FlightResultCard } from "./FlightResultCard";
 import { FlightCardSkeletonList } from "./FlightCardSkeleton";
 import { FiltersSkeleton } from "./FiltersSkeleton";
 import { MOCK_FLIGHTS, formatCurrency, getAirportLabel } from "./data";
+import { useTranslations } from "next-intl";
 
 interface SearchParams {
   from: string;
@@ -23,6 +24,8 @@ interface FlightsPageProps {
 }
 
 export function FlightsPage({ onBookFlight, onBack }: FlightsPageProps = {}) {
+  const t = useTranslations("Flights");
+  const tSearch = useTranslations("Search.flights");
   const [filters, setFilters] = useState<FilterState>({
     priceRange: [0, 50000],
     stops: [],
@@ -177,14 +180,16 @@ export function FlightsPage({ onBookFlight, onBack }: FlightsPageProps = {}) {
                   {getAirportLabel(searchParams.to)}
                 </div>
                 <div className="text-sm text-gray-600">
-                  {searchParams.depart} • {searchParams.passengers} passenger
-                  {searchParams.passengers > 1 ? "s" : ""} •{" "}
-                  {searchParams.cabin}
+                  {searchParams.depart} • {searchParams.passengers}{" "}
+                  {searchParams.passengers === 1
+                    ? tSearch("passenger")
+                    : tSearch("passengers")}{" "}
+                  • {searchParams.cabin}
                 </div>
               </div>
             </div>
             <button className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50">
-              Edit Search
+              {t("editSearch")}
             </button>
           </div>
         </div>
@@ -216,8 +221,9 @@ export function FlightsPage({ onBookFlight, onBack }: FlightsPageProps = {}) {
                   <div className="h-7 w-32 animate-shimmer rounded" />
                 ) : (
                   <h2 className="text-xl font-semibold text-gray-900">
-                    {sortedFlights.length} flight
-                    {sortedFlights.length !== 1 ? "s" : ""} found
+                    {sortedFlights.length === 1
+                      ? t("oneFlightFound")
+                      : t("foundFlights", { count: sortedFlights.length })}
                   </h2>
                 )}
                 {/* Mobile Filter Button */}
@@ -226,23 +232,28 @@ export function FlightsPage({ onBookFlight, onBack }: FlightsPageProps = {}) {
                   className="flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50 lg:hidden"
                 >
                   <SlidersHorizontal className="h-4 w-4" />
-                  Filters
+                  {t("filters")}
                 </button>
               </div>
               {/* Sort Dropdown */}
-              <select
-                value={sortBy}
-                onChange={(e) =>
-                  setSortBy(
-                    e.target.value as "price" | "duration" | "departure"
-                  )
-                }
-                className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50"
-              >
-                <option value="price">Cheapest First</option>
-                <option value="duration">Shortest First</option>
-                <option value="departure">Earliest First</option>
-              </select>
+              <div className="flex items-center gap-2">
+                <span className="hidden text-sm text-gray-500 sm:inline">
+                  {t("sortBy.label")}:
+                </span>
+                <select
+                  value={sortBy}
+                  onChange={(e) =>
+                    setSortBy(
+                      e.target.value as "price" | "duration" | "departure"
+                    )
+                  }
+                  className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50"
+                >
+                  <option value="price">{t("sortBy.price")}</option>
+                  <option value="duration">{t("sortBy.duration")}</option>
+                  <option value="departure">{t("sortBy.departure")}</option>
+                </select>
+              </div>
             </div>
 
             {/* Flight Cards */}
@@ -269,16 +280,14 @@ export function FlightsPage({ onBookFlight, onBack }: FlightsPageProps = {}) {
               <div className="flex flex-col items-center justify-center rounded-lg border border-gray-200 bg-white p-12 text-center">
                 <div className="mb-4 text-6xl">✈️</div>
                 <h3 className="mb-2 text-xl font-semibold text-gray-900">
-                  No flights found
+                  {t("noFlightsFound")}
                 </h3>
-                <p className="mb-4 text-gray-600">
-                  Try adjusting your filters or search criteria
-                </p>
+                <p className="mb-4 text-gray-600">{t("adjustFilters")}</p>
                 <button
                   onClick={handleClearFilters}
                   className="rounded-lg bg-blue-600 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
                 >
-                  Clear All Filters
+                  {t("clearAllFilters")}
                 </button>
               </div>
             )}
@@ -301,7 +310,9 @@ export function FlightsPage({ onBookFlight, onBack }: FlightsPageProps = {}) {
             className="absolute right-0 top-0 h-full w-full max-w-md overflow-y-auto bg-white shadow-xl sm:max-w-sm"
           >
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white p-4">
-              <h3 className="text-lg font-semibold text-gray-900">Filters</h3>
+              <h3 className="text-lg font-semibold text-gray-900">
+                {t("filters")}
+              </h3>
               <button
                 onClick={() => setShowFilters(false)}
                 className="rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100"
@@ -320,8 +331,9 @@ export function FlightsPage({ onBookFlight, onBack }: FlightsPageProps = {}) {
                 onClick={() => setShowFilters(false)}
                 className="w-full rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
               >
-                Show {sortedFlights.length} Result
-                {sortedFlights.length !== 1 ? "s" : ""}
+                {sortedFlights.length === 1
+                  ? t("showOneResult")
+                  : t("showResults", { count: sortedFlights.length })}
               </button>
             </div>
           </motion.div>

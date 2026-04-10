@@ -15,6 +15,7 @@ import {
 import { Badge } from "./primitives/badge";
 import { PackageDetailPage } from "./PackageDetailPage";
 import type { Package } from "./types";
+import { useTranslations } from "next-intl";
 
 // Mock package data with real Unsplash images
 const MOCK_PACKAGES: Package[] = [
@@ -458,6 +459,7 @@ interface HolidaysPageProps {
 }
 
 export function HolidaysPage({ onPackageSelect }: HolidaysPageProps) {
+  const t = useTranslations("Holidays");
   const [packages] = useState(MOCK_PACKAGES);
   const [activeTheme, setActiveTheme] = useState("All");
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
@@ -500,7 +502,7 @@ export function HolidaysPage({ onPackageSelect }: HolidaysPageProps) {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl font-bold mb-4"
           >
-            Holiday Packages
+            {t("title")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -508,7 +510,7 @@ export function HolidaysPage({ onPackageSelect }: HolidaysPageProps) {
             transition={{ delay: 0.1 }}
             className="text-xl opacity-90"
           >
-            Curated experiences for every traveler
+            {t("subtitle")}
           </motion.p>
         </div>
       </div>
@@ -527,7 +529,7 @@ export function HolidaysPage({ onPackageSelect }: HolidaysPageProps) {
                     : "bg-white text-gray-700 border border-gray-300 hover:border-gray-400 hover:bg-gray-50"
                 }`}
               >
-                {theme}
+                {t(`themes.${theme}` as any)}
               </button>
             ))}
           </div>
@@ -538,10 +540,10 @@ export function HolidaysPage({ onPackageSelect }: HolidaysPageProps) {
       <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900">
-            {filteredPackages.length} Packages Available
+            {t("packagesAvailable", { count: filteredPackages.length })}
           </h2>
           <p className="text-gray-600 mt-1">
-            Discover handpicked holiday packages across India
+            {t("discoverSubtitle")}
           </p>
         </div>
 
@@ -567,6 +569,7 @@ interface PackageCardProps {
 }
 
 function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
+  const t = useTranslations("Holidays");
   const [isFavorite, setIsFavorite] = useState(false);
   const packageImage = pkg.images?.[0] || pkg.image || "";
 
@@ -613,7 +616,7 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
                 variant="default"
                 className="backdrop-blur-sm bg-blue-600/90"
               >
-                {theme}
+                {t(`themes.${theme}` as any)}
               </Badge>
             ))}
           </div>
@@ -633,18 +636,18 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
           <div className="flex items-center gap-4 text-sm mb-4 opacity-90">
             <div className="flex items-center gap-1.5">
               <Calendar className="h-4 w-4" />
-              <span>{pkg.duration.days}D</span>
+              <span>{t("daysCount", { count: pkg.duration.days })}</span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1.5">
               <Moon className="h-4 w-4" />
-              <span>{pkg.duration.nights}N</span>
+              <span>{t("nightsCount", { count: pkg.duration.nights })}</span>
             </div>
             <span>•</span>
             <div className="flex items-center gap-1.5">
               <IndianRupee className="h-4 w-4" />
               <span>
-                From ₹{(pkg.price || pkg.pricePerPerson || 0).toLocaleString()}
+                {t("fromPrice", { price: (pkg.price || pkg.pricePerPerson || 0).toLocaleString() })}
               </span>
             </div>
           </div>
@@ -659,7 +662,7 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
                 </span>
               </div>
               <span className="text-xs opacity-80">
-                ({pkg.reviewCount} reviews)
+                {t("reviews", { count: pkg.reviewCount || 0 })}
               </span>
             </div>
           )}
@@ -672,7 +675,7 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
         {pkg.inclusions && pkg.inclusions.length > 0 && (
           <div>
             <p className="text-xs font-semibold text-gray-600 uppercase mb-2">
-              Inclusions
+              {t("inclusions")}
             </p>
             <div className="flex flex-wrap gap-2">
               {pkg.inclusions.slice(0, 4).map((inclusion, idx) => {
@@ -695,7 +698,7 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
         {pkg.highlights && pkg.highlights.length > 0 && (
           <div>
             <p className="text-xs font-semibold text-gray-600 uppercase mb-2">
-              Highlights
+              {t("highlights")}
             </p>
             <ul className="text-sm text-gray-700 space-y-1">
               {pkg.highlights.slice(0, 3).map((highlight, idx) => (
@@ -716,7 +719,7 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
           }}
           className="w-full mt-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 rounded-xl transition-all shadow-md hover:shadow-lg"
         >
-          Book Now
+          {t("bookNow")}
         </button>
       </div>
     </motion.div>

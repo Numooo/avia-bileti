@@ -8,33 +8,7 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
-
-const footerLinks = {
-  company: [
-    { label: "About Us", href: "/about" },
-    { label: "Careers", href: "/careers" },
-    { label: "Press", href: "/press" },
-    { label: "Blog", href: "/blog" },
-  ],
-  support: [
-    { label: "Help Center", href: "/help" },
-    { label: "Contact Us", href: "/contact" },
-    { label: "FAQs", href: "/faq" },
-    { label: "Cancellation Policy", href: "/cancellation" },
-  ],
-  legal: [
-    { label: "Terms & Conditions", href: "/terms" },
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Cookie Policy", href: "/cookies" },
-    { label: "Refund Policy", href: "/refund" },
-  ],
-  services: [
-    { label: "Flights", href: "/flights" },
-    { label: "Hotels", href: "/hotels" },
-    { label: "Holiday Packages", href: "/holidays" },
-    { label: "Visa Services", href: "/visa" },
-  ],
-};
+import { useTranslations } from "next-intl";
 
 const socialLinks = [
   { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
@@ -44,7 +18,35 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const t = useTranslations("Footer");
   const currentYear = new Date().getFullYear();
+
+  const footerLinks = {
+    company: [
+      { label: t("links.aboutUs"), href: "/about" },
+      { label: t("links.careers"), href: "/careers" },
+      { label: t("links.press"), href: "/press" },
+      { label: t("links.blog"), href: "/blog" },
+    ],
+    support: [
+      { label: t("links.helpCenter"), href: "/help" },
+      { label: t("links.contactUs"), href: "/contact" },
+      { label: t("links.faqs"), href: "/faq" },
+      { label: t("links.cancellation"), href: "/cancellation" },
+    ],
+    legal: [
+      { label: t("links.terms"), href: "/terms" },
+      { label: t("links.privacy"), href: "/privacy" },
+      { label: t("links.cookies"), href: "/cookies" },
+      { label: t("links.refund"), href: "/refund" },
+    ],
+    services: [
+      { label: t("links.flights"), href: "/flights" },
+      { label: t("links.hotels"), href: "/hotels" },
+      { label: t("links.holidays"), href: "/holidays" },
+      { label: t("links.visa"), href: "/visa" },
+    ],
+  };
 
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -62,9 +64,7 @@ export function Footer() {
               </span>
             </div>
             <p className="mb-4 text-sm leading-relaxed">
-              Your trusted travel partner for unforgettable journeys. We offer
-              the best deals on flights, hotels, and holiday packages across
-              India and around the world.
+              {t("description")}
             </p>
 
             {/* Contact Info */}
@@ -89,7 +89,7 @@ export function Footer() {
           {/* Company Links */}
           <div>
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-              Company
+              {t("sections.company")}
             </h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
@@ -108,7 +108,7 @@ export function Footer() {
           {/* Support Links */}
           <div>
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-              Support
+              {t("sections.support")}
             </h3>
             <ul className="space-y-2">
               {footerLinks.support.map((link) => (
@@ -127,7 +127,7 @@ export function Footer() {
           {/* Services Links */}
           <div>
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-              Services
+              {t("sections.services")}
             </h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
@@ -149,7 +149,7 @@ export function Footer() {
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             {/* Social Links */}
             <div className="flex items-center gap-4">
-              <span className="text-sm font-medium text-white">Follow Us:</span>
+              <span className="text-sm font-medium text-white">{t("followUs")}</span>
               <div className="flex gap-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
@@ -173,11 +173,11 @@ export function Footer() {
             <div className="flex w-full max-w-md gap-2 md:w-auto">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t("emailPlaceholder")}
                 className="flex-1 rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm text-white placeholder-gray-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20"
               />
               <button className="rounded-lg bg-primary-600 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700">
-                Subscribe
+                {t("subscribe")}
               </button>
             </div>
           </div>
@@ -189,7 +189,7 @@ export function Footer() {
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 text-sm md:flex-row">
             <p className="text-gray-400">
-              © {currentYear} Suvidha Escapes. All rights reserved.
+              © {currentYear} Suvidha Escapes. {t("allRightsReserved")}
             </p>
             <div className="flex gap-6">
               {footerLinks.legal.map((link) => (

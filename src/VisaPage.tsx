@@ -16,6 +16,7 @@ import { Input } from "./primitives/input";
 import { Button } from "./primitives/button";
 import { VisaDetailPage } from "./VisaDetailPage";
 import type { VisaRequirement } from "./types";
+import { useTranslations } from "next-intl";
 
 // Mock visa data with real country images
 const MOCK_VISAS: VisaRequirement[] = [
@@ -142,6 +143,7 @@ interface VisaPageProps {
 }
 
 export function VisaPage({ onVisaSelect }: VisaPageProps) {
+  const t = useTranslations("Visa");
   const [visas] = useState(MOCK_VISAS);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedVisa, setSelectedVisa] = useState<VisaRequirement | null>(
@@ -182,18 +184,15 @@ export function VisaPage({ onVisaSelect }: VisaPageProps) {
             className="text-center"
           >
             <Globe className="h-16 w-16 mx-auto mb-4 opacity-90" />
-            <h1 className="text-5xl font-bold mb-4">Visa Services</h1>
-            <p className="text-xl opacity-90 mb-8">
-              Quick and hassle-free visa processing for your international
-              travel
-            </p>
+            <h1 className="text-5xl font-bold mb-4">{t("title")}</h1>
+            <p className="text-xl opacity-90 mb-8">{t("subtitle")}</p>
 
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto">
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input
-                  placeholder="Search for a country (e.g., USA, UK, Dubai)"
+                  placeholder={t("searchPlaceholder")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-12 h-14 text-lg bg-white"
@@ -208,10 +207,10 @@ export function VisaPage({ onVisaSelect }: VisaPageProps) {
         {/* Results Count */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900">
-            {filteredVisas.length} Visa Services Available
+            {t("servicesAvailable", { count: filteredVisas.length })}
           </h2>
           <p className="text-gray-600 mt-1">
-            Select a destination to view visa requirements and apply
+            {t("selectSubtitle")}
           </p>
         </div>
 
@@ -230,33 +229,33 @@ export function VisaPage({ onVisaSelect }: VisaPageProps) {
         {/* How It Works Section */}
         <div className="mt-16 bg-white rounded-2xl p-8 border border-gray-200">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            How It Works
+            {t("howItWorks")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
               {
                 step: 1,
                 icon: FileText,
-                title: "Choose Destination",
-                desc: "Select the country you want to visit",
+                title: t("steps.step1"),
+                desc: t("steps.desc1"),
               },
               {
                 step: 2,
                 icon: Upload,
-                title: "Upload Documents",
-                desc: "Submit required documents online",
+                title: t("steps.step2"),
+                desc: t("steps.desc2"),
               },
               {
                 step: 3,
                 icon: CreditCard,
-                title: "Make Payment",
-                desc: "Secure online payment",
+                title: t("steps.step3"),
+                desc: t("steps.desc3"),
               },
               {
                 step: 4,
                 icon: CheckCircle2,
-                title: "Get Visa",
-                desc: "Receive approved visa via email",
+                title: t("steps.step4"),
+                desc: t("steps.desc4"),
               },
             ].map((item) => (
               <div key={item.step} className="text-center">
@@ -282,24 +281,14 @@ export function VisaPage({ onVisaSelect }: VisaPageProps) {
           <AlertCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-0.5" />
           <div>
             <h3 className="font-semibold text-blue-900 mb-2">
-              Important Information
+              {t("importantInfo")}
             </h3>
             <ul className="text-sm text-blue-800 space-y-1">
-              <li>
-                • Processing times are approximate and may vary based on embassy
-                workload
-              </li>
-              <li>
-                • Ensure your passport has at least 6 months validity from
-                travel date
-              </li>
-              <li>
-                • All documents should be clear scanned copies in PDF format
-              </li>
-              <li>
-                • Visa approval is subject to embassy discretion and
-                documentation
-              </li>
+              {Object.keys(t.raw("infoList")).map((key) => (
+                <li key={key}>
+                  • {t(`infoList.${key}` as any)}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -315,6 +304,7 @@ interface VisaCardProps {
 }
 
 function VisaCard({ visa, index, onApply }: VisaCardProps) {
+  const t = useTranslations("Visa");
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -345,7 +335,7 @@ function VisaCard({ visa, index, onApply }: VisaCardProps) {
           <div className="flex items-start gap-2">
             <Clock className="h-4 w-4 text-gray-600 mt-0.5 flex-shrink-0" />
             <div>
-              <p className="text-xs text-gray-600 mb-0.5">Processing Time</p>
+              <p className="text-xs text-gray-600 mb-0.5">{t("processingTime")}</p>
               <p className="text-sm font-medium text-gray-900">
                 {visa.processingTime}
               </p>
@@ -354,7 +344,7 @@ function VisaCard({ visa, index, onApply }: VisaCardProps) {
           <div className="flex items-start gap-2">
             <Calendar className="h-4 w-4 text-gray-600 mt-0.5 flex-shrink-0" />
             <div>
-              <p className="text-xs text-gray-600 mb-0.5">Validity</p>
+              <p className="text-xs text-gray-600 mb-0.5">{t("validity")}</p>
               <p className="text-sm font-medium text-gray-900">
                 {visa.validity}
               </p>
@@ -374,7 +364,7 @@ function VisaCard({ visa, index, onApply }: VisaCardProps) {
           className="text-sm text-blue-600 font-medium hover:text-blue-700 mb-4 flex items-center gap-1"
         >
           <FileText className="h-4 w-4" />
-          {isExpanded ? "Hide" : "View"} Requirements
+          {isExpanded ? t("hide") : t("view")} {t("requirements")}
           {isExpanded && (
             <span className="ml-1 text-gray-500">
               ({visa.requirements.length})
@@ -408,7 +398,7 @@ function VisaCard({ visa, index, onApply }: VisaCardProps) {
         {/* Price & CTA */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-200">
           <div>
-            <p className="text-xs text-gray-600 mb-0.5">Processing Fee</p>
+            <p className="text-xs text-gray-600 mb-0.5">{t("processingFee")}</p>
             <p className="text-2xl font-bold text-blue-600">
               ₹{visa.price.toLocaleString()}
             </p>
@@ -422,7 +412,7 @@ function VisaCard({ visa, index, onApply }: VisaCardProps) {
             className="gap-2 cursor-pointer hover:shadow-lg"
             type="button"
           >
-            View Details
+            {t("viewDetails")}
             <ArrowRight className="h-4 w-4" />
           </Button>
         </div>

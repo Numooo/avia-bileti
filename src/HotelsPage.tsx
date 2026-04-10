@@ -23,6 +23,7 @@ import { Badge } from "./primitives/badge";
 import { Carousel } from "./primitives/carousel";
 import { HotelDetailPage } from "./HotelDetailPage";
 import type { Hotel } from "./types";
+import { useTranslations } from "next-intl";
 
 // Mock hotel data with real Unsplash images
 const MOCK_HOTELS: Hotel[] = [
@@ -206,6 +207,7 @@ interface HotelsPageProps {
 }
 
 export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
+  const t = useTranslations("Hotels");
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [hotels] = useState(MOCK_HOTELS);
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
@@ -282,12 +284,12 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
           <div className="flex gap-3 items-end">
             <div className="flex-1">
               <label className="text-xs font-medium text-gray-700 mb-1.5 block">
-                DESTINATION
+                {t("destination")}
               </label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input
-                  placeholder="Where are you going?"
+                  placeholder={t("destinationPlaceholder")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10"
@@ -296,7 +298,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
             </div>
             <div className="w-48">
               <label className="text-xs font-medium text-gray-700 mb-1.5 block">
-                CHECK-IN
+                {t("checkIn")}
               </label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -305,7 +307,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
             </div>
             <div className="w-48">
               <label className="text-xs font-medium text-gray-700 mb-1.5 block">
-                CHECK-OUT
+                {t("checkOut")}
               </label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -314,7 +316,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
             </div>
             <Button onClick={handleSearch} className="h-11">
               <Search className="h-5 w-5 mr-2" />
-              Search
+              {t("search")}
             </Button>
           </div>
         </div>
@@ -325,10 +327,10 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">
-              {filteredHotels.length} Hotels in Mumbai
+              {t("hotelsFound", { count: filteredHotels.length, location: "Mumbai" })}
             </h1>
             <p className="text-sm text-gray-600 mt-1">
-              Great savings on hotels in Mumbai, India online
+              {t("savingsSubtitle", { location: "Mumbai" })}
             </p>
           </div>
 
@@ -341,9 +343,9 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
               }
               className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="rating">Sort by Rating</option>
-              <option value="price">Sort by Price</option>
-              <option value="distance">Sort by Distance</option>
+              <option value="rating">{t("sortBy.rating")}</option>
+              <option value="price">{t("sortBy.price")}</option>
+              <option value="distance">{t("sortBy.distance")}</option>
             </select>
 
             {/* Filters Button */}
@@ -353,7 +355,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
               className="gap-2"
             >
               <SlidersHorizontal className="h-4 w-4" />
-              Filters
+              {t("filters")}
             </Button>
 
             {/* View Toggle */}
@@ -393,7 +395,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
               {/* Price Range */}
               <div className="bg-white rounded-xl p-5 border border-gray-200">
                 <h3 className="font-semibold text-gray-900 mb-4">
-                  Price per night
+                  {t("pricePerNight")}
                 </h3>
                 <div className="space-y-3">
                   <input
@@ -417,7 +419,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
               {/* Star Rating */}
               <div className="bg-white rounded-xl p-5 border border-gray-200">
                 <h3 className="font-semibold text-gray-900 mb-4">
-                  Star Rating
+                  {t("starRating")}
                 </h3>
                 <div className="space-y-2">
                   {[5, 4, 3].map((stars) => (
@@ -439,7 +441,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
                           />
                         ))}
                         <span className="text-sm text-gray-700 ml-1">
-                          ({stars} star)
+                          ({t("starCount", { count: stars })})
                         </span>
                       </span>
                     </label>
@@ -449,7 +451,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
 
               {/* Amenities */}
               <div className="bg-white rounded-xl p-5 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4">Amenities</h3>
+                <h3 className="font-semibold text-gray-900 mb-4">{t("amenities")}</h3>
                 <div className="space-y-2">
                   {["WiFi", "Pool", "Spa", "Restaurant", "Gym", "Parking"].map(
                     (amenity) => {
@@ -510,6 +512,7 @@ interface HotelCardProps {
 }
 
 function HotelCard({ hotel, viewMode, index, onSelect }: HotelCardProps) {
+  const t = useTranslations("Hotels");
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
@@ -617,7 +620,7 @@ function HotelCard({ hotel, viewMode, index, onSelect }: HotelCardProps) {
           })}
           {hotel.amenities.length > 6 && (
             <div className="px-3 py-1.5 bg-gray-100 rounded-lg text-xs font-medium text-gray-700">
-              +{hotel.amenities.length - 6} more
+              {t("more", { count: hotel.amenities.length - 6 })}
             </div>
           )}
         </div>
@@ -634,11 +637,11 @@ function HotelCard({ hotel, viewMode, index, onSelect }: HotelCardProps) {
               <span className="text-2xl font-bold text-blue-600">
                 ₹{(hotel.price || hotel.pricePerNight || 0).toLocaleString()}
               </span>
-              <span className="text-sm text-gray-600">/night</span>
+              <span className="text-sm text-gray-600">/{t("night")}</span>
             </div>
             {hotel.availableRooms && hotel.availableRooms <= 5 && (
               <p className="text-xs text-red-600 font-medium mt-1">
-                Only {hotel.availableRooms} rooms left!
+                {t("roomsLeft", { count: hotel.availableRooms })}
               </p>
             )}
           </div>
@@ -653,7 +656,7 @@ function HotelCard({ hotel, viewMode, index, onSelect }: HotelCardProps) {
                 onSelect?.();
               }}
             >
-              View Details
+              {t("viewDetails")}
             </Button>
             <Button
               size="sm"
@@ -663,7 +666,7 @@ function HotelCard({ hotel, viewMode, index, onSelect }: HotelCardProps) {
                 onSelect?.();
               }}
             >
-              Book Now
+              {t("bookNow")}
             </Button>
           </div>
         </div>

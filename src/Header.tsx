@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import Link from "next/link";
 import {
   Menu,
@@ -11,27 +11,19 @@ import {
   FileText,
   Sparkles,
   LogIn,
+  Languages,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AITripPlanner } from "./AITripPlanner";
 import { SignInModal } from "./SignInModal";
+import { useTranslations, useLocale } from "next-intl";
+import { usePathname, useRouter, routing } from "@/i18n/routing";
 
 interface NavItem {
   label: string;
   href: string;
-  icon: React.ReactNode;
+  icon: React.ComponentType<{ className?: string }>;
 }
-
-const navItems: NavItem[] = [
-  { label: "Flights", href: "/flights", icon: <Plane className="h-4 w-4" /> },
-  { label: "Hotels", href: "/hotels", icon: <Hotel className="h-4 w-4" /> },
-  {
-    label: "Holidays",
-    href: "/holidays",
-    icon: <Palmtree className="h-4 w-4" />,
-  },
-  { label: "Visa", href: "/visa", icon: <FileText className="h-4 w-4" /> },
-];
 
 const currencies = ["INR", "USD", "EUR", "GBP"];
 
@@ -42,11 +34,25 @@ interface HeaderProps {
 }
 
 export function Header({ onNavigate }: HeaderProps = {}) {
+  const t = useTranslations("Header");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState(false);
+  const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState("INR");
   const [aiPlannerOpen, setAiPlannerOpen] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
+
+  const navItems: NavItem[] = [
+    { label: t("flights"), href: "/flights", icon: Plane },
+    { label: t("hotels"), href: "/hotels", icon: Hotel },
+    { label: t("holidays"), href: "/holidays", icon: Palmtree },
+    { label: t("visa"), href: "/visa", icon: FileText },
+  ];
 
   const handleNavClick = (href: string, e: React.MouseEvent) => {
     if (onNavigate) {
@@ -59,6 +65,13 @@ export function Header({ onNavigate }: HeaderProps = {}) {
         | "visa";
       onNavigate(page || "home");
     }
+  };
+
+  const onLanguageChange = (nextLocale: string) => {
+    startTransition(() => {
+      router.replace(pathname, { locale: nextLocale as any });
+    });
+    setLanguageDropdownOpen(false);
   };
 
   return (
@@ -82,7 +95,7 @@ export function Header({ onNavigate }: HeaderProps = {}) {
                     Suvidha Escapes
                   </span>
                   <p className="text-xs text-gray-500 -mt-1">
-                    Your Journey Begins
+                    {t("tagline")}
                   </p>
                 </div>
               </Link>
@@ -98,7 +111,7 @@ export function Header({ onNavigate }: HeaderProps = {}) {
                   className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-purple-50 hover:text-purple-700 relative group"
                 >
                   <span className="text-gray-500 group-hover:text-purple-600 transition-colors">
-                    {item.icon}
+                    <item.icon className="h-4 w-4" />
                   </span>
                   {item.label}
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-3/4 transition-all duration-300"></span>
@@ -112,12 +125,58 @@ export function Header({ onNavigate }: HeaderProps = {}) {
               >
                 <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
                 <Sparkles className="h-4 w-4 animate-pulse" />
-                AI Trip Planner
+                {t("aiPlanner")}
               </button>
             </div>
 
             {/* Right Side Actions */}
             <div className="flex items-center gap-3">
+              {/* Language Selector */}
+              <div className="relative">
+                <button
+                  onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
+                  className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all hover:border-purple-300 hover:bg-purple-50 hover:text-purple-700"
+                  disabled={isPending}
+                >
+                  <Languages className="h-4 w-4" />
+                  <span className="uppercase">{locale}</span>
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${
+                      languageDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {languageDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 mt-2 w-32 rounded-xl border border-gray-200 bg-white shadow-xl overflow-hidden"
+                    >
+                      {routing.locales.map((l) => (
+                        <button
+                          key={l}
+                          onClick={() => onLanguageChange(l)}
+                          className={`w-full px-4 py-2.5 text-left text-sm transition-colors flex items-center justify-between ${
+                            l === locale
+                              ? "bg-purple-50 font-semibold text-purple-700"
+                              : "text-gray-700 hover:bg-gray-50"
+                          }`}
+                        >
+                          <span className="uppercase">{l}</span>
+                          {l === locale && (
+                            <div className="w-1.5 h-1.5 rounded-full bg-purple-600"></div>
+                          )}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               {/* Currency Selector */}
               <div className="relative hidden md:block">
                 <button
@@ -172,7 +231,7 @@ export function Header({ onNavigate }: HeaderProps = {}) {
                 className="hidden md:inline-flex items-center gap-2 rounded-lg border-2 border-purple-600 bg-white px-4 py-2 text-sm font-semibold text-purple-700 transition-all hover:bg-purple-600 hover:text-white shadow-sm hover:shadow-md"
               >
                 <LogIn className="h-4 w-4" />
-                <span>Sign In</span>
+                <span>{t("signIn")}</span>
               </button>
 
               {/* Mobile Menu Button */}
@@ -210,7 +269,9 @@ export function Header({ onNavigate }: HeaderProps = {}) {
                       }}
                       className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-colors"
                     >
-                      <span className="text-gray-500">{item.icon}</span>
+                      <span className="text-gray-500">
+                        <item.icon className="h-5 w-5" />
+                      </span>
                       {item.label}
                     </Link>
                   ))}
@@ -224,7 +285,7 @@ export function Header({ onNavigate }: HeaderProps = {}) {
                     className="flex w-full items-center gap-3 rounded-lg bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 px-3 py-2.5 text-base font-semibold text-white shadow-md"
                   >
                     <Sparkles className="h-5 w-5" />
-                    AI Trip Planner
+                    {t("aiPlanner")}
                   </button>
 
                   <div className="border-t border-gray-200 pt-3 mt-3">
@@ -236,7 +297,7 @@ export function Header({ onNavigate }: HeaderProps = {}) {
                       className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-purple-600 bg-white px-4 py-2.5 text-base font-semibold text-purple-700 hover:bg-purple-600 hover:text-white transition-colors"
                     >
                       <LogIn className="h-5 w-5" />
-                      <span>Sign In</span>
+                      <span>{t("signIn")}</span>
                     </button>
                   </div>
                 </div>

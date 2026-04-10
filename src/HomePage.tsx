@@ -23,6 +23,7 @@ import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { AIRPORTS } from "./data";
 import { Badge } from "./primitives/badge";
+import { useTranslations } from "next-intl";
 
 type TabType = "flights" | "hotels" | "holidays" | "visa";
 type TripType = "oneway" | "roundtrip";
@@ -34,6 +35,7 @@ interface HomePageProps {
 }
 
 export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
+  const t = useTranslations();
   const [activeTab, setActiveTab] = useState<TabType>("flights");
   const [tripType, setTripType] = useState<TripType>("roundtrip");
   const [cabinClass, setCabinClass] = useState<CabinClass>("economy");
@@ -126,7 +128,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
               transition={{ duration: 0.6 }}
               className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl mb-4"
             >
-              Discover Your Next Adventure
+              {t("Hero.title")}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -134,7 +136,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg text-blue-100 sm:text-xl"
             >
-              Book flights, hotels, and holiday packages at the best prices
+              {t("Hero.subtitle")}
             </motion.p>
           </div>
 
@@ -148,14 +150,14 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
             {/* Tabs */}
             <div className="mb-8 flex gap-2 border-b border-gray-200">
               {[
-                { id: "flights" as TabType, label: "Flights", icon: Plane },
-                { id: "hotels" as TabType, label: "Hotels", icon: Hotel },
+                { id: "flights" as TabType, label: t("Search.tabs.flights"), icon: Plane },
+                { id: "hotels" as TabType, label: t("Search.tabs.hotels"), icon: Hotel },
                 {
                   id: "holidays" as TabType,
-                  label: "Holidays",
+                  label: t("Search.tabs.holidays"),
                   icon: Palmtree,
                 },
-                { id: "visa" as TabType, label: "Visa", icon: FileText },
+                { id: "visa" as TabType, label: t("Search.tabs.visa"), icon: FileText },
               ].map((tab) => {
                 const Icon = tab.icon;
                 return (
@@ -201,7 +203,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                       className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <span className="text-sm font-medium text-gray-700">
-                      One-way
+                      {t("Search.flights.oneWay")}
                     </span>
                   </label>
                   <label className="flex items-center gap-2.5 cursor-pointer">
@@ -214,7 +216,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                       className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <span className="text-sm font-medium text-gray-700">
-                      Round-trip
+                      {t("Search.flights.roundTrip")}
                     </span>
                   </label>
                 </div>
@@ -224,7 +226,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Origin */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      From
+                      {t("Search.flights.from")}
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -242,7 +244,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Destination */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      To
+                      {t("Search.flights.to")}
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -260,7 +262,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Dates */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      {tripType === "roundtrip" ? "Departure" : "Date"}
+                      {tripType === "roundtrip" ? t("Search.flights.departure") : t("Search.flights.date")}
                     </label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -275,7 +277,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {tripType === "roundtrip" && (
                     <div className="relative">
                       <label className="mb-1 block text-sm font-medium text-gray-700">
-                        Return
+                        {t("Search.flights.return")}
                       </label>
                       <div className="relative">
                         <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -297,7 +299,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Passengers Dropdown */}
                   <div className="relative" ref={passengersDropdownRef}>
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Passengers
+                      {t("Search.flights.passengers")}
                     </label>
                     <button
                       type="button"
@@ -310,11 +312,11 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                         <Users className="h-5 w-5 text-gray-400" />
                         <span>
                           {totalPassengers}{" "}
-                          {totalPassengers === 1 ? "Passenger" : "Passengers"}
+                          {totalPassengers === 1 ? t("Search.flights.passenger") : t("Search.flights.passengers")}
                           {children > 0 && (
                             <span className="text-gray-500 ml-1">
-                              ({adults} Adult{adults !== 1 ? "s" : ""},{" "}
-                              {children} Child{children !== 1 ? "ren" : ""})
+                              ({adults} {t("Search.flights.adults")},{" "}
+                              {children} {t("Search.flights.children")})
                             </span>
                           )}
                         </span>
@@ -343,10 +345,10 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                               </div>
                               <div>
                                 <div className="text-sm font-semibold text-gray-900">
-                                  Adults
+                                  {t("Search.flights.adults")}
                                 </div>
                                 <div className="text-xs text-gray-500">
-                                  12+ years
+                                  {t("Search.flights.age12Plus")}
                                 </div>
                               </div>
                             </div>
@@ -393,10 +395,10 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                               </div>
                               <div>
                                 <div className="text-sm font-semibold text-gray-900">
-                                  Children
+                                  {t("Search.flights.children")}
                                 </div>
                                 <div className="text-xs text-gray-500">
-                                  2-11 years
+                                  {t("Search.flights.age2To11")}
                                 </div>
                               </div>
                             </div>
@@ -438,7 +440,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                           {/* Info Note */}
                           <div className="pt-3 border-t border-gray-200">
                             <p className="text-xs text-gray-500">
-                              Maximum 9 passengers allowed per booking
+                              {t("Search.flights.maxPassengers")}
                             </p>
                           </div>
                         </div>
@@ -449,7 +451,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Cabin Class */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Cabin Class
+                      {t("Search.flights.cabinClass")}
                     </label>
                     <div className="relative">
                       <select
@@ -459,10 +461,10 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                         }
                         className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-4 pr-10 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                       >
-                        <option value="economy">Economy</option>
-                        <option value="premium-economy">Premium Economy</option>
-                        <option value="business">Business Class</option>
-                        <option value="first">First Class</option>
+                        <option value="economy">{t("Search.flights.economy")}</option>
+                        <option value="premium-economy">{t("Search.flights.premiumEconomy")}</option>
+                        <option value="business">{t("Search.flights.business")}</option>
+                        <option value="first">{t("Search.flights.first")}</option>
                       </select>
                       <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
                     </div>
@@ -475,7 +477,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
                 >
                   <Plane className="h-5 w-5" />
-                  Search Flights
+                  {t("Search.flights.search")}
                 </button>
               </div>
             )}
@@ -488,7 +490,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Destination */}
                   <div className="relative lg:col-span-2">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Destination
+                      {t("Search.hotels.destination")}
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -496,7 +498,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                         type="text"
                         value={hotelDestination}
                         onChange={(e) => setHotelDestination(e.target.value)}
-                        placeholder="City, hotel name, or landmark"
+                        placeholder={t("Search.hotels.destinationPlaceholder")}
                         className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                       />
                     </div>
@@ -505,7 +507,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Check-in Date */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Check-in
+                      {t("Search.hotels.checkIn")}
                     </label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -534,7 +536,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Check-out Date */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Check-out
+                      {t("Search.hotels.checkOut")}
                     </label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -567,7 +569,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Rooms */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Rooms
+                      {t("Search.hotels.rooms")}
                     </label>
                     <div className="relative">
                       <Hotel className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -578,7 +580,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                       >
                         {[1, 2, 3, 4, 5].map((num) => (
                           <option key={num} value={num}>
-                            {num} {num === 1 ? "Room" : "Rooms"}
+                            {num} {num === 1 ? t("Search.hotels.room") : t("Search.hotels.rooms")}
                           </option>
                         ))}
                       </select>
@@ -589,7 +591,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Guests */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Guests
+                      {t("Search.hotels.guests")}
                     </label>
                     <div className="relative">
                       <Users className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -600,7 +602,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                       >
                         {[1, 2, 3, 4, 5, 6].map((num) => (
                           <option key={num} value={num}>
-                            {num} {num === 1 ? "Guest" : "Guests"}
+                            {num} {num === 1 ? t("Search.hotels.guest") : t("Search.hotels.guests")}
                           </option>
                         ))}
                       </select>
@@ -616,7 +618,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Hotel className="h-5 w-5" />
-                  Search Hotels
+                  {t("Search.hotels.search")}
                 </button>
               </div>
             )}
@@ -629,7 +631,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Destination */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Destination / Theme
+                      {t("Search.holidays.destination")}
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -637,7 +639,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                         type="text"
                         value={holidayDestination}
                         onChange={(e) => setHolidayDestination(e.target.value)}
-                        placeholder="Beach, Mountains, Adventure..."
+                        placeholder={t("Search.holidays.destinationPlaceholder")}
                         className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                       />
                     </div>
@@ -646,7 +648,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Budget Range */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Budget Range
+                      {t("Search.holidays.budget")}
                     </label>
                     <div className="relative">
                       <select
@@ -654,13 +656,9 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                         onChange={(e) => setHolidayBudget(e.target.value)}
                         className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-4 pr-10 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                       >
-                        <option value="budget">
-                          Budget (₹10,000 - ₹25,000)
-                        </option>
-                        <option value="medium">
-                          Mid-Range (₹25,000 - ₹50,000)
-                        </option>
-                        <option value="luxury">Luxury (₹50,000+)</option>
+                        <option value="budget">{t("Search.holidays.budgetRange.budget")}</option>
+                        <option value="medium">{t("Search.holidays.budgetRange.medium")}</option>
+                        <option value="luxury">{t("Search.holidays.budgetRange.luxury")}</option>
                       </select>
                       <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
                     </div>
@@ -672,7 +670,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Start Date */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Travel Start
+                      {t("Search.holidays.travelStart")}
                     </label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -689,7 +687,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* End Date */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Travel End
+                      {t("Search.holidays.travelEnd")}
                     </label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -706,7 +704,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Travelers */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Travelers
+                      {t("Search.holidays.travelers")}
                     </label>
                     <div className="relative">
                       <Users className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -719,7 +717,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                       >
                         {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
                           <option key={num} value={num}>
-                            {num} {num === 1 ? "Traveler" : "Travelers"}
+                            {num} {num === 1 ? t("Search.holidays.traveler") : t("Search.holidays.travelers")}
                           </option>
                         ))}
                       </select>
@@ -734,7 +732,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
                 >
                   <Palmtree className="h-5 w-5" />
-                  Search Holiday Packages
+                  {t("Search.holidays.search")}
                 </button>
               </div>
             )}
@@ -747,7 +745,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Country Selection */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Destination Country
+                      {t("Search.visa.destination")}
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -756,7 +754,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                         onChange={(e) => setVisaCountry(e.target.value)}
                         className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                       >
-                        <option value="">Select Country</option>
+                        <option value="">{t("Search.visa.selectCountry")}</option>
                         <option value="usa">United States</option>
                         <option value="uk">United Kingdom</option>
                         <option value="schengen">Schengen (Europe)</option>
@@ -773,7 +771,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Visa Type */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Visa Type
+                      {t("Search.visa.visaType")}
                     </label>
                     <div className="relative">
                       <FileText className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -782,11 +780,11 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                         onChange={(e) => setVisaType(e.target.value)}
                         className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                       >
-                        <option value="tourist">Tourist Visa</option>
-                        <option value="business">Business Visa</option>
-                        <option value="student">Student Visa</option>
-                        <option value="work">Work Visa</option>
-                        <option value="transit">Transit Visa</option>
+                        <option value="tourist">{t("Search.visa.types.tourist")}</option>
+                        <option value="business">{t("Search.visa.types.business")}</option>
+                        <option value="student">{t("Search.visa.types.student")}</option>
+                        <option value="work">{t("Search.visa.types.work")}</option>
+                        <option value="transit">{t("Search.visa.types.transit")}</option>
                       </select>
                       <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
                     </div>
@@ -798,7 +796,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Travel Date */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Planned Travel Date
+                      {t("Search.visa.travelDate")}
                     </label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -818,7 +816,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   {/* Number of Applicants */}
                   <div className="relative">
                     <label className="mb-1 block text-sm font-medium text-gray-700">
-                      Number of Applicants
+                      {t("Search.visa.applicants")}
                     </label>
                     <div className="relative">
                       <Users className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -831,7 +829,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                       >
                         {[1, 2, 3, 4, 5, 6].map((num) => (
                           <option key={num} value={num}>
-                            {num} {num === 1 ? "Applicant" : "Applicants"}
+                            {num} {num === 1 ? t("Search.visa.applicant") : t("Search.visa.applicants")}
                           </option>
                         ))}
                       </select>
@@ -847,7 +845,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                   className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <FileText className="h-5 w-5" />
-                  Check Visa Requirements
+                  {t("Search.visa.check")}
                 </button>
               </div>
             )}
@@ -868,13 +866,13 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
             className="text-center mb-16"
           >
             <span className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold mb-4">
-              ⭐ Testimonials
+              ⭐ {t("Testimonials.badge")}
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              What Our Travelers Say
+              {t("Testimonials.title")}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Real experiences from thousands of happy travelers
+              {t("Testimonials.subtitle")}
             </p>
           </motion.div>
 
@@ -1213,6 +1211,7 @@ interface FeaturedPackagesSectionProps {
 }
 
 function FeaturedPackagesSection({ onNavigate }: FeaturedPackagesSectionProps) {
+  const t = useTranslations();
   const [isPaused] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -1334,13 +1333,13 @@ function FeaturedPackagesSection({ onNavigate }: FeaturedPackagesSectionProps) {
               viewport={{ once: true }}
             >
               <Badge variant="default" className="mb-3">
-                Trending Now
+                {t("Featured.badge")}
               </Badge>
               <h2 className="text-4xl font-bold text-gray-900 mb-3">
-                Featured Holiday Packages
+                {t("Featured.title")}
               </h2>
               <p className="text-lg text-gray-600">
-                Handpicked destinations for your next unforgettable vacation
+                {t("Featured.subtitle")}
               </p>
             </motion.div>
           </div>
@@ -1351,7 +1350,7 @@ function FeaturedPackagesSection({ onNavigate }: FeaturedPackagesSectionProps) {
             onClick={() => onNavigate?.("holidays")}
             className="hidden md:flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors group"
           >
-            View All Packages
+            {t("Featured.viewAll")}
             <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </motion.button>
         </div>

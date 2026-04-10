@@ -10,6 +10,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import type { FlightOffer } from "./types";
 import { formatCurrency } from "./data";
+import { useTranslations, useLocale } from "next-intl";
 
 interface FlightResultCardProps {
   flight: FlightOffer;
@@ -17,6 +18,8 @@ interface FlightResultCardProps {
 }
 
 export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
+  const t = useTranslations("Flights.resultCard");
+  const locale = useLocale();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const getDurationText = (minutes: number) => {
@@ -26,7 +29,7 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
   };
 
   const formatTime = (datetime: string) => {
-    return new Date(datetime).toLocaleTimeString("en-US", {
+    return new Date(datetime).toLocaleTimeString(locale === "ru" ? "ru-RU" : "en-US", {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
@@ -34,16 +37,16 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
   };
 
   const formatDate = (datetime: string) => {
-    return new Date(datetime).toLocaleDateString("en-US", {
+    return new Date(datetime).toLocaleDateString(locale === "ru" ? "ru-RU" : "en-US", {
       month: "short",
       day: "numeric",
     });
   };
 
   const getStopsText = () => {
-    if (flight.segments.length === 1) return "Non-stop";
-    if (flight.segments.length === 2) return "1 stop";
-    return `${flight.segments.length - 1} stops`;
+    if (flight.segments.length === 1) return t("nonStop");
+    if (flight.segments.length === 2) return t("oneStop");
+    return t("stops", { count: flight.segments.length - 1 });
   };
 
   const firstSegment = flight.segments[0];
@@ -127,7 +130,7 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
             <div className="text-right text-2xl font-bold text-gray-900">
               {formatCurrency(flight.price)}
             </div>
-            <div className="text-right text-sm text-gray-600">per adult</div>
+            <div className="text-right text-sm text-gray-600">{t("perAdult")}</div>
           </div>
           <div className="flex gap-2">
             <button
@@ -136,11 +139,11 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
             >
               {isExpanded ? (
                 <>
-                  <ChevronUp className="inline h-4 w-4" /> Hide
+                  <ChevronUp className="inline h-4 w-4" /> {t("hide")}
                 </>
               ) : (
                 <>
-                  <ChevronDown className="inline h-4 w-4" /> Details
+                  <ChevronDown className="inline h-4 w-4" /> {t("details")}
                 </>
               )}
             </button>
@@ -152,7 +155,7 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
               }}
               className="rounded-lg bg-blue-600 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700 cursor-pointer"
             >
-              Book Now
+              {t("book")}
             </button>
           </div>
         </div>
@@ -172,7 +175,7 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
               {/* Flight Segments */}
               <div>
                 <h4 className="mb-3 text-sm font-semibold text-gray-900">
-                  Flight Details
+                  {t("flightDetails")}
                 </h4>
                 <div className="space-y-4">
                   {flight.segments.map((segment, index) => (
@@ -199,7 +202,7 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
                         {index < flight.segments.length - 1 && (
                           <div className="flex items-center gap-2 text-sm text-gray-600">
                             <Clock className="h-4 w-4" />
-                            <span>Layover in {segment.to}</span>
+                            <span>{t("layover", { city: segment.to })}</span>
                           </div>
                         )}
                       </div>
@@ -212,16 +215,16 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
                   <h4 className="mb-2 text-sm font-semibold text-gray-900">
-                    Baggage Allowance
+                    {t("baggage")}
                   </h4>
                   <div className="space-y-2 text-sm text-gray-600">
                     <div className="flex items-center gap-2">
                       <Briefcase className="h-4 w-4" />
-                      <span>Cabin: {flight.baggage.cabin || "7 kg"}</span>
+                      <span>{t("cabin")}: {flight.baggage.cabin || "7 kg"}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <ShoppingBag className="h-4 w-4" />
-                      <span>Check-in: {flight.baggage.checked || "15 kg"}</span>
+                      <span>{t("checked")}: {flight.baggage.checked || "15 kg"}</span>
                     </div>
                   </div>
                 </div>
@@ -229,7 +232,7 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
                 {/* Fare Rules */}
                 <div>
                   <h4 className="mb-2 text-sm font-semibold text-gray-900">
-                    Fare Rules
+                    {t("fareRules")}
                   </h4>
                   <div className="space-y-1 text-sm">
                     <div
@@ -237,12 +240,12 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
                         flight.refundable ? "text-green-600" : "text-red-600"
                       }`}
                     >
-                      {flight.refundable ? "✓ Refundable" : "✗ Non-refundable"}
+                      {flight.refundable ? `✓ ${t("refundable")}` : `✗ ${t("nonRefundable")}`}
                     </div>
                     <div className="text-gray-600">
                       {flight.changeable
-                        ? "✓ Date change allowed"
-                        : "✗ Date change not allowed"}
+                        ? `✓ ${t("changeAllowed")}`
+                        : `✗ ${t("changeNotAllowed")}`}
                     </div>
                   </div>
                 </div>
@@ -252,7 +255,7 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
               {flight.amenities && flight.amenities.length > 0 && (
                 <div>
                   <h4 className="mb-2 text-sm font-semibold text-gray-900">
-                    Amenities
+                    {t("amenities")}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {flight.amenities.map((amenity, index) => (

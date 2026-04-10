@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { HomePage } from "../HomePage";
-import { FlightsPage } from "../FlightsPage";
-import { HotelsPage } from "../HotelsPage";
-import { HolidaysPage } from "../HolidaysPage";
-import { VisaPage } from "../VisaPage";
-import { Header } from "../Header";
-import { Footer } from "../Footer";
-import { UnifiedBookingFlow } from "../UnifiedBookingFlow";
-import type { FlightOffer, Hotel, Package, VisaRequirement } from "../types";
+import { HomePage } from "../../HomePage";
+import { FlightsPage } from "../../FlightsPage";
+import { HotelsPage } from "../../HotelsPage";
+import { HolidaysPage } from "../../HolidaysPage";
+import { VisaPage } from "../../VisaPage";
+import { Header } from "../../Header";
+import { Footer } from "../../Footer";
+import { UnifiedBookingFlow } from "../../UnifiedBookingFlow";
+import type { FlightOffer, Hotel, Package, VisaRequirement } from "../../types";
 
 type PageType = "home" | "flights" | "hotels" | "holidays" | "visa" | "booking";
 

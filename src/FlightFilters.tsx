@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
 import type { FilterState } from "./types";
+import { useTranslations } from "next-intl";
 
 export interface FlightFiltersProps {
   filters: FilterState;
@@ -18,20 +19,22 @@ const AIRLINES = [
   "AirAsia India",
 ];
 
-const TIME_SLOTS = [
-  { id: "morning", label: "Morning", time: "6AM - 12PM" },
-  { id: "afternoon", label: "Afternoon", time: "12PM - 6PM" },
-  { id: "evening", label: "Evening", time: "6PM - 12AM" },
-  { id: "night", label: "Night", time: "12AM - 6AM" },
-];
-
 export function FlightFilters({
   filters,
   onFilterChange,
   onClearAll,
   onClose,
 }: FlightFiltersProps) {
+  const t = useTranslations("Flights.filtersSidebar");
+  const tSearch = useTranslations("Search.flights");
   const [localFilters, setLocalFilters] = useState(filters);
+
+  const TIME_SLOTS = [
+    { id: "morning", label: tSearch("morning" as any), time: "6AM - 12PM" },
+    { id: "afternoon", label: tSearch("afternoon" as any), time: "12PM - 6PM" },
+    { id: "evening", label: tSearch("evening" as any), time: "6PM - 12AM" },
+    { id: "night", label: tSearch("night" as any), time: "12AM - 6AM" },
+  ];
 
   const updateFilter = <K extends keyof FilterState>(
     key: K,
@@ -70,14 +73,14 @@ export function FlightFilters({
     >
       {/* Header */}
       <div className="flex items-center justify-between border-b border-gray-200 p-4">
-        <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+        <h2 className="text-lg font-semibold text-gray-900">{t("title")}</h2>
         <div className="flex items-center gap-2">
           {hasActiveFilters && (
             <button
               onClick={onClearAll}
               className="text-sm font-medium text-blue-600 hover:text-blue-700"
             >
-              Clear all
+              {t("clearAll")}
             </button>
           )}
           {onClose && (
@@ -100,7 +103,7 @@ export function FlightFilters({
         {/* Price Range */}
         <div>
           <h3 className="mb-3 text-sm font-semibold text-gray-900">
-            Price Range
+            {t("priceRange")}
           </h3>
           <div className="space-y-3">
             <input
@@ -125,20 +128,26 @@ export function FlightFilters({
 
         {/* Stops */}
         <div>
-          <h3 className="mb-3 text-sm font-semibold text-gray-900">Stops</h3>
+          <h3 className="mb-3 text-sm font-semibold text-gray-900">
+            {t("stops")}
+          </h3>
           <div className="space-y-2">
-            {["Non-stop", "1 stop", "2+ stops"].map((stop) => (
+            {[
+              { id: "non-stop", label: t("stopTypes.nonStop") },
+              { id: "1-stop", label: t("stopTypes.oneStop") },
+              { id: "2-plus", label: t("stopTypes.twoPlus") },
+            ].map((stop) => (
               <label
-                key={stop}
+                key={stop.id}
                 className="flex items-center gap-2 cursor-pointer"
               >
                 <input
                   type="checkbox"
-                  checked={localFilters.stops.includes(stop)}
-                  onChange={() => toggleArrayFilter("stops", stop)}
+                  checked={localFilters.stops.includes(stop.id)}
+                  onChange={() => toggleArrayFilter("stops", stop.id)}
                   className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
-                <span className="text-sm text-gray-700">{stop}</span>
+                <span className="text-sm text-gray-700">{stop.label}</span>
               </label>
             ))}
           </div>
@@ -146,7 +155,9 @@ export function FlightFilters({
 
         {/* Airlines */}
         <div>
-          <h3 className="mb-3 text-sm font-semibold text-gray-900">Airlines</h3>
+          <h3 className="mb-3 text-sm font-semibold text-gray-900">
+            {t("airlines")}
+          </h3>
           <div className="space-y-2">
             {AIRLINES.map((airline) => (
               <label
@@ -168,7 +179,7 @@ export function FlightFilters({
         {/* Departure Time */}
         <div>
           <h3 className="mb-3 text-sm font-semibold text-gray-900">
-            Departure Time
+            {t("departureTime")}
           </h3>
           <div className="grid grid-cols-2 gap-2">
             {TIME_SLOTS.map((slot) => (
@@ -191,7 +202,7 @@ export function FlightFilters({
         {/* Arrival Time */}
         <div>
           <h3 className="mb-3 text-sm font-semibold text-gray-900">
-            Arrival Time
+            {t("arrivalTime")}
           </h3>
           <div className="grid grid-cols-2 gap-2">
             {TIME_SLOTS.map((slot) => (
@@ -214,7 +225,7 @@ export function FlightFilters({
         {/* Duration */}
         <div>
           <h3 className="mb-3 text-sm font-semibold text-gray-900">
-            Max Duration
+            {t("duration")}
           </h3>
           <div className="space-y-3">
             <input
@@ -231,7 +242,7 @@ export function FlightFilters({
               className="w-full"
             />
             <div className="text-center text-sm font-semibold text-gray-900">
-              Up to {localFilters.duration[1]} hours
+              {localFilters.duration[1]} hours
             </div>
           </div>
         </div>
@@ -239,25 +250,28 @@ export function FlightFilters({
         {/* Cabin Class */}
         <div>
           <h3 className="mb-3 text-sm font-semibold text-gray-900">
-            Cabin Class
+            {t("cabinClass")}
           </h3>
           <div className="space-y-2">
-            {["Economy", "Premium Economy", "Business", "First Class"].map(
-              (cabin) => (
-                <label
-                  key={cabin}
-                  className="flex items-center gap-2 cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    checked={localFilters.cabinClass.includes(cabin)}
-                    onChange={() => toggleArrayFilter("cabinClass", cabin)}
-                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-700">{cabin}</span>
-                </label>
-              )
-            )}
+            {[
+              { id: "Economy", label: tSearch("economy") },
+              { id: "Premium Economy", label: tSearch("premiumEconomy") },
+              { id: "Business", label: tSearch("business") },
+              { id: "First Class", label: tSearch("first") },
+            ].map((cabin) => (
+              <label
+                key={cabin.id}
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                <input
+                  type="checkbox"
+                  checked={localFilters.cabinClass.includes(cabin.id)}
+                  onChange={() => toggleArrayFilter("cabinClass", cabin.id)}
+                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                />
+                <span className="text-sm text-gray-700">{cabin.label}</span>
+              </label>
+            ))}
           </div>
         </div>
       </div>
