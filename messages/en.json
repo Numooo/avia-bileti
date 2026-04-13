@@ -13,7 +13,8 @@
     "tagline": "Your Journey Begins",
     "cargo": "Cargo",
     "myCabinet": "My Cabinet",
-    "logout": "Sign Out"
+    "logout": "Sign Out",
+    "notifications": "Notifications"
   },
   "Sidebar": {
     "expand": "Expand",
