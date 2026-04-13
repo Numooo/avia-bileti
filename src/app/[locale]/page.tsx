@@ -13,9 +13,10 @@ import { CargoPage } from "../../CargoPage";
 import { ProfilePage } from "../../ProfilePage";
 import { UnifiedBookingFlow } from "../../UnifiedBookingFlow";
 import { ChatWidget } from "../../ChatWidget";
+import { FlightStatusPage } from "../../FlightStatusPage";
 import type { FlightOffer, Hotel, Package, VisaRequirement } from "../../types";
 
-type PageType = "home" | "flights" | "hotels" | "holidays" | "visa" | "cargo" | "booking" | "profile";
+type PageType = "home" | "flights" | "hotels" | "holidays" | "visa" | "cargo" | "booking" | "profile" | "status";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState<PageType>("home");
@@ -146,6 +147,7 @@ export default function Home() {
               />
             )}
             {currentPage === "cargo" && <CargoPage />}
+            {currentPage === "status" && <FlightStatusPage />}
             {currentPage === "profile" && <ProfilePage />}
           </main>
           <Footer />

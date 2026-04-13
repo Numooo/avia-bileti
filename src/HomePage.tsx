@@ -1784,7 +1784,7 @@ function HotDealsSection({ onNavigate, onSearchFlights }: HotDealsSectionProps) 
   };
 
   return (
-    <section className="pt-24 pb-12 bg-white relative mt-[-4rem] z-10 rounded-t-[3rem]">
+    <section className="pt-24 pb-12 bg-white relative mt-[-4rem] z-10 rounded-t-3xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 flex justify-between items-end">
           <div>
@@ -1838,7 +1838,7 @@ function HotDealsSection({ onNavigate, onSearchFlights }: HotDealsSectionProps) 
                 }
               }}
             >
-              <div className="relative w-[300px] h-[380px] rounded-[2.5rem] overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 transform group-hover:-translate-y-2">
+              <div className="relative w-[300px] h-[380px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 transform group-hover:-translate-y-2 border border-gray-100">
                 <img 
                   src={card.image || "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&auto=format&fit=crop"} 
                   alt={card.destination} 
