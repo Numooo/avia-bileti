@@ -23,6 +23,7 @@ export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [targetDestination, setTargetDestination] = useState<string | null>(null);
   const [targetOrigin, setTargetOrigin] = useState<string | null>(null);
+  const [cargoSearchData, setCargoSearchData] = useState<any>(null);
   const [isSidebarPinned, setIsSidebarPinned] = useState(true);
   const [bookingData, setBookingData] = useState<{
     type: "flight" | "hotel" | "package" | "visa";
@@ -43,6 +44,7 @@ export default function Home() {
     setBookingData(null); // Clear booking data when navigating
     setTargetDestination(null);
     setTargetOrigin(null);
+    setCargoSearchData(null);
   };
 
   const handleStartBooking = (
@@ -111,6 +113,10 @@ export default function Home() {
                   if (to) setTargetDestination(to);
                   setCurrentPage("flights");
                 }}
+                onSearchCargo={(data) => {
+                  setCargoSearchData(data);
+                  setCurrentPage("cargo");
+                }}
                 onNavigate={handleNavigate}
               />
             )}
@@ -151,7 +157,7 @@ export default function Home() {
                 }}
               />
             )}
-            {currentPage === "cargo" && <CargoPage />}
+            {currentPage === "cargo" && <CargoPage initialData={cargoSearchData} />}
             {currentPage === "status" && <FlightStatusPage />}
             {currentPage === "profile" && <ProfilePage />}
           </main>
