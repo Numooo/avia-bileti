@@ -67,7 +67,7 @@ export function PackageDetailPage({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <div className="bg-white border-b border-gray-200 sticky top-16 z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <button
@@ -95,43 +95,112 @@ export function PackageDetailPage({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Image Gallery */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-              <div className="relative aspect-[16/9]">
-                <img
-                  src={packageImages[currentImageIndex]}
-                  alt={packageData.title}
-                  className="w-full h-full object-cover"
-                />
-                {packageImages.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 hover:bg-white shadow-lg transition-all"
-                    >
-                      <ChevronLeft className="h-6 w-6 text-gray-900" />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 hover:bg-white shadow-lg transition-all"
-                    >
-                      <ChevronRight className="h-6 w-6 text-gray-900" />
-                    </button>
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                      {packageImages.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentImageIndex(index)}
-                          className={`h-2 rounded-full transition-all ${
-                            index === currentImageIndex
-                              ? "w-8 bg-white"
-                              : "w-2 bg-white/50"
-                          }`}
-                        />
-                      ))}
+            {/* Image Gallery Grid */}
+            <div className="space-y-3">
+              {/* Desktop Grid View */}
+              <div className="hidden sm:block">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 h-[300px] md:h-[480px]">
+                  {/* Main Large Image */}
+                  <div className="md:col-span-3 relative rounded-2xl overflow-hidden group cursor-pointer" onClick={() => setCurrentImageIndex(0)}>
+                    {packageImages.length > 0 ? (
+                      <img
+                        src={packageImages[0]}
+                        alt={packageData.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                        <p className="text-gray-500">{th("noImages")}</p>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                  </div>
+                  
+                  {/* Side Stacked Images */}
+                  <div className="hidden md:grid grid-rows-2 gap-3 h-full">
+                    <div className="relative rounded-2xl overflow-hidden group cursor-pointer" onClick={() => setCurrentImageIndex(1 % packageImages.length)}>
+                      <img
+                        src={packageImages[1] || packageImages[0]}
+                        alt={`${packageData.title} 2`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
                     </div>
-                  </>
+                    <div className="relative rounded-2xl overflow-hidden group cursor-pointer" onClick={() => setCurrentImageIndex(2 % packageImages.length)}>
+                      <img
+                        src={packageImages[2] || (packageImages.length > 1 ? packageImages[1] : packageImages[0])}
+                        alt={`${packageData.title} 3`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Row Thumbnails */}
+                {packageImages.length > 3 && (
+                  <div className="grid grid-cols-5 gap-3 mt-3">
+                    {packageImages.slice(3, 8).map((img, idx) => (
+                      <div 
+                        key={idx} 
+                        className="relative aspect-[4/3] rounded-xl overflow-hidden group cursor-pointer"
+                        onClick={() => setCurrentImageIndex((idx + 3) % packageImages.length)}
+                      >
+                        <img
+                          src={img}
+                          alt={`${packageData.title} thumb ${idx + 4}`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        {idx === 4 && packageImages.length > 8 && (
+                          <div className="absolute inset-0 bg-black/60 flex items-center justify-center transition-opacity group-hover:opacity-90">
+                            <span className="text-white font-bold text-lg">
+                              {th("morePhotos", { count: packageImages.length - 8 })}
+                            </span>
+                          </div>
+                        )}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                      </div>
+                    ))}
+                  </div>
                 )}
+              </div>
+
+              {/* Mobile Carousel View */}
+              <div className="sm:hidden bg-white rounded-2xl overflow-hidden shadow-sm">
+                <div className="relative aspect-[16/9]">
+                  {packageImages.length > 0 ? (
+                    <>
+                      <img
+                        src={packageImages[currentImageIndex]}
+                        alt={packageData.title}
+                        className="w-full h-full object-cover"
+                      />
+                      {packageImages.length > 1 && (
+                        <>
+                          <button
+                            onClick={prevImage}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 shadow-md"
+                          >
+                            <ChevronLeft className="h-5 w-5 text-gray-900" />
+                          </button>
+                          <button
+                            onClick={nextImage}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 shadow-md"
+                          >
+                            <ChevronRight className="h-5 w-5 text-gray-900" />
+                          </button>
+                          <div className="absolute bottom-3 right-3 bg-black/60 px-2 py-1 rounded text-white text-xs font-medium">
+                            {currentImageIndex + 1} / {packageImages.length}
+                          </div>
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                      <p className="text-gray-500 text-sm">{th("noImages")}</p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -398,7 +467,7 @@ export function PackageDetailPage({
 
           {/* Booking Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
+            <div className="sticky top-40 bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
               <div className="space-y-6">
                 {/* Price */}
                 <div>
@@ -491,22 +560,6 @@ export function PackageDetailPage({
                 >
                   {th("bookNow")}
                 </button>
-
-                {/* Trust Badges */}
-                <div className="space-y-3 pt-4 border-t border-gray-200">
-                  <div className="flex items-center gap-3 text-sm text-gray-600">
-                    <Shield className="h-5 w-5 text-green-600" />
-                    <span>{th("securePayments")}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-600">
-                    <Clock className="h-5 w-5 text-blue-600" />
-                    <span>{th("instantConfirmation")}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-600">
-                    <Phone className="h-5 w-5 text-purple-600" />
-                    <span>{th("support247")}</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
