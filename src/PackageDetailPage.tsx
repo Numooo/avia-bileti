@@ -40,7 +40,7 @@ export function PackageDetailPage({
 }: PackageDetailPageProps) {
   const t = useTranslations("PackageDetail");
   const th = useTranslations("HotelDetail"); // Reusing common keys like 'bookNow'
-  const { symbol, CurrencyIcon } = useCurrency();
+  const { symbol, symbolText, CurrencyIcon, CurrencySymbol } = useCurrency();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedDate, setSelectedDate] = useState("");
   const [travelers, setTravelers] = useState(2);
@@ -403,8 +403,9 @@ export function PackageDetailPage({
                 {/* Price */}
                 <div>
                   <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-3xl font-bold text-gray-900">
-                      {symbol}{packagePrice.toLocaleString()}
+                    <span className="text-3xl font-bold text-gray-900 flex items-center">
+                      <CurrencySymbol className="h-7 w-7 mr-1" />
+                      {packagePrice.toLocaleString()}
                     </span>
                     <span className="text-gray-600">{t("perPerson")}</span>
                   </div>
@@ -456,19 +457,29 @@ export function PackageDetailPage({
                 {/* Price Breakdown */}
                 <div className="space-y-2 pt-4 border-t border-gray-200">
                   <div className="flex justify-between text-gray-700">
-                    <span>
-                      {symbol}{packagePrice.toLocaleString()} × {travelers}{" "}
+                    <span className="flex items-center">
+                      <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                      {packagePrice.toLocaleString()} × {travelers}{" "}
                       {t("travelersCount", { count: travelers })}
                     </span>
-                    <span>{symbol}{totalPrice.toLocaleString()}</span>
+                    <span className="flex items-center">
+                      <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                      {totalPrice.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between text-gray-700">
                     <span>{t("taxesFees")}</span>
-                    <span>{symbol}{taxesAndFees.toLocaleString()}</span>
+                    <span className="flex items-center">
+                      <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                      {taxesAndFees.toLocaleString()}
+                    </span>
                   </div>
                   <div className="flex justify-between text-lg font-bold text-gray-900 pt-2 border-t border-gray-200">
                     <span>{t("total")}</span>
-                    <span>{symbol}{grandTotal.toLocaleString()}</span>
+                    <span className="flex items-center">
+                      <CurrencySymbol className="h-5 w-5 mr-1" />
+                      {grandTotal.toLocaleString()}
+                    </span>
                   </div>
                 </div>
 

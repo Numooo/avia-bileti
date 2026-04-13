@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { FlightOffer } from "./types";
 import { formatCurrency } from "./data";
 import { useTranslations, useLocale } from "next-intl";
+import { useCurrency } from "@/CurrencyContext";
 
 interface FlightResultCardProps {
   flight: FlightOffer;
@@ -20,6 +21,7 @@ interface FlightResultCardProps {
 export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
   const t = useTranslations("Flights.resultCard");
   const locale = useLocale();
+  const { CurrencySymbol } = useCurrency();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const getDurationText = (minutes: number) => {
@@ -127,7 +129,8 @@ export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
         {/* Price & Action */}
         <div className="flex items-center gap-4 lg:flex-col lg:items-end">
           <div className="flex-1 lg:flex-none">
-            <div className="text-right text-2xl font-bold text-gray-900">
+            <div className="text-right text-2xl font-bold text-gray-900 flex items-center justify-end">
+              <CurrencySymbol className="h-5 w-5 mr-1" />
               {formatCurrency(flight.price)}
             </div>
             <div className="text-right text-sm text-gray-600">{t("perAdult")}</div>

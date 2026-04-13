@@ -190,6 +190,7 @@ interface VisaCardProps {
 
 function VisaCard({ visa, index, onApply }: VisaCardProps) {
   const t = useTranslations("Visa");
+  const { symbolText, CurrencySymbol } = useCurrency();
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -284,8 +285,9 @@ function VisaCard({ visa, index, onApply }: VisaCardProps) {
         <div className="flex items-center justify-between pt-4 border-t border-gray-200">
           <div>
             <p className="text-xs text-gray-600 mb-0.5">{t("processingFee")}</p>
-            <p className="text-2xl font-bold text-blue-600">
-              {symbol}{visa.price.toLocaleString()}
+            <p className="text-2xl font-bold text-blue-600 flex items-center">
+              <CurrencySymbol className="h-5 w-5 mr-1" />
+              {visa.price.toLocaleString()}
             </p>
           </div>
           <Button

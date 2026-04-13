@@ -27,7 +27,7 @@ export function BookingConfirmation({
   onAddToCalendar,
   onViewDetails,
 }: BookingConfirmationProps) {
-  const { symbol } = useCurrency();
+  const { symbol, symbolText, CurrencySymbol } = useCurrency();
   useEffect(() => {
     // Trigger confetti on mount
     confetti({
@@ -204,8 +204,9 @@ export function BookingConfirmation({
             <div className="mt-6 space-y-2 border-t border-gray-200 pt-6">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Total Paid</span>
-                <span className="font-semibold text-gray-900">
-                  {symbol}{formatCurrency(booking.fareBreakdown.total)}
+                <span className="font-semibold text-gray-900 flex items-center">
+                  <CurrencySymbol className="h-4 w-4 mr-1" />
+                  {formatCurrency(booking.fareBreakdown.total)}
                 </span>
               </div>
               <div className="flex justify-between text-sm">

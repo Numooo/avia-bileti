@@ -78,7 +78,8 @@ const interestsKeys = [
 export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
   const t = useTranslations("AITripPlanner");
   const commonT = useTranslations("Common");
-  const { symbol } = useCurrency();
+  const { symbolText, CurrencySymbol } = useCurrency();
+  const symbol = symbolText;
   
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -166,10 +167,10 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
       "bot",
       t("itinerary", {
         days,
-        destination: preferences.destination,
-        interests: preferences.interests?.join(", "),
-        budget: preferences.budget,
-        travelers: preferences.travelers
+        destination: preferences.destination || "",
+        interests: preferences.interests?.join(", ") || "",
+        budget: preferences.budget || "",
+        travelers: preferences.travelers || ""
       })
     );
   };
@@ -635,31 +636,31 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
     <div class="header">
       <div class="logo">✈️ SUVIDHA ESCAPES</div>
       <div class="title">Your Personalized Travel Itinerary</div>
-      <div class="subtitle">${preferences.destination} • ${
-      preferences.duration
+      <div class="subtitle">${preferences.destination || ""} • ${
+      preferences.duration || ""
     }</div>
     </div>
 
     <div class="trip-info">
       <div class="info-item">
         <div class="info-label">📍 Destination</div>
-        <div class="info-value">${preferences.destination}</div>
+        <div class="info-value">${preferences.destination || ""}</div>
       </div>
       <div class="info-item">
         <div class="info-label">⏱️ Duration</div>
-        <div class="info-value">${preferences.duration}</div>
+        <div class="info-value">${preferences.duration || ""}</div>
       </div>
       <div class="info-item">
         <div class="info-label">💰 Budget</div>
-        <div class="info-value">${preferences.budget}</div>
+        <div class="info-value">${preferences.budget || ""}</div>
       </div>
       <div class="info-item">
         <div class="info-label">👥 Travelers</div>
-        <div class="info-value">${preferences.travelers}</div>
+        <div class="info-value">${preferences.travelers || ""}</div>
       </div>
       <div class="info-item" style="grid-column: 1 / -1;">
         <div class="info-label">❤️ Interests</div>
-        <div class="info-value">${preferences.interests?.join(", ")}</div>
+        <div class="info-value">${preferences.interests?.join(", ") || ""}</div>
       </div>
     </div>
 
@@ -708,7 +709,7 @@ export function AITripPlanner({ isOpen, onClose }: AITripPlannerProps) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${preferences.destination?.replace(
+    a.download = `${(preferences.destination || "Trip").replace(
       /\s+/g,
       "-"
     )}-Itinerary-SuvidhaEscapes.html`;

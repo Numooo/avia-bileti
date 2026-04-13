@@ -28,7 +28,7 @@ export function FlightFilters({
 }: FlightFiltersProps) {
   const t = useTranslations("Flights.filtersSidebar");
   const tSearch = useTranslations("Search.flights");
-  const { symbol } = useCurrency();
+  const { symbol, symbolText, CurrencySymbol } = useCurrency();
   const [localFilters, setLocalFilters] = useState(filters);
 
   const TIME_SLOTS = [
@@ -120,9 +120,13 @@ export function FlightFilters({
               className="w-full"
             />
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600">{symbol}0</span>
-              <span className="font-semibold text-gray-900">
-                {symbol}{localFilters.priceRange[1].toLocaleString()}
+              <span className="text-gray-600 flex items-center">
+                <CurrencySymbol className="h-3 w-3 mr-1" />
+                0
+              </span>
+              <span className="font-semibold text-gray-900 flex items-center">
+                <CurrencySymbol className="h-4 w-4 mr-1" />
+                {localFilters.priceRange[1].toLocaleString()}
               </span>
             </div>
           </div>

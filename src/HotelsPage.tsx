@@ -55,7 +55,7 @@ interface HotelsPageProps {
 
 export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
   const t = useTranslations("Hotels");
-  const { symbol } = useCurrency();
+  const { symbol, symbolText, CurrencySymbol } = useCurrency();
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [hotels] = useState<Hotel[]>(t.raw("mockData"));
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
@@ -256,9 +256,13 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
                     className="w-full"
                   />
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">{symbol}{priceRange[0]}</span>
-                    <span className="font-medium text-gray-900">
-                      {symbol}{priceRange[1]}
+                    <span className="text-gray-600 flex items-center">
+                      <CurrencySymbol className="h-3 w-3 mr-1" />
+                      {priceRange[0]}
+                    </span>
+                    <span className="font-medium text-gray-900 flex items-center">
+                      <CurrencySymbol className="h-4 w-4 mr-1" />
+                      {priceRange[1]}
                     </span>
                   </div>
                 </div>
@@ -361,6 +365,7 @@ interface HotelCardProps {
 
 function HotelCard({ hotel, viewMode, index, onSelect }: HotelCardProps) {
   const t = useTranslations("Hotels");
+  const { symbolText, CurrencySymbol } = useCurrency();
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
@@ -477,13 +482,15 @@ function HotelCard({ hotel, viewMode, index, onSelect }: HotelCardProps) {
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 pt-4 border-t border-gray-200">
           <div>
             {hotel.originalPrice && (
-              <span className="text-sm text-gray-500 line-through block">
-                {symbol}{hotel.originalPrice.toLocaleString()}
+              <span className="text-sm text-gray-500 line-through flex items-center">
+                <CurrencySymbol className="h-3 w-3 mr-1" />
+                {hotel.originalPrice.toLocaleString()}
               </span>
             )}
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-blue-600">
-                {symbol}{(hotel.price || hotel.pricePerNight || 0).toLocaleString()}
+              <span className="text-2xl font-bold text-blue-600 flex items-center">
+                <CurrencySymbol className="h-6 w-6 mr-1" />
+                {(hotel.price || hotel.pricePerNight || 0).toLocaleString()}
               </span>
               <span className="text-sm text-gray-600">/{t("night")}</span>
             </div>

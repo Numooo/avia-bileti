@@ -16,7 +16,7 @@ export function ReviewConfirm({
   fareBreakdown,
   onContinue,
 }: ReviewConfirmProps) {
-  const { symbol } = useCurrency();
+  const { symbol, symbolText, CurrencySymbol } = useCurrency();
   const firstSegment = flight.segments[0];
   const lastSegment = flight.segments[flight.segments.length - 1];
 
@@ -141,37 +141,42 @@ export function ReviewConfirm({
           <div className="space-y-3">
             <div className="flex justify-between border-b border-gray-100 pb-3">
               <span className="text-sm text-gray-700">Base Fare</span>
-              <span className="text-sm font-medium text-gray-900">
-                {symbol}{formatCurrency(fareBreakdown.baseFare)}
+              <span className="text-sm font-medium text-gray-900 flex items-center">
+                <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                {formatCurrency(fareBreakdown.baseFare)}
               </span>
             </div>
             <div className="flex justify-between border-b border-gray-100 pb-3">
               <span className="text-sm text-gray-700">Taxes & Fees</span>
-              <span className="text-sm font-medium text-gray-900">
-                {symbol}{formatCurrency(fareBreakdown.taxes)}
+              <span className="text-sm font-medium text-gray-900 flex items-center">
+                <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                {formatCurrency(fareBreakdown.taxes)}
               </span>
             </div>
             {fareBreakdown.seatSelection && (
               <div className="flex justify-between border-b border-gray-100 pb-3">
                 <span className="text-sm text-gray-700">Seat Selection</span>
-                <span className="text-sm font-medium text-gray-900">
-                  {symbol}{formatCurrency(fareBreakdown.seatSelection)}
+                <span className="text-sm font-medium text-gray-900 flex items-center">
+                  <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                  {formatCurrency(fareBreakdown.seatSelection)}
                 </span>
               </div>
             )}
             {fareBreakdown.baggage && (
               <div className="flex justify-between border-b border-gray-100 pb-3">
                 <span className="text-sm text-gray-700">Extra Baggage</span>
-                <span className="text-sm font-medium text-gray-900">
-                  {symbol}{formatCurrency(fareBreakdown.baggage)}
+                <span className="text-sm font-medium text-gray-900 flex items-center">
+                  <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                  {formatCurrency(fareBreakdown.baggage)}
                 </span>
               </div>
             )}
             {fareBreakdown.discount && (
               <div className="flex justify-between border-b border-gray-100 pb-3 text-green-600">
                 <span className="text-sm font-medium">Discount</span>
-                <span className="text-sm font-medium">
-                  -{symbol}{formatCurrency(fareBreakdown.discount)}
+                <span className="text-sm font-medium flex items-center">
+                  -<CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                  {formatCurrency(fareBreakdown.discount)}
                 </span>
               </div>
             )}
@@ -179,8 +184,9 @@ export function ReviewConfirm({
               <span className="text-xl font-bold text-gray-900">
                 Total Amount
               </span>
-              <span className="text-xl font-bold text-primary-600">
-                {symbol}{formatCurrency(fareBreakdown.total)}
+              <span className="text-xl font-bold text-primary-600 flex items-center">
+                <CurrencySymbol className="h-5 w-5 mr-1" />
+                {formatCurrency(fareBreakdown.total)}
               </span>
             </div>
           </div>
@@ -256,8 +262,9 @@ export function ReviewConfirm({
           <div className="mb-6 border-t border-gray-200 pt-4">
             <div className="mb-2 flex justify-between text-sm">
               <span className="text-gray-600">Total Amount</span>
-              <span className="font-semibold text-gray-900">
-                {symbol}{formatCurrency(fareBreakdown.total)}
+              <span className="font-semibold text-gray-900 flex items-center">
+                <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                {formatCurrency(fareBreakdown.total)}
               </span>
             </div>
           </div>

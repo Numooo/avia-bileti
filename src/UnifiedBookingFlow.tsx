@@ -57,7 +57,7 @@ export function UnifiedBookingFlow({
 }: UnifiedBookingFlowProps) {
   const t = useTranslations("Booking");
   const commonT = useTranslations("Common");
-  const { symbol } = useCurrency();
+  const { symbol, symbolText, CurrencySymbol } = useCurrency();
 
   const [step, setStep] = useState<"details" | "payment" | "confirmation">(
     "details"
@@ -590,14 +590,16 @@ export function UnifiedBookingFlow({
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">{pricing.label}</span>
-                    <span className="font-medium text-gray-900">
-                      {symbol}{pricing.basePrice.toLocaleString()}
+                    <span className="font-medium text-gray-900 flex items-center">
+                      <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                      {pricing.basePrice.toLocaleString()}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">{t("taxes")}</span>
-                    <span className="font-medium text-gray-900">
-                      {symbol}{pricing.taxes.toLocaleString()}
+                    <span className="font-medium text-gray-900 flex items-center">
+                      <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                      {pricing.taxes.toLocaleString()}
                     </span>
                   </div>
                   <div className="pt-3 border-t border-gray-200">
@@ -605,8 +607,9 @@ export function UnifiedBookingFlow({
                       <span className="text-lg font-bold text-gray-900">
                         {t("total")}
                       </span>
-                      <span className="text-2xl font-bold text-brand-primary">
-                        {symbol}{pricing.total.toLocaleString()}
+                      <span className="text-2xl font-bold text-brand-primary flex items-center">
+                        <CurrencySymbol className="h-6 w-6 mr-1" />
+                        {pricing.total.toLocaleString()}
                       </span>
                     </div>
                   </div>

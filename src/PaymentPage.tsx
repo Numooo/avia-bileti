@@ -24,7 +24,7 @@ export function PaymentPage({
   onPayment,
   onBack,
 }: PaymentPageProps) {
-  const { symbol } = useCurrency();
+  const { symbol, symbolText, CurrencySymbol } = useCurrency();
   const [paymentMethod, setPaymentMethod] = useState<
     "upi" | "card" | "netbanking" | "wallet"
   >("upi");
@@ -290,20 +290,25 @@ export function PaymentPage({
                 <div className="space-y-3 border-b border-gray-200 pb-4">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Base Fare</span>
-                    <span className="text-gray-900">
-                      {symbol}{formatCurrency(fareBreakdown.baseFare)}
+                    <span className="text-gray-900 flex items-center">
+                      <CurrencySymbol className="h-3 w-3 mr-1" />
+                      {formatCurrency(fareBreakdown.baseFare)}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Taxes & Fees</span>
-                    <span className="text-gray-900">
-                      {symbol}{formatCurrency(fareBreakdown.taxes)}
+                    <span className="text-gray-900 flex items-center">
+                      <CurrencySymbol className="h-3 w-3 mr-1" />
+                      {formatCurrency(fareBreakdown.taxes)}
                     </span>
                   </div>
                   {fareBreakdown.discount && (
                     <div className="flex justify-between text-sm text-green-600">
                       <span>Discount</span>
-                      <span>-{symbol}{formatCurrency(fareBreakdown.discount)}</span>
+                      <span className="flex items-center">
+                        -<CurrencySymbol className="h-3 w-3 mr-1" />
+                        {formatCurrency(fareBreakdown.discount)}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -312,8 +317,9 @@ export function PaymentPage({
                   <span className="text-lg font-semibold text-gray-900">
                     Total Amount
                   </span>
-                  <span className="text-lg font-semibold text-primary-600">
-                    {symbol}{formatCurrency(fareBreakdown.total)}
+                  <span className="text-lg font-semibold text-primary-600 flex items-center">
+                    <CurrencySymbol className="h-5 w-5 mr-1" />
+                    {formatCurrency(fareBreakdown.total)}
                   </span>
                 </div>
 
@@ -323,7 +329,10 @@ export function PaymentPage({
                   className="mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-lg bg-primary-600 text-lg font-bold text-white shadow-lg transition-all hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <Lock className="h-5 w-5" />
-                  Pay {symbol}{formatCurrency(fareBreakdown.total)}
+                  <span className="flex items-center">
+                    Pay <CurrencySymbol className="h-5 w-5 mx-1" />
+                    {formatCurrency(fareBreakdown.total)}
+                  </span>
                 </button>
 
                 <div className="mt-4 flex items-center justify-center gap-2">

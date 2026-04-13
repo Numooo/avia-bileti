@@ -37,7 +37,7 @@ export function VisaDetailPage({
   onStartApplication,
 }: VisaDetailPageProps) {
   const t = useTranslations("VisaDetail");
-  const { symbol, CurrencyIcon } = useCurrency();
+  const { symbol, symbolText, CurrencyIcon, CurrencySymbol } = useCurrency();
   const [showEnquiryForm, setShowEnquiryForm] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(
     "requirements"
@@ -240,8 +240,9 @@ export function VisaDetailPage({
                     className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
                   >
                     <span className="text-gray-700">{item.label}</span>
-                    <span className="font-semibold text-gray-900">
-                      {symbol}{Math.round(item.amount).toLocaleString()}
+                    <span className="font-semibold text-gray-900 flex items-center">
+                      <CurrencySymbol className="h-4 w-4 mr-1" />
+                      {Math.round(item.amount).toLocaleString()}
                     </span>
                   </div>
                 ))}
@@ -249,8 +250,9 @@ export function VisaDetailPage({
                   <span className="font-semibold text-blue-900">
                     {t("fees.total")}
                   </span>
-                  <span className="text-2xl font-bold text-blue-600">
-                    {symbol}{visa.price.toLocaleString()}
+                  <span className="text-2xl font-bold text-blue-600 flex items-center">
+                    <CurrencySymbol className="h-6 w-6 mr-1" />
+                    {visa.price.toLocaleString()}
                   </span>
                 </div>
               </div>
@@ -331,8 +333,9 @@ export function VisaDetailPage({
               <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
                 <div className="text-center mb-6">
                   <p className="text-sm text-gray-600 mb-2">{t("fees.processing")}</p>
-                  <p className="text-4xl font-bold text-blue-600">
-                    {symbol}{visa.price.toLocaleString()}
+                  <p className="text-4xl font-bold text-blue-600 flex items-center justify-center">
+                    <CurrencySymbol className="h-8 w-8 mr-2" />
+                    {visa.price.toLocaleString()}
                   </p>
                   <p className="text-sm text-gray-500 mt-1">per applicant</p>
                 </div>

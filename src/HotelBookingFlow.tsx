@@ -49,7 +49,7 @@ export function HotelBookingFlow({
   guests,
   onBack,
 }: HotelBookingFlowProps) {
-  const { symbol } = useCurrency();
+  const { symbol, symbolText, CurrencySymbol } = useCurrency();
   const [step, setStep] = useState<"details" | "payment" | "confirmation">(
     "details"
   );
@@ -521,14 +521,13 @@ export function HotelBookingFlow({
                         {guests}
                       </span>
                     </div>
-                    <div className="border-t border-gray-200 pt-3 mt-3">
-                      <div className="flex justify-between text-sm font-semibold">
+                      <div className="flex justify-between text-sm font-semibold flex-items-center">
                         <span className="text-gray-900">Total Paid:</span>
-                        <span className="text-brand-primary text-lg">
-                          {symbol}{grandTotal.toLocaleString()}
+                        <span className="text-brand-primary text-lg flex items-center">
+                          <CurrencySymbol className="h-5 w-5 mr-1" />
+                          {grandTotal.toLocaleString()}
                         </span>
                       </div>
-                    </div>
                   </div>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
@@ -615,18 +614,21 @@ export function HotelBookingFlow({
 
               <div className="space-y-2 py-4 border-t border-gray-200">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">
-                    {symbol}{hotelPrice.toLocaleString()} × {nights} nights × {rooms}{" "}
+                  <span className="text-gray-600 flex items-center">
+                    <CurrencySymbol className="h-3 w-3 mr-1" />
+                    {hotelPrice.toLocaleString()} × {nights} nights × {rooms}{" "}
                     room{rooms > 1 ? "s" : ""}
                   </span>
-                  <span className="font-medium text-gray-900">
-                    {symbol}{totalPrice.toLocaleString()}
+                  <span className="font-medium text-gray-900 flex items-center">
+                    <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                    {totalPrice.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Taxes & Fees (12%)</span>
-                  <span className="font-medium text-gray-900">
-                    {symbol}{taxesAndFees.toLocaleString()}
+                  <span className="font-medium text-gray-900 flex items-center">
+                    <CurrencySymbol className="h-3.5 w-3.5 mr-1" />
+                    {taxesAndFees.toLocaleString()}
                   </span>
                 </div>
               </div>
@@ -636,8 +638,9 @@ export function HotelBookingFlow({
                   <span className="text-lg font-semibold text-gray-900">
                     Total
                   </span>
-                  <span className="text-2xl font-bold text-brand-primary">
-                    {symbol}{grandTotal.toLocaleString()}
+                  <span className="text-2xl font-bold text-brand-primary flex items-center">
+                    <CurrencySymbol className="h-6 w-6 mr-1" />
+                    {grandTotal.toLocaleString()}
                   </span>
                 </div>
               </div>

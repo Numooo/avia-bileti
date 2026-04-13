@@ -53,7 +53,7 @@ export function Header({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState(false);
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
-  const { currency: selectedCurrency, setCurrency, symbol, CurrencyIcon } = useCurrency();
+  const { currency: selectedCurrency, setCurrency, symbol, CurrencyIcon, CurrencySymbol } = useCurrency();
   const [aiPlannerOpen, setAiPlannerOpen] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
 
@@ -171,7 +171,9 @@ export function Header({
                 >
                   <CurrencyIcon className="h-4 w-4 text-white/70" />
                   <span>{selectedCurrency}</span>
-                  <span className="ml-1 text-white/50">({symbol})</span>
+                  <span className="ml-1 text-white/50 flex items-center">
+                    (<CurrencySymbol className="h-3 w-3" />)
+                  </span>
                   <ChevronDown
                     className={`h-4 w-4 transition-transform text-white/50 ${
                       currencyDropdownOpen ? "rotate-180" : ""
@@ -207,7 +209,15 @@ export function Header({
                             <div className="flex items-center gap-2">
                               <Icon className={`h-4 w-4 ${code === selectedCurrency ? "text-brand-primary" : "text-gray-400"}`} />
                               <span>{code}</span>
-                              <span className="text-gray-400 text-xs">({info.symbol})</span>
+                              <span className="text-gray-400 text-xs flex items-center">
+                                (
+                                {typeof info.symbol === "string" ? (
+                                  info.symbol
+                                ) : (
+                                  <info.symbol className="h-2.5 w-2.5" />
+                                )}
+                                )
+                              </span>
                             </div>
                             {code === selectedCurrency && (
                               <div className="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>

@@ -41,7 +41,7 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
   const [activeTab, setActiveTab] = useState<TabType>("flights");
   const [tripType, setTripType] = useState<TabType | any>("roundtrip"); // Using any for tripType consistency
   const [cabinClass, setCabinClass] = useState<CabinClass>("economy");
-  const { symbol, CurrencyIcon } = useCurrency();
+  const { symbol, CurrencyIcon, CurrencySymbol } = useCurrency();
 
   // Passenger counters
   const [adults, setAdults] = useState(1);
@@ -659,9 +659,9 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                         onChange={(e) => setHolidayBudget(e.target.value)}
                         className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-4 pr-10 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                       >
-                        <option value="budget">{t("Search.holidays.budgetRange.budget", { symbol })}</option>
-                        <option value="medium">{t("Search.holidays.budgetRange.medium", { symbol })}</option>
-                        <option value="luxury">{t("Search.holidays.budgetRange.luxury", { symbol })}</option>
+                        <option value="budget">{t("Search.holidays.budgetRange.budget", { symbol: symbolText })}</option>
+                        <option value="medium">{t("Search.holidays.budgetRange.medium", { symbol: symbolText })}</option>
+                        <option value="luxury">{t("Search.holidays.budgetRange.luxury", { symbol: symbolText })}</option>
                       </select>
                       <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
                     </div>
@@ -1027,7 +1027,7 @@ interface FeaturedPackagesSectionProps {
 
 function FeaturedPackagesSection({ onNavigate }: FeaturedPackagesSectionProps) {
   const t = useTranslations();
-  const { symbol } = useCurrency();
+  const { symbol, CurrencySymbol } = useCurrency();
   const [isPaused] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -1177,8 +1177,9 @@ function FeaturedPackagesSection({ onNavigate }: FeaturedPackagesSectionProps) {
                       <p className="text-xs text-gray-600 mb-0.5">
                         {t("Featured.startingFrom")}
                       </p>
-                      <p className="text-2xl font-bold text-brand-primary">
-                        {symbol}{(pkg.price || 0).toLocaleString()}
+                      <p className="text-2xl font-bold text-brand-primary flex items-center">
+                        <CurrencySymbol className="h-4 w-4 mr-1" />
+                        {(pkg.price || 0).toLocaleString()}
                       </p>
                       <p className="text-xs text-gray-500">{t("Featured.perPerson")}</p>
                     </div>

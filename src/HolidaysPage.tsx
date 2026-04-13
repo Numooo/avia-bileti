@@ -160,6 +160,7 @@ interface PackageCardProps {
 
 function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
   const t = useTranslations("Holidays");
+  const { symbol, CurrencyIcon, CurrencySymbol } = useCurrency();
   const [isFavorite, setIsFavorite] = useState(false);
   const packageImage = pkg.images?.[0] || pkg.image || "";
 
@@ -231,12 +232,13 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
             <span>•</span>
             <div className="flex items-center gap-1.5">
               <CurrencyIcon className="h-4 w-4" />
-              <span>
+              <div className="flex items-center">
                 {t("fromPrice", { 
                   price: (pkg.price || pkg.pricePerPerson || 0).toLocaleString(),
-                  symbol 
+                  symbol: ""
                 })}
-              </span>
+                <CurrencySymbol className="h-4 w-4 ml-1" />
+              </div>
             </div>
           </div>
 
