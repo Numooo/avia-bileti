@@ -49,7 +49,7 @@ interface HotelsPageProps {
       checkOutDate?: string;
       rooms?: number;
       guests?: number;
-    }
+    },
   ) => void;
 }
 
@@ -64,7 +64,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 25000]);
   const [selectedStars, setSelectedStars] = useState<number[]>([]);
   const [sortBy, setSortBy] = useState<"price" | "rating" | "distance">(
-    "rating"
+    "rating",
   );
 
   // Show detail page if a hotel is selected
@@ -79,7 +79,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
           checkInDate?: string,
           checkOutDate?: string,
           rooms?: number,
-          guests?: number
+          guests?: number,
         ) => {
           // Trigger unified booking flow
           onHotelSelect?.(selectedHotel, {
@@ -100,7 +100,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
 
   const toggleStar = (stars: number) => {
     setSelectedStars((prev) =>
-      prev.includes(stars) ? prev.filter((s) => s !== stars) : [...prev, stars]
+      prev.includes(stars) ? prev.filter((s) => s !== stars) : [...prev, stars],
     );
   };
 
@@ -175,7 +175,10 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">
-              {t("hotelsFound", { count: filteredHotels.length, location: "Mumbai" })}
+              {t("hotelsFound", {
+                count: filteredHotels.length,
+                location: "Mumbai",
+              })}
             </h1>
             <p className="text-sm text-gray-600 mt-1">
               {t("savingsSubtitle", { location: "Mumbai" })}
@@ -303,7 +306,9 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
 
               {/* Amenities */}
               <div className="bg-white rounded-xl p-5 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4">{t("amenities")}</h3>
+                <h3 className="font-semibold text-gray-900 mb-4">
+                  {t("amenities")}
+                </h3>
                 <div className="space-y-2">
                   {["WiFi", "Pool", "Spa", "Restaurant", "Gym", "Parking"].map(
                     (amenity) => {
@@ -323,7 +328,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
                           </span>
                         </label>
                       );
-                    }
+                    },
                   )}
                 </div>
               </div>
@@ -365,7 +370,7 @@ interface HotelCardProps {
 
 function HotelCard({ hotel, viewMode, index, onSelect }: HotelCardProps) {
   const t = useTranslations("Hotels");
-  const { symbolText, CurrencySymbol } = useCurrency();
+  const { symbol, symbolText, CurrencySymbol } = useCurrency();
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (

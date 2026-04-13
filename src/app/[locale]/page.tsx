@@ -11,6 +11,7 @@ import { Footer } from "../../Footer";
 import { Sidebar } from "../../Sidebar";
 import { CargoPage } from "../../CargoPage";
 import { UnifiedBookingFlow } from "../../UnifiedBookingFlow";
+import { ChatWidget } from "../../ChatWidget";
 import type { FlightOffer, Hotel, Package, VisaRequirement } from "../../types";
 
 type PageType = "home" | "flights" | "hotels" | "holidays" | "visa" | "cargo" | "booking";
@@ -127,6 +128,9 @@ export default function Home() {
           <Footer />
         </div>
       </div>
+
+      {/* Floating Chat Widget */}
+      <ChatWidget />
     </div>
   );
 }

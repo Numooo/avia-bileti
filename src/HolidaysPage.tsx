@@ -132,9 +132,7 @@ export function HolidaysPage({ onPackageSelect }: HolidaysPageProps) {
           <h2 className="text-2xl font-bold text-gray-900">
             {t("packagesAvailable", { count: filteredPackages.length })}
           </h2>
-          <p className="text-gray-600 mt-1">
-            {t("discoverSubtitle")}
-          </p>
+          <p className="text-gray-600 mt-1">{t("discoverSubtitle")}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -198,7 +196,6 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
           />
         </button>
 
-
         {/* Content Overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
           <div className="flex items-center gap-2 mb-2">
@@ -225,7 +222,9 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
                 <span>•</span>
                 <div className="flex items-center gap-1.5">
                   <Moon className="h-4 w-4" />
-                  <span>{t("nightsCount", { count: pkg.duration.nights })}</span>
+                  <span>
+                    {t("nightsCount", { count: pkg.duration.nights })}
+                  </span>
                 </div>
               </>
             )}
@@ -233,9 +232,13 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
             <div className="flex items-center gap-1.5">
               <CurrencyIcon className="h-4 w-4" />
               <div className="flex items-center">
-                {t("fromPrice", { 
-                  price: (pkg.price || pkg.pricePerPerson || 0).toLocaleString(),
-                  symbol: ""
+                {t("fromPrice", {
+                  price: (
+                    pkg.price ||
+                    pkg.pricePerPerson ||
+                    0
+                  ).toLocaleString(),
+                  symbol: "",
                 })}
                 <CurrencySymbol className="h-4 w-4 ml-1" />
               </div>

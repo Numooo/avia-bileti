@@ -32,12 +32,12 @@ export function VisaPage({ onVisaSelect }: VisaPageProps) {
   const [visas] = useState<VisaRequirement[]>(t.raw("mockData"));
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedVisa, setSelectedVisa] = useState<VisaRequirement | null>(
-    null
+    null,
   );
 
   const filteredVisas = searchQuery
     ? visas.filter((visa) =>
-        visa.country.toLowerCase().includes(searchQuery.toLowerCase())
+        visa.country.toLowerCase().includes(searchQuery.toLowerCase()),
       )
     : visas;
 
@@ -94,9 +94,7 @@ export function VisaPage({ onVisaSelect }: VisaPageProps) {
           <h2 className="text-2xl font-bold text-gray-900">
             {t("servicesAvailable", { count: filteredVisas.length })}
           </h2>
-          <p className="text-gray-600 mt-1">
-            {t("selectSubtitle")}
-          </p>
+          <p className="text-gray-600 mt-1">{t("selectSubtitle")}</p>
         </div>
 
         {/* Visa Cards Grid */}
@@ -170,9 +168,7 @@ export function VisaPage({ onVisaSelect }: VisaPageProps) {
             </h3>
             <ul className="text-sm text-blue-800 space-y-1">
               {Object.keys(t.raw("infoList")).map((key) => (
-                <li key={key}>
-                  • {t(`infoList.${key}` as any)}
-                </li>
+                <li key={key}>• {t(`infoList.${key}` as any)}</li>
               ))}
             </ul>
           </div>
@@ -221,7 +217,9 @@ function VisaCard({ visa, index, onApply }: VisaCardProps) {
           <div className="flex items-start gap-2">
             <Clock className="h-4 w-4 text-gray-600 mt-0.5 flex-shrink-0" />
             <div>
-              <p className="text-xs text-gray-600 mb-0.5">{t("processingTime")}</p>
+              <p className="text-xs text-gray-600 mb-0.5">
+                {t("processingTime")}
+              </p>
               <p className="text-sm font-medium text-gray-900">
                 {visa.processingTime}
               </p>
