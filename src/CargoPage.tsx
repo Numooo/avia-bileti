@@ -4,8 +4,9 @@ import { Truck, Plane, Ship, Package as PackageIcon, Search, ArrowRight, Calcula
 import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
 import { AIRPORTS } from "./data";
+import { useEffect } from "react";
 
-export function CargoPage() {
+export function CargoPage({ initialData }: { initialData?: any }) {
   const t = useTranslations("Cargo");
   const { symbol, CurrencySymbol } = useCurrency();
   const [trackingId, setTrackingId] = useState("");
@@ -17,6 +18,28 @@ export function CargoPage() {
   const [calcVol, setCalcVol] = useState("");
   const [calcType, setCalcType] = useState("plane");
   const [calcResult, setCalcResult] = useState<number | null>(null);
+
+  // Auto-calculate if initialData is provided
+  useEffect(() => {
+    if (initialData) {
+      if (initialData.origin) setCalcOrigin(initialData.origin);
+      if (initialData.destination) setCalcDest(initialData.destination);
+      if (initialData.weight) setCalcWeight(initialData.weight);
+      
+      // Map home cargo type to cargo page transport type
+      let mappedType = "truck";
+      if (initialData.type === "express") mappedType = "plane";
+      setCalcType(mappedType);
+
+      // Trigger automatic calculation
+      if (initialData.weight) {
+        const w = parseFloat(initialData.weight);
+        const mult = mappedType === "plane" ? 2.5 : 1;
+        const cost = 500 + (w * 15 * mult);
+        setCalcResult(cost);
+      }
+    }
+  }, [initialData]);
 
   const handleTrack = (e: React.FormEvent) => {
     e.preventDefault();

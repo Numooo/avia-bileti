@@ -42,10 +42,11 @@ type CabinClass = "economy" | "premium-economy" | "business" | "first";
 
 interface HomePageProps {
   onSearchFlights?: (from?: string, to?: string) => void;
+  onSearchCargo?: (data: { origin: string; destination: string; weight: string; type: string }) => void;
   onNavigate?: (page: string) => void;
 }
 
-export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
+export function HomePage({ onSearchFlights, onSearchCargo, onNavigate }: HomePageProps = {}) {
   const t = useTranslations();
   const [activeTab, setActiveTab] = useState<TabType>("flights");
   const [tripType, setTripType] = useState<TabType | any>("roundtrip"); // Using any for tripType consistency
@@ -238,6 +239,13 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
       handleStatusSearch();
     } else if (activeTab === "flights" && onSearchFlights) {
       onSearchFlights(flightOrigin, flightDestination);
+    } else if (activeTab === "cargo" && onSearchCargo) {
+      onSearchCargo({
+        origin: cargoOrigin,
+        destination: cargoDestination,
+        weight: cargoWeight,
+        type: cargoType,
+      });
     } else if (onNavigate) {
       onNavigate(activeTab);
     }
