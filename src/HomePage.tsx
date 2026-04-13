@@ -873,12 +873,19 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-                      <input
-                        type="text"
+                      <select
                         value={cargoOrigin}
                         onChange={(e) => setCargoOrigin(e.target.value)}
-                        className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary"
-                      />
+                        className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
+                      >
+                        <option value="">{t("Search.cargo.from")}</option>
+                        {AIRPORTS.map((airport) => (
+                          <option key={airport.code} value={airport.code}>
+                            {airport.city} ({airport.code})
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
                     </div>
                   </div>
                   <div className="relative">
@@ -887,12 +894,19 @@ export function HomePage({ onSearchFlights, onNavigate }: HomePageProps = {}) {
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-                      <input
-                        type="text"
+                      <select
                         value={cargoDestination}
                         onChange={(e) => setCargoDestination(e.target.value)}
-                        className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary"
-                      />
+                        className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
+                      >
+                        <option value="">{t("Search.cargo.to")}</option>
+                        {AIRPORTS.map((airport) => (
+                          <option key={airport.code} value={airport.code}>
+                            {airport.city} ({airport.code})
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
                     </div>
                   </div>
                 </div>

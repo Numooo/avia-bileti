@@ -1066,7 +1066,20 @@
         "icon": "ship"
       }
     ],
-    "bookNow": "Request Quote"
+    "bookNow": "Request Quote",
+    "calculatorTitle": "Calculate Shipping Cost",
+    "calcOrigin": "Origin City / Country",
+    "calcDest": "Destination City / Country",
+    "calcWeight": "Weight (kg)",
+    "calcVol": "Volume (cbm)",
+    "calcType": "Transport Type",
+    "calcBtn": "Calculate",
+    "calcResult": "Estimated Cost",
+    "transportTypes": {
+      "truck": "Road Transport",
+      "plane": "Air Freight",
+      "ship": "Ocean Freight"
+    }
   },
   "Common": {
     "back": "Back",

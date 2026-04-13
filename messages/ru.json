@@ -1066,7 +1066,20 @@
         "icon": "ship"
       }
     ],
-    "bookNow": "Запросить расчет"
+    "bookNow": "Запросить расчет",
+    "calculatorTitle": "Рассчитать стоимость доставки",
+    "calcOrigin": "Откуда",
+    "calcDest": "Куда",
+    "calcWeight": "Вес (кг)",
+    "calcVol": "Объем (м³)",
+    "calcType": "Тип транспорта",
+    "calcBtn": "Рассчитать",
+    "calcResult": "Примерная стоимость",
+    "transportTypes": {
+      "truck": "Автоперевозка",
+      "plane": "Авиаперевозка",
+      "ship": "Морская перевозка"
+    }
   },
   "Common": {
     "back": "Назад",
