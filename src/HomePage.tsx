@@ -1979,10 +1979,10 @@ function EventsBannerSlider({ onNavigate, onSearchFlights }: { onNavigate?: (p: 
              <AnimatePresence mode="wait">
                  <motion.div
                     key={currentIndex}
-                    initial={{ opacity: 0, scale: 1.05 }}
+                    initial={{ opacity: 0, scale: 1.02 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
                     className="absolute inset-0"
                  >
                     <img 
@@ -1994,44 +1994,44 @@ function EventsBannerSlider({ onNavigate, onSearchFlights }: { onNavigate?: (p: 
                     
                     <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-20 md:w-3/4">
                         <motion.div
-                           initial={{ opacity: 0, x: -30 }}
-                           animate={{ opacity: 1, x: 0 }}
-                           transition={{ delay: 0.2, duration: 0.6 }}
+                           initial={{ opacity: 0, y: 20 }}
+                           animate={{ opacity: 1, y: 0 }}
+                           transition={{ delay: 0.2, duration: 0.5 }}
                         >
-                            <div className="flex items-center gap-3 mb-6">
-                                <span className="px-4 py-1.5 bg-brand-primary/20 backdrop-blur-md text-brand-primary rounded-full text-xs font-bold uppercase tracking-widest border border-brand-primary/30">
+                            <div className="flex items-center gap-3 mb-4">
+                                <span className="px-3 py-1 bg-brand-primary/20 backdrop-blur-md text-brand-primary rounded-full text-[10px] font-bold uppercase tracking-widest border border-brand-primary/30">
                                     {currentEvent.category}
                                 </span>
                             </div>
-                            <h2 className="text-4xl md:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tight">
+                            <h2 className="text-3xl md:text-6xl font-black text-white mb-4 leading-[1.1] tracking-tight">
                                 {currentEvent.title}
                             </h2>
-                            <div className="flex flex-wrap items-center gap-6 text-white/90 mb-8">
-                                <div className="flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10">
-                                    <MapPin className="h-5 w-5 text-brand-secondary" />
-                                    <span className="font-bold text-sm md:text-base">{currentEvent.location}</span>
+                            <div className="flex flex-wrap items-center gap-4 text-white/90 mb-6">
+                                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10">
+                                    <MapPin className="h-4 w-4 text-brand-secondary" />
+                                    <span className="font-bold text-xs md:text-sm">{currentEvent.location}</span>
                                 </div>
-                                <div className="flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10">
-                                    <Calendar className="h-5 w-5 text-brand-secondary" />
-                                    <span className="font-bold text-sm md:text-base">{currentEvent.date}</span>
+                                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10">
+                                    <Calendar className="h-4 w-4 text-brand-secondary" />
+                                    <span className="font-bold text-xs md:text-sm">{currentEvent.date}</span>
                                 </div>
                             </div>
-                            <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl leading-relaxed font-medium">
+                            <p className="text-base md:text-lg text-white/80 mb-8 max-w-2xl leading-relaxed font-medium line-clamp-3">
                                 {currentEvent.description}
                             </p>
-                            <div className="flex flex-wrap gap-5">
+                            <div className="flex flex-wrap gap-4">
                                 <button 
                                     onClick={handleBookNow}
-                                    className="px-10 py-4.5 bg-brand-primary text-white rounded-2xl font-black text-lg hover:bg-brand-secondary transition-all duration-300 shadow-xl shadow-brand-primary/25 flex items-center gap-3 group/btn hover:scale-105 active:scale-95"
+                                    className="px-8 py-3.5 bg-brand-primary text-white rounded-2xl font-black text-base hover:bg-brand-secondary transition-all duration-300 shadow-xl shadow-brand-primary/25 flex items-center gap-2.5 group/btn hover:scale-105 active:scale-95"
                                 >
-                                    <Plane className="h-6 w-6 group-hover/btn:rotate-12 transition-transform" />
+                                    <Plane className="h-5 w-5 group-hover/btn:rotate-12 transition-transform" />
                                     {t("Events.bookNow")}
                                 </button>
                                 <button 
                                     onClick={() => onNavigate?.("hotels")}
-                                    className="px-10 py-4.5 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-2xl font-black text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-3 hover:scale-105 active:scale-95"
+                                    className="px-8 py-3.5 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-2xl font-black text-base hover:bg-white/20 transition-all duration-300 flex items-center gap-2.5 hover:scale-105 active:scale-95"
                                 >
-                                    <Hotel className="h-6 w-6" />
+                                    <Hotel className="h-5 w-5" />
                                     {t("Search.tabs.hotels")}
                                 </button>
                             </div>
