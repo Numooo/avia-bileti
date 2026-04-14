@@ -24,10 +24,10 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
-import { LocationMap } from "./LocationMap";
-import { Badge } from "./components/shared/ui/badge";
-import { ImageModal } from "./ImageModal";
-import type { Package } from "./types";
+import { LocationMap } from "@/features/hotels/components/LocationMap";
+import { Badge } from "@/shared/ui/badge";
+import { ImageModal } from "@/features/hotels/components/ImageModal";
+import type { Package } from "@/types";
 
 interface PackageDetailPageProps {
   packageData: Package;

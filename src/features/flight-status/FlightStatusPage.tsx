@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { format } from "date-fns";
-import { AIRPORTS } from "./components/shared/mocks/data";
+import { AIRPORTS } from "@/shared/mocks/data";
 
 type SearchMode = "flightNumber" | "route" | "allFlights";
 

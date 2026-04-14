@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
-import { AIRPORTS } from "./components/shared/mocks/data";
+import { AIRPORTS } from "@/shared/mocks/data";
 import { useEffect } from "react";
 
 export function CargoPage({ initialData }: { initialData?: any }) {

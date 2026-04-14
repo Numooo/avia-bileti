@@ -17,9 +17,9 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
-import { Button } from "./components/shared/ui/button";
-import { Input } from "./components/shared/ui/input";
-import type { FlightOffer, Hotel, Package } from "./types";
+import { Button } from "@/shared/ui/button";
+import { Input } from "@/shared/ui/input";
+import type { FlightOffer, Hotel, Package } from "@/types";
 
 type BookingType = "flight" | "hotel" | "package";
 

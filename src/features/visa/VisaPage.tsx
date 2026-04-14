@@ -13,10 +13,10 @@ import {
   CreditCard,
   IndianRupee,
 } from "lucide-react";
-import { Input } from "./components/shared/ui/input";
-import { Button } from "./components/shared/ui/button";
-import { VisaDetailPage } from "./VisaDetailPage";
-import type { VisaRequirement } from "./types";
+import { Input } from "@/shared/ui/input";
+import { Button } from "@/shared/ui/button";
+import { VisaDetailPage } from "./components/VisaDetailPage";
+import type { VisaRequirement } from "@/types";
 import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
 

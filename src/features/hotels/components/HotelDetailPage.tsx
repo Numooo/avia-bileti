@@ -34,9 +34,9 @@ import {
 import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
 import { LocationMap } from "./LocationMap";
-import { Badge } from "./components/shared/ui/badge";
+import { Badge } from "@/shared/ui/badge";
 import { ImageModal } from "./ImageModal";
-import type { Hotel, HotelRoom } from "./types";
+import type { Hotel, HotelRoom } from "@/types";
 
 interface HotelDetailPageProps {
   hotelData: Hotel;

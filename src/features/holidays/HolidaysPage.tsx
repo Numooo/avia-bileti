@@ -11,9 +11,9 @@ import {
   Car,
   UtensilsCrossed,
 } from "lucide-react";
-import { Badge } from "./components/shared/ui/badge";
-import { PackageDetailPage } from "./PackageDetailPage";
-import type { Package } from "./types";
+import { Badge } from "@/shared/ui/badge";
+import { PackageDetailPage } from "./components/PackageDetailPage";
+import type { Package } from "@/types";
 import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
 
