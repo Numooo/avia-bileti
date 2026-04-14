@@ -32,7 +32,7 @@ import type { Package } from "@/types";
 interface PackageDetailPageProps {
   packageData: Package;
   onBack: () => void;
-  onBook: (packageId: string) => void;
+  onBook: (pkgData: Package, metadata: any) => void;
 }
 
 export function PackageDetailPage({
@@ -593,7 +593,7 @@ export function PackageDetailPage({
 
                 {/* Book Now Button */}
                 <button
-                  onClick={() => onBook(packageData.id)}
+                  onClick={() => onBook(packageData, { date: selectedDate, travelers })}
                   disabled={!selectedDate}
                   className="w-full bg-brand-primary text-white py-4 rounded-xl font-semibold shadow-lg hover:bg-brand-secondary hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >

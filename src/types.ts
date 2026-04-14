@@ -102,6 +102,8 @@ export interface Package {
   hotels?: Hotel[];
 }
 
+export type HolidayPackage = Package;
+
 export interface SearchCriteria {
   from: string;
   to: string;
