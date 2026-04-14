@@ -28,7 +28,8 @@ import {
   Activity,
   Flame,
   Trophy,
-  Disc
+  Disc,
+  Train
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
@@ -38,7 +39,7 @@ import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
 import type { Package } from "./types";
 
-type TabType = "flights" | "hotels" | "holidays" | "visa" | "cargo" | "status";
+type TabType = "flights" | "hotels" | "holidays" | "visa" | "cargo" | "status" | "trains";
 type TripType = "oneway" | "roundtrip";
 type CabinClass = "economy" | "premium-economy" | "business" | "first";
 
@@ -50,12 +51,14 @@ interface HomePageProps {
     weight: string;
     type: string;
   }) => void;
+  onSearchTrains?: (from: string, to: string, date: string) => void;
   onNavigate?: (page: string) => void;
 }
 
 export function HomePage({
   onSearchFlights,
   onSearchCargo,
+  onSearchTrains,
   onNavigate,
 }: HomePageProps = {}) {
   const t = useTranslations();
@@ -112,6 +115,15 @@ export function HomePage({
   );
   const [cargoWeight, setCargoWeight] = useState("");
   const [cargoType, setCargoType] = useState("standard");
+
+  // Train search state
+  const [trainOrigin, setTrainOrigin] = useState("FRU");
+  const [trainDestination, setTrainDestination] = useState("DXB");
+  const [trainDate, setTrainDate] = useState(
+    format(new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), "yyyy-MM-dd"),
+  );
+  const [trainPassengers, setTrainPassengers] = useState(1);
+  const [trainTripType, setTrainTripType] = useState<TripType>("oneway");
 
   // Flight Status state
   const [statusSearchType, setStatusSearchType] = useState<
@@ -346,6 +358,8 @@ export function HomePage({
         weight: cargoWeight,
         type: cargoType,
       });
+    } else if (activeTab === "trains" && onSearchTrains) {
+      onSearchTrains(trainOrigin, trainDestination, trainDate);
     } else if (onNavigate) {
       onNavigate(activeTab);
     }
@@ -424,6 +438,11 @@ export function HomePage({
                   icon: Truck,
                 },
                 {
+                  id: "trains" as TabType,
+                  label: t("Search.tabs.trains"),
+                  icon: Train,
+                },
+                {
                   id: "status" as TabType,
                   label: t("Search.tabs.status"),
                   icon: Activity,
@@ -462,33 +481,27 @@ export function HomePage({
             {activeTab === "flights" && (
               <div className="space-y-6">
                 {/* Trip Type */}
-                <div className="flex gap-6">
-                  <label className="flex items-center gap-2.5 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="tripType"
-                      value="oneway"
-                      checked={tripType === "oneway"}
-                      onChange={(e) => setTripType(e.target.value as TripType)}
-                      className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="text-sm font-medium text-gray-700">
-                      {t("Search.flights.oneWay")}
-                    </span>
-                  </label>
-                  <label className="flex items-center gap-2.5 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="tripType"
-                      value="roundtrip"
-                      checked={tripType === "roundtrip"}
-                      onChange={(e) => setTripType(e.target.value as TripType)}
-                      className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="text-sm font-medium text-gray-700">
-                      {t("Search.flights.roundTrip")}
-                    </span>
-                  </label>
+                <div className="flex p-1 bg-gray-100 rounded-2xl w-fit">
+                  <button
+                    onClick={() => setTripType("oneway")}
+                    className={`px-6 py-2 rounded-xl text-sm font-bold transition-all ${
+                      tripType === "oneway"
+                        ? "bg-white text-gray-900 shadow-sm"
+                        : "text-gray-500 hover:text-gray-700"
+                    }`}
+                  >
+                    {t("Search.flights.oneWay")}
+                  </button>
+                  <button
+                    onClick={() => setTripType("roundtrip")}
+                    className={`px-6 py-2 rounded-xl text-sm font-bold transition-all ${
+                      tripType === "roundtrip"
+                        ? "bg-white text-gray-900 shadow-sm"
+                        : "text-gray-500 hover:text-gray-700"
+                    }`}
+                  >
+                    {t("Search.flights.roundTrip")}
+                  </button>
                 </div>
 
                 {/* Search Inputs */}
@@ -735,28 +748,23 @@ export function HomePage({
                     <label className="mb-1 block text-sm font-medium text-gray-700">
                       {t("Search.flights.cabinClass")}
                     </label>
-                    <div className="relative">
-                      <select
-                        value={cabinClass}
-                        onChange={(e) =>
-                          setCabinClass(e.target.value as CabinClass)
-                        }
-                        className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-4 pr-10 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                      >
-                        <option value="economy">
-                          {t("Search.flights.economy")}
-                        </option>
-                        <option value="premium-economy">
-                          {t("Search.flights.premiumEconomy")}
-                        </option>
-                        <option value="business">
-                          {t("Search.flights.business")}
-                        </option>
-                        <option value="first">
-                          {t("Search.flights.first")}
-                        </option>
-                      </select>
-                      <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                    <div className="flex p-1 bg-gray-100 rounded-2xl">
+                      {[
+                        { id: "economy", label: t("Search.flights.economy") },
+                        { id: "business", label: t("Search.flights.business") },
+                      ].map((cabin) => (
+                        <button
+                          key={cabin.id}
+                          onClick={() => setCabinClass(cabin.id as CabinClass)}
+                          className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase transition-all ${
+                            cabinClass === cabin.id
+                              ? "bg-white text-brand-primary shadow-sm"
+                              : "text-gray-500 hover:text-gray-700"
+                          }`}
+                        >
+                          {cabin.label}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -1290,6 +1298,129 @@ export function HomePage({
                 >
                   <Truck className="h-5 w-5" />
                   {t("Search.cargo.search")}
+                </button>
+              </div>
+            )}
+
+            {/* Train Search Form */}
+            {activeTab === "trains" && (
+              <div className="space-y-6">
+                {/* Trip Type */}
+                <div className="flex p-1 bg-gray-100 rounded-2xl w-fit">
+                  <button
+                    onClick={() => setTrainTripType("oneway")}
+                    className={`px-6 py-2 rounded-xl text-sm font-bold transition-all ${
+                      trainTripType === "oneway"
+                        ? "bg-white text-gray-900 shadow-sm"
+                        : "text-gray-500 hover:text-gray-700"
+                    }`}
+                  >
+                    {t("Search.trains.oneWay")}
+                  </button>
+                  <button
+                    onClick={() => setTrainTripType("roundtrip")}
+                    className={`px-6 py-2 rounded-xl text-sm font-bold transition-all ${
+                      trainTripType === "roundtrip"
+                        ? "bg-white text-gray-900 shadow-sm"
+                        : "text-gray-500 hover:text-gray-700"
+                    }`}
+                  >
+                    {t("Search.trains.roundTrip")}
+                  </button>
+                </div>
+
+                {/* Search Inputs */}
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+                  {/* Origin */}
+                  <div className="relative">
+                    <label className="mb-1 block text-sm font-medium text-gray-700">
+                      {t("Search.trains.from")}
+                    </label>
+                    <div className="relative">
+                      <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                      <select
+                        value={trainOrigin}
+                        onChange={(e) => setTrainOrigin(e.target.value)}
+                        className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
+                      >
+                        {AIRPORTS.map((airport) => (
+                          <option key={airport.code} value={airport.code}>
+                            {airport.city} ({airport.code})
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                    </div>
+                  </div>
+
+                  {/* Destination */}
+                  <div className="relative">
+                    <label className="mb-1 block text-sm font-medium text-gray-700">
+                      {t("Search.trains.to")}
+                    </label>
+                    <div className="relative">
+                      <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                      <select
+                        value={trainDestination}
+                        onChange={(e) => setTrainDestination(e.target.value)}
+                        className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
+                      >
+                        {AIRPORTS.map((airport) => (
+                          <option key={airport.code} value={airport.code}>
+                            {airport.city} ({airport.code})
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                    </div>
+                  </div>
+
+                  {/* Date */}
+                  <div className="relative">
+                    <label className="mb-1 block text-sm font-medium text-gray-700">
+                      {t("Search.trains.date")}
+                    </label>
+                    <div className="relative">
+                      <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                      <input
+                        type="date"
+                        value={trainDate}
+                        onChange={(e) => setTrainDate(e.target.value)}
+                        className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Passengers */}
+                  <div className="relative">
+                    <label className="mb-1 block text-sm font-medium text-gray-700">
+                      {t("Search.trains.travelers")}
+                    </label>
+                    <div className="relative">
+                      <Users className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                      <select
+                        value={trainPassengers}
+                        onChange={(e) => setTrainPassengers(Number(e.target.value))}
+                        className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none"
+                      >
+                        {[1, 2, 3, 4, 5, 6].map((n) => (
+                          <option key={n} value={n}>
+                            {n} {n === 1 ? t("Search.flights.passenger") : t("Search.flights.passengers")}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Search Button */}
+                <button
+                  onClick={handleSearch}
+                  className="w-full rounded-xl bg-brand-primary py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-brand-secondary hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+                >
+                  <Train className="h-5 w-5" />
+                  {t("Search.trains.search")}
                 </button>
               </div>
             )}

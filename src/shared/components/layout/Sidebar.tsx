@@ -6,6 +6,7 @@ import {
   FileText,
   Truck,
   Activity,
+  Train,
   ChevronLeft,
   ChevronRight,
   Settings,
@@ -31,6 +32,7 @@ export function Sidebar({ isPinned = true }: SidebarProps) {
     { id: "hotels", icon: Hotel, label: t("Search.tabs.hotels") },
     { id: "holidays", icon: Palmtree, label: t("Search.tabs.holidays") },
     { id: "visa", icon: FileText, label: t("Search.tabs.visa") },
+    { id: "trains", icon: Train, label: t("Search.tabs.trains") },
     { id: "cargo", icon: Truck, label: t("Search.tabs.cargo") },
     { id: "status", icon: Activity, label: t("Search.tabs.status") },
   ];

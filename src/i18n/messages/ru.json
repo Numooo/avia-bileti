@@ -31,7 +31,8 @@
       "holidays": "Туры",
       "visa": "Визы",
       "cargo": "Грузоперевозки",
-      "status": "Статус рейса"
+      "status": "Статус рейса",
+      "trains": "ЖД билеты"
     },
     "flights": {
       "oneWay": "В одну сторону",
@@ -57,7 +58,19 @@
       "afternoon": "День",
       "evening": "Вечер",
       "night": "Ночь",
+      "cabin": "Класс",
       "search": "Найти билеты"
+    },
+    "trains": {
+      "oneWay": "В одну сторону",
+      "roundTrip": "Туда и обратно",
+      "from": "Откуда",
+      "to": "Куда",
+      "departure": "Туда",
+      "return": "Обратно",
+      "date": "Дата",
+      "travelers": "Пассажиры",
+      "search": "Найти поезда"
     },
     "hotels": {
       "destination": "Направление",

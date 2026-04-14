@@ -31,7 +31,8 @@
       "holidays": "Holidays",
       "visa": "Visa",
       "cargo": "Cargo",
-      "status": "Flight Status"
+      "status": "Flight Status",
+      "trains": "Railway Tickets"
     },
     "flights": {
       "oneWay": "One-way",
@@ -57,7 +58,19 @@
       "afternoon": "Afternoon",
       "evening": "Evening",
       "night": "Night",
+      "cabin": "Cabin",
       "search": "Search Flights"
+    },
+    "trains": {
+      "oneWay": "One-way",
+      "roundTrip": "Round-trip",
+      "from": "From",
+      "to": "To",
+      "departure": "Date",
+      "return": "Return",
+      "date": "Date",
+      "travelers": "Travelers",
+      "search": "Search Trains"
     },
     "hotels": {
       "destination": "Destination",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, SlidersHorizontal, X } from "lucide-react";
+import { ArrowLeft, SlidersHorizontal, X, Calendar, Users, Briefcase, Plus, Minus } from "lucide-react";
 import type { FlightOffer, FilterState } from "../../types";
 import { FlightFilters } from "./FlightFilters";
 import { FlightResultCard } from "./FlightResultCard";
@@ -10,6 +10,7 @@ import {
   MOCK_FLIGHTS,
   formatCurrency,
   getAirportLabel,
+  AIRPORTS,
 } from "@/shared/mocks/data";
 import { useTranslations } from "next-intl";
 
@@ -52,11 +53,15 @@ export function FlightsPage({
   );
   const [showFilters, setShowFilters] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isEditingSearch, setIsEditingSearch] = useState(false);
+  const [editTab, setEditTab] = useState<"from" | "to">("from");
   const [currentDestination, setCurrentDestination] = useState(
     initialDestination || "DXB",
   );
   const [currentOrigin, setCurrentOrigin] = useState(initialOrigin || "FRU");
-  const [isEditingSearch, setIsEditingSearch] = useState(false);
+  const [currentDate, setCurrentDate] = useState("2024-01-15");
+  const [currentPassengers, setCurrentPassengers] = useState(1);
+  const [currentCabin, setCurrentCabin] = useState("Economy");
 
   // Sync with initial props if they change
   useEffect(() => {
@@ -80,19 +85,23 @@ export function FlightsPage({
 
   // Mock search params (in real app, these would come from URL/state)
   const searchParams: SearchParams = {
-    from: "MOW",
+    from: currentOrigin,
     to: currentDestination,
-    depart: "2024-01-15",
-    passengers: 1,
-    cabin: "Economy",
+    depart: currentDate,
+    passengers: currentPassengers,
+    cabin: currentCabin,
     tripType: "one-way",
   };
 
   // Filter flights based on filter state and destination
   const getFilteredFlights = () => {
     let filtered = [...MOCK_FLIGHTS].filter((f) => {
+      const firstSegment = f.segments[0];
       const lastSegment = f.segments[f.segments.length - 1];
-      return lastSegment.to === currentDestination;
+      return (
+        firstSegment.from === currentOrigin &&
+        lastSegment.to === currentDestination
+      );
     });
 
     // Price filter
@@ -220,7 +229,7 @@ export function FlightsPage({
             </div>
             <button
               onClick={() => setIsEditingSearch(true)}
-              className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50 cursor-pointer"
+              className="px-6 py-2 bg-brand-primary/5 text-brand-primary rounded-xl font-bold text-sm hover:bg-brand-primary/10 transition-all border border-brand-primary/20 cursor-pointer"
             >
               {t("editSearch")}
             </button>
@@ -401,25 +410,52 @@ export function FlightsPage({
                 </button>
               </div>
 
+              {/* Tabs for From/To */}
+              <div className="flex p-1 bg-gray-100 rounded-2xl mb-6">
+                <button
+                  onClick={() => setEditTab("from")}
+                  className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all ${
+                    editTab === "from"
+                      ? "bg-white text-gray-900 shadow-sm"
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  {tSearch("from")}
+                </button>
+                <button
+                  onClick={() => setEditTab("to")}
+                  className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all ${
+                    editTab === "to"
+                      ? "bg-white text-gray-900 shadow-sm"
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  {tSearch("to")}
+                </button>
+              </div>
+
               <div className="space-y-6">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-gray-700">
-                    {tSearch("to")}
-                  </label>
-                  <div className="grid grid-cols-1 gap-2 max-h-[40vh] overflow-y-auto pr-2 no-scrollbar">
-                    {MOCK_FLIGHTS.map(
-                      (f) => f.segments[f.segments.length - 1].to,
-                    )
-                      .filter((v, i, a) => a.indexOf(v) === i)
-                      .map((code) => (
+                  <div className="grid grid-cols-1 gap-2 max-h-[30vh] overflow-y-auto pr-2 no-scrollbar mb-6">
+                    {/* City Selection List */}
+                    {Array.from(new Set(AIRPORTS.map(a => a.code))).map((code) => {
+                      const isSelected = editTab === "from" 
+                        ? currentOrigin === code 
+                        : currentDestination === code;
+                        
+                      return (
                         <button
                           key={code}
                           onClick={() => {
-                            setCurrentDestination(code);
-                            setIsEditingSearch(false);
+                            if (editTab === "from") {
+                              setCurrentOrigin(code);
+                              setEditTab("to");
+                            } else {
+                              setCurrentDestination(code);
+                            }
                           }}
                           className={`flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer ${
-                            currentDestination === code
+                            isSelected
                               ? "border-brand-primary bg-brand-primary/5 text-brand-primary"
                               : "border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50"
                           }`}
@@ -427,25 +463,84 @@ export function FlightsPage({
                           <span className="font-bold">
                             {getAirportLabel(code)}
                           </span>
-                          <span className="text-xs font-black opacity-50">
+                          <span className="text-xs font-black opacity-50 uppercase">
                             {code}
                           </span>
                         </button>
-                      ))}
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Search Details Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+                  {/* Date Input */}
+                  <div className="space-y-1.5">
+                    <label className="text-[11px] font-black uppercase text-gray-400 tracking-wider">
+                      {tSearch("departure")}
+                    </label>
+                    <div className="relative">
+                      <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <input
+                        type="date"
+                        value={currentDate}
+                        onChange={(e) => setCurrentDate(e.target.value)}
+                        className="w-full bg-gray-50 border-none rounded-2xl py-3 pl-11 pr-4 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-brand-primary/20 outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Passengers */}
+                  <div className="space-y-1.5">
+                    <label className="text-[11px] font-black uppercase text-gray-400 tracking-wider">
+                      {tSearch("passengers")}
+                    </label>
+                    <div className="flex items-center justify-between bg-gray-50 rounded-2xl p-1.5 h-[46px]">
+                      <button
+                        onClick={() => setCurrentPassengers(Math.max(1, currentPassengers - 1))}
+                        className="p-2 hover:bg-white rounded-xl transition-all text-gray-600 disabled:opacity-30"
+                        disabled={currentPassengers <= 1}
+                      >
+                        <Minus size={16} />
+                      </button>
+                      <span className="font-bold text-gray-900">{currentPassengers}</span>
+                      <button
+                        onClick={() => setCurrentPassengers(Math.min(9, currentPassengers + 1))}
+                        className="p-2 hover:bg-white rounded-xl transition-all text-gray-600"
+                      >
+                        <Plus size={16} />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Cabin Class */}
+                  <div className="md:col-span-2 space-y-1.5">
+                    <label className="text-[11px] font-black uppercase text-gray-400 tracking-wider">
+                      {tSearch("cabin")}
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                       {["Economy", "Business"].map((cabin) => (
+                         <button
+                           key={cabin}
+                           onClick={() => setCurrentCabin(cabin)}
+                           className={`py-2.5 rounded-xl text-sm font-bold transition-all border ${
+                             currentCabin === cabin
+                               ? "border-brand-primary bg-brand-primary/5 text-brand-primary text-xs uppercase"
+                               : "border-gray-100 bg-gray-50 text-gray-500 hover:bg-gray-100 text-xs uppercase"
+                           }`}
+                         >
+                           {cabin}
+                         </button>
+                       ))}
+                    </div>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setIsEditingSearch(false)}
-                  className="w-full rounded-2xl bg-brand-primary py-4 text-white font-bold shadow-lg hover:shadow-brand-primary/25 transition-all active:scale-95 cursor-pointer"
+                  className="w-full rounded-2xl bg-brand-primary py-4 text-white font-bold shadow-lg shadow-brand-primary/25 hover:shadow-brand-primary/40 transition-all active:scale-95 cursor-pointer mt-2"
                 >
-                  {t("showResults", {
-                    count: MOCK_FLIGHTS.filter(
-                      (f) =>
-                        f.segments[f.segments.length - 1].to ===
-                        currentDestination,
-                    ).length,
-                  })}
+                  {t("showResults", { count: filteredFlights.length })}
                 </button>
               </div>
             </motion.div>

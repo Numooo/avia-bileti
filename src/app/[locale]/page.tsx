@@ -21,6 +21,14 @@ export default function Home() {
     router.push(`/cargo`);
   };
 
+  const handleSearchTrains = (from: string, to: string, date: string) => {
+    const searchParams = new URLSearchParams();
+    searchParams.set("from", from);
+    searchParams.set("to", to);
+    searchParams.set("date", date);
+    router.push(`/trains?${searchParams.toString()}`);
+  };
+
   const handleNavigate = (page: string) => {
     router.push(page === "home" ? "/" : `/${page}`);
   };
@@ -29,6 +37,7 @@ export default function Home() {
     <HomePage
       onSearchFlights={handleSearchFlights}
       onSearchCargo={handleSearchCargo}
+      onSearchTrains={handleSearchTrains}
       onNavigate={handleNavigate}
     />
   );
