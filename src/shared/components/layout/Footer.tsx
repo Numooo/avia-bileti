@@ -171,7 +171,7 @@ export function Footer() {
               <input
                 type="email"
                 placeholder={t("emailPlaceholder")}
-                className="flex-1 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm text-white placeholder-white/50 focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/20"
+                className="flex-1 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm text-white placeholder-gray-500 focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/20"
               />
               <button className="rounded-lg bg-brand-accent px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-brand-primary">
                 {t("subscribe")}
