@@ -2365,15 +2365,15 @@ function EventsBannerSlider({ onNavigate, onSearchFlights }: { onNavigate?: (p: 
             </p>
         </div>
 
-        <div className="relative h-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl group border border-gray-100">
-             <AnimatePresence mode="wait">
+        <div className="relative h-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl group border border-gray-100 bg-gray-950">
+             <AnimatePresence initial={false}>
                  <motion.div
                     key={currentIndex}
-                    initial={{ opacity: 0, scale: 1.02 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="absolute inset-0"
+                    initial={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                    transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
+                    className="absolute inset-0 z-0"
                  >
                     <img 
                       src={currentEvent.image} 
