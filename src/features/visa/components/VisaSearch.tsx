@@ -9,6 +9,9 @@ interface VisaSearchProps {
   onSearch?: (country: string) => void;
 }
 
+import { DatePicker } from "@/shared/ui/DatePicker";
+import { CustomSelect } from "@/shared/ui/CustomSelect";
+
 export function VisaSearch({ onSearch }: VisaSearchProps) {
   const t = useTranslations();
   const [country, setCountry] = useState("");
@@ -31,77 +34,52 @@ export function VisaSearch({ onSearch }: VisaSearchProps) {
           <label className="mb-1 block text-sm font-medium text-gray-700">
             {t("Search.visa.country")}
           </label>
-          <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+          <div className="relative group">
+            <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors" />
             <input
               type="text"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               placeholder={t("Search.visa.countryPlaceholder")}
-              className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary"
+              className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all"
             />
           </div>
         </div>
 
         {/* Visa Type */}
-        <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
-            {t("Search.visa.visaType")}
-          </label>
-          <div className="relative">
-            <FileText className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-            <select
-              value={visaType}
-              onChange={(e) => setVisaType(e.target.value)}
-              className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-brand-primary"
-            >
-              <option value="tourist">{t("Search.visa.types.tourist")}</option>
-              <option value="business">{t("Search.visa.types.business")}</option>
-              <option value="transit">{t("Search.visa.types.transit")}</option>
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
-          </div>
-        </div>
+        <CustomSelect
+          label={t("Search.visa.visaType")}
+          value={visaType}
+          onChange={setVisaType}
+          icon={<FileText className="h-5 w-5" />}
+          options={[
+            { value: "tourist", label: t("Search.visa.types.tourist") },
+            { value: "business", label: t("Search.visa.types.business") },
+            { value: "transit", label: t("Search.visa.types.transit") },
+          ]}
+        />
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {/* Date */}
-        <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
-            {t("Search.visa.travelDate")}
-          </label>
-          <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-            <input
-              type="date"
-              value={travelDate}
-              onChange={(e) => setTravelDate(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary"
-            />
-          </div>
-        </div>
+        <DatePicker
+          label={t("Search.visa.travelDate")}
+          value={travelDate}
+          onChange={setTravelDate}
+          minDate={new Date()}
+        />
 
         {/* Applicants */}
-        <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
-            {t("Search.visa.applicants")}
-          </label>
-          <div className="relative">
-            <Users className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-            <select
-              value={applicants}
-              onChange={(e) => setApplicants(Number(e.target.value))}
-              className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-brand-primary"
-            >
-              {[1, 2, 3, 4, 5, 6].map((num) => (
-                <option key={num} value={num}>
-                  {num} {num === 1 ? t("Search.visa.applicant") : t("Search.visa.applicants")}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
-          </div>
-        </div>
+        <CustomSelect
+          label={t("Search.visa.applicants")}
+          value={applicants}
+          onChange={setApplicants}
+          icon={<Users className="h-5 w-5" />}
+          options={[1, 2, 3, 4, 5, 6].map((num) => ({
+            value: num,
+            label: `${num} ${num === 1 ? t("Search.visa.applicant") : t("Search.visa.applicants")}`,
+          }))}
+        />
       </div>
 
       {/* Check Button */}

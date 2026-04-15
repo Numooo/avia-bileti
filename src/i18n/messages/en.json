@@ -32,7 +32,8 @@
       "visa": "Visa",
       "cargo": "Cargo",
       "status": "Flight Status",
-      "trains": "Railway Tickets"
+      "radar": "Flight Radar",
+      "trains": "Train Tickets"
     },
     "flights": {
       "oneWay": "One-way",
@@ -1141,6 +1142,29 @@
         "description": "Your data is protected with industry-standard encryption and security."
       }
     }
+  },
+  "Radar": {
+    "title": "Flight Radar",
+    "details": "Flight Details",
+    "altitude": "Altitude",
+    "speed": "Speed",
+    "origin": "Origin",
+    "track": "Track",
+    "status": "Status",
+    "onGround": "On Ground",
+    "inFlight": "In Flight",
+    "coordinates": "Coordinates",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "trackFlight": "Track this flight",
+    "updating": "Updating...",
+    "live": "Live",
+    "visibleAircrafts": "{count} aircrafts visible",
+    "lastSync": "Sync",
+    "searchPlaceholder": "Search by callsign...",
+    "clickInstruction": "Click on an aircraft to see full flight data",
+    "meters": "m",
+    "kmh": "km/h"
   },
   "Faq": {
     "title": "Questions and Answers",

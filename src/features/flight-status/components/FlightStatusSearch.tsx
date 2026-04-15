@@ -7,6 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AIRPORTS } from "@/shared/mocks/data";
 import { useTranslations } from "next-intl";
 
+import { DatePicker } from "@/shared/ui/DatePicker";
+import { CustomSelect } from "@/shared/ui/CustomSelect";
+import { AirportAutocomplete } from "@/shared/ui/AirportAutocomplete";
+
 export function FlightStatusSearch() {
   const t = useTranslations();
   const [statusSearchType, setStatusSearchType] = useState<"flightNumber" | "route" | "allFlights">("flightNumber");
@@ -102,14 +106,14 @@ export function FlightStatusSearch() {
             <label className="mb-1 block text-sm font-medium text-gray-700">
               {t("Search.status.flightNumber")}
             </label>
-            <div className="relative">
-              <PlaneTakeoff className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+            <div className="relative group">
+              <PlaneTakeoff className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors" />
               <input
                 type="text"
                 value={statusFlightNumber}
                 onChange={(e) => setStatusFlightNumber(e.target.value)}
                 placeholder={t("Search.status.flightNumberPlaceholder")}
-                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
+                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all"
               />
             </div>
           </div>
@@ -117,56 +121,27 @@ export function FlightStatusSearch() {
 
         {statusSearchType === "route" && (
           <>
-            <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">{t("Search.status.origin")}</label>
-              <div className="relative">
-                <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-                <select
-                  value={statusOrigin}
-                  onChange={(e) => setStatusOrigin(e.target.value)}
-                  className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none"
-                >
-                  <option value="">{t("Search.flights.from")}</option>
-                  {AIRPORTS.map((a) => (
-                    <option key={a.code} value={a.code}>{a.city} ({a.code})</option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
-              </div>
-            </div>
-            <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">{t("Search.status.destination")}</label>
-              <div className="relative">
-                <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-                <select
-                  value={statusDestination}
-                  onChange={(e) => setStatusDestination(e.target.value)}
-                  className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none"
-                >
-                  <option value="">{t("Search.flights.to")}</option>
-                  {AIRPORTS.map((a) => (
-                    <option key={a.code} value={a.code}>{a.city} ({a.code})</option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
-              </div>
-            </div>
+            <AirportAutocomplete
+              label={t("Search.status.origin")}
+              value={statusOrigin}
+              onChange={setStatusOrigin}
+              placeholder={t("Search.flights.from")}
+            />
+            <AirportAutocomplete
+              label={t("Search.status.destination")}
+              value={statusDestination}
+              onChange={setStatusDestination}
+              placeholder={t("Search.flights.to")}
+            />
           </>
         )}
 
         {statusSearchType !== "flightNumber" && (
-          <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700">{t("Search.status.date")}</label>
-            <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-              <input
-                type="date"
-                value={statusDate}
-                onChange={(e) => setStatusDate(e.target.value)}
-                className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
-              />
-            </div>
-          </div>
+          <DatePicker
+            label={t("Search.status.date")}
+            value={statusDate}
+            onChange={setStatusDate}
+          />
         )}
       </div>
 

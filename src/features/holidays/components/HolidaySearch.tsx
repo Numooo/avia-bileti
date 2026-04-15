@@ -9,6 +9,9 @@ interface HolidaySearchProps {
   onSearch?: (destination: string) => void;
 }
 
+import { DatePicker } from "@/shared/ui/DatePicker";
+import { CustomSelect } from "@/shared/ui/CustomSelect";
+
 export function HolidaySearch({ onSearch }: HolidaySearchProps) {
   const t = useTranslations();
   const [destination, setDestination] = useState("");
@@ -30,55 +33,37 @@ export function HolidaySearch({ onSearch }: HolidaySearchProps) {
           <label className="mb-1 block text-sm font-medium text-gray-700">
             {t("Search.holidays.destination")}
           </label>
-          <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+          <div className="relative group">
+            <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors" />
             <input
               type="text"
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               placeholder={t("Search.holidays.destinationPlaceholder")}
-              className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
+              className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all"
             />
           </div>
         </div>
 
         {/* Dates */}
-        <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
-            {t("Search.holidays.departure")}
-          </label>
-          <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-            <input
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary"
-            />
-          </div>
-        </div>
+        <DatePicker
+          label={t("Search.holidays.departure")}
+          value={startDate}
+          onChange={setStartDate}
+          minDate={new Date()}
+        />
 
         {/* Passengers */}
-        <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
-            {t("Search.holidays.travelers")}
-          </label>
-          <div className="relative">
-            <Users className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-            <select
-              value={travelers}
-              onChange={(e) => setTravelers(Number(e.target.value))}
-              className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-brand-primary"
-            >
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                <option key={n} value={n}>
-                  {n} {n === 1 ? t("Search.flights.passenger") : t("Search.flights.passengers")}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
-          </div>
-        </div>
+        <CustomSelect
+          label={t("Search.holidays.travelers")}
+          value={travelers}
+          onChange={setTravelers}
+          icon={<Users className="h-5 w-5" />}
+          options={[1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
+            value: n,
+            label: `${n} ${n === 1 ? t("Search.flights.passenger") : t("Search.flights.passengers")}`,
+          }))}
+        />
       </div>
 
       {/* Budget Selector */}

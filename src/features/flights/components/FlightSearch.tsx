@@ -5,11 +5,16 @@ import { Plane, MapPin, Calendar, ChevronDown } from "lucide-react";
 import { format } from "date-fns";
 import { AIRPORTS } from "@/shared/mocks/data";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import { PassengerSelector } from "@/shared/ui/passenger-selector";
+
+import { AirportAutocomplete } from "@/shared/ui/AirportAutocomplete";
 
 interface FlightSearchProps {
   onSearch?: (from: string, to: string) => void;
 }
+
+import { DatePicker } from "@/shared/ui/DatePicker";
 
 export function FlightSearch({ onSearch }: FlightSearchProps) {
   const t = useTranslations();
@@ -59,85 +64,41 @@ export function FlightSearch({ onSearch }: FlightSearchProps) {
       </div>
 
       {/* Search Inputs */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="relative grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {/* Origin */}
-        <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
-            {t("Search.flights.from")}
-          </label>
-          <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-            <select
-              value={flightOrigin}
-              onChange={(e) => setFlightOrigin(e.target.value)}
-              className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-            >
-              {AIRPORTS.map((airport) => (
-                <option key={airport.code} value={airport.code}>
-                  {airport.city} ({airport.code})
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
-          </div>
-        </div>
+        <AirportAutocomplete
+          label={t("Search.flights.from")}
+          value={flightOrigin}
+          onChange={setFlightOrigin}
+          placeholder={t("Search.flights.from")}
+        />
 
         {/* Destination */}
-        <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
-            {t("Search.flights.to")}
-          </label>
-          <div className="relative">
-            <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-            <select
-              value={flightDestination}
-              onChange={(e) => setFlightDestination(e.target.value)}
-              className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-10 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-            >
-              {AIRPORTS.map((airport) => (
-                <option key={airport.code} value={airport.code}>
-                  {airport.city} ({airport.code})
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 pointer-events-none" />
-          </div>
-        </div>
+        <AirportAutocomplete
+          label={t("Search.flights.to")}
+          value={flightDestination}
+          onChange={setFlightDestination}
+          placeholder={t("Search.flights.to")}
+        />
 
         {/* Departure Date */}
-        <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
-            {tripType === "roundtrip"
-              ? t("Search.flights.departure")
-              : t("Search.flights.date")}
-          </label>
-          <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-            <input
-              type="date"
-              value={departureDate}
-              onChange={(e) => setDepartureDate(e.target.value)}
-              className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-            />
-          </div>
-        </div>
+        <DatePicker
+          label={tripType === "roundtrip" ? t("Search.flights.departure") : t("Search.flights.date")}
+          value={departureDate}
+          onChange={setDepartureDate}
+          minDate={new Date()}
+          placeholder="Select date"
+        />
 
         {/* Return Date */}
         {tripType === "roundtrip" && (
-          <div className="relative">
-            <label className="mb-1 block text-sm font-medium text-gray-700">
-              {t("Search.flights.return")}
-            </label>
-            <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
-              <input
-                type="date"
-                value={returnDate}
-                onChange={(e) => setReturnDate(e.target.value)}
-                className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-              />
-            </div>
-          </div>
+          <DatePicker
+            label={t("Search.flights.return")}
+            value={returnDate}
+            onChange={setReturnDate}
+            minDate={departureDate ? new Date(departureDate) : new Date()}
+            placeholder="Select date"
+          />
         )}
       </div>
 

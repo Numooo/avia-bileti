@@ -1,0 +1,153 @@
+"use client";
+
+import React, { useState, useRef, useEffect, useMemo } from "react";
+import { MapPin, Search, Star, Plane } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { AIRPORTS } from "@/shared/mocks/data";
+
+interface AirportAutocompleteProps {
+  label: string;
+  value: string;
+  onChange: (code: string) => void;
+  placeholder?: string;
+  icon?: React.ReactNode;
+}
+
+const POPULAR_AIRPORTS = ["FRU", "MOW", "IST", "DXB", "ALA"];
+
+export function AirportAutocomplete({
+  label,
+  value,
+  onChange,
+  placeholder,
+  icon,
+}: AirportAutocompleteProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const selectedAirport = useMemo(
+    () => AIRPORTS.find((a) => a.code === value),
+    [value]
+  );
+
+  // Initialize search text with current value
+  useEffect(() => {
+    if (selectedAirport && !isOpen) {
+      setSearch(`${selectedAirport.city}, ${selectedAirport.name}`);
+    } else if (!value && !isOpen) {
+      setSearch("");
+    }
+  }, [selectedAirport, value, isOpen]);
+
+  const filteredAirports = useMemo(() => {
+    const query = search.toLowerCase().trim();
+    
+    // If empty, show popular
+    if (!query) {
+      return AIRPORTS.filter((a) => POPULAR_AIRPORTS.includes(a.code)).slice(0, 5);
+    }
+
+    // If typing, filter by city, code, or name
+    return AIRPORTS.filter(
+      (a) =>
+        a.city.toLowerCase().includes(query) ||
+        a.code.toLowerCase().includes(query) ||
+        a.name.toLowerCase().includes(query)
+    ).slice(0, 5);
+  }, [search]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={containerRef}>
+      <label className="mb-1 block text-sm font-medium text-gray-700">
+        {label}
+      </label>
+      <div className="relative group">
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors z-10">
+          {icon || <MapPin className="h-5 w-5" />}
+        </div>
+        <input
+          type="text"
+          value={search}
+          onFocus={() => {
+            setIsOpen(true);
+            setSearch("");
+          }}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder={placeholder}
+          className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all placeholder:text-gray-400"
+        />
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 12, scale: 0.98 }}
+            className="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl"
+            style={{ minWidth: "300px" }}
+          >
+            <div className="p-2">
+              <div className="space-y-1">
+                {filteredAirports.length > 0 ? (
+                  filteredAirports.map((airport) => (
+                    <button
+                      key={airport.code}
+                      onClick={() => {
+                        onChange(airport.code);
+                        setSearch(`${airport.city}, ${airport.name}`);
+                        setIsOpen(false);
+                      }}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left transition-all hover:bg-gray-50 group"
+                    >
+                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-gray-50 text-gray-400 group-hover:bg-brand-primary group-hover:text-white transition-all">
+                        <Plane className="h-4 w-4 -rotate-45" />
+                      </div>
+                      <div className="flex-1 overflow-hidden">
+                        <div className="flex items-center justify-between">
+                          <span className="truncate font-bold text-gray-900">
+                            {airport.city}
+                          </span>
+                          <span className="ml-2 font-mono text-[10px] font-bold text-gray-400">
+                            {airport.code}
+                          </span>
+                        </div>
+                        <p className="truncate text-xs text-gray-500">
+                          {airport.name}
+                        </p>
+                      </div>
+                    </button>
+                  ))
+                ) : (
+                  <div className="px-4 py-12 text-center">
+                    <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gray-50 text-gray-300">
+                      <Search className="h-8 w-8" />
+                    </div>
+                    <p className="text-sm font-bold text-gray-500">
+                      We couldn't find any airports
+                    </p>
+                    <p className="text-xs text-gray-400 mt-1 uppercase tracking-tighter">
+                      Try searching for a different city or code
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+        
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}

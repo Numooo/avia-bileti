@@ -1,0 +1,144 @@
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
+import { format, addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, isSameDay, isBefore } from "date-fns";
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+interface DatePickerProps {
+  label: string;
+  value: string;
+  onChange: (date: string) => void;
+  minDate?: Date;
+  placeholder?: string;
+}
+
+export function DatePicker({ label, value, onChange, minDate, placeholder }: DatePickerProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(value ? new Date(value) : new Date());
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const selectedDate = value ? new Date(value) : null;
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const nextMonth = () => setCurrentMonth(addMonths(currentMonth, 1));
+  const prevMonth = () => setCurrentMonth(subMonths(currentMonth, 1));
+
+  const days = () => {
+    const monthStart = startOfMonth(currentMonth);
+    const monthEnd = endOfMonth(monthStart);
+    const startDate = startOfWeek(monthStart, { weekStartsOn: 1 });
+    const endDate = endOfWeek(monthEnd, { weekStartsOn: 1 });
+
+    return eachDayOfInterval({ start: startDate, end: endDate });
+  };
+
+  return (
+    <div className="relative" ref={containerRef}>
+      <label className="mb-1 block text-sm font-medium text-gray-700">
+        {label}
+      </label>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center gap-3 rounded-lg border border-gray-300 bg-white py-3 px-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all text-left"
+      >
+        <CalendarIcon className="h-5 w-5 text-gray-400" />
+        <span className={selectedDate ? "text-gray-900" : "text-gray-400"}>
+          {selectedDate ? format(selectedDate, "dd.MM.yyyy") : (placeholder || "Select date")}
+        </span>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            className="absolute z-50 mt-2 w-[310px] rounded-2xl border border-gray-200 bg-white p-5 shadow-2xl"
+          >
+            <div className="flex items-center justify-between mb-5">
+              <button 
+                onClick={(e) => { e.stopPropagation(); prevMonth(); }} 
+                className="p-1.5 hover:bg-gray-50 rounded-xl transition-colors text-gray-500"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <span className="font-black text-gray-900 text-sm uppercase tracking-wider">
+                {format(currentMonth, "MMMM yyyy")}
+              </span>
+              <button 
+                onClick={(e) => { e.stopPropagation(); nextMonth(); }} 
+                className="p-1.5 hover:bg-gray-50 rounded-xl transition-colors text-gray-500"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-7 gap-1 text-center mb-3">
+              {["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].map((day) => (
+                <span key={day} className="text-[10px] font-black text-gray-400 uppercase tracking-tighter">
+                  {day}
+                </span>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-7 gap-1 text-center">
+              {days().map((day, idx) => {
+                const isSelected = selectedDate && isSameDay(day, selectedDate);
+                const isCurrentMonth = isSameMonth(day, currentMonth);
+                const isPast = minDate ? isBefore(day, minDate) && !isSameDay(day, minDate) : false;
+
+                return (
+                  <button
+                    key={idx}
+                    disabled={isPast}
+                    onClick={() => {
+                      onChange(format(day, "yyyy-MM-dd"));
+                      setIsOpen(false);
+                    }}
+                    className={`
+                      aspect-square flex items-center justify-center rounded-xl text-xs font-bold transition-all
+                      ${isSelected ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/20" : ""}
+                      ${!isSelected && isCurrentMonth ? "text-gray-900 hover:bg-brand-primary/10 hover:text-brand-primary" : ""}
+                      ${!isCurrentMonth ? "text-gray-300" : ""}
+                      ${isPast ? "opacity-20 cursor-not-allowed" : ""}
+                    `}
+                  >
+                    {format(day, "d")}
+                  </button>
+                );
+              })}
+            </div>
+            
+            <div className="mt-4 pt-4 border-t border-gray-50 flex justify-between items-center">
+               <button 
+                 onClick={() => {
+                   onChange(format(new Date(), "yyyy-MM-dd"));
+                   setIsOpen(false);
+                 }}
+                 className="text-[10px] font-black uppercase text-brand-primary hover:text-brand-secondary transition-colors"
+               >
+                 Today
+               </button>
+               <button 
+                 onClick={() => setIsOpen(false)}
+                 className="text-[10px] font-black uppercase text-gray-400 hover:text-gray-600 transition-colors"
+               >
+                 Close
+               </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
