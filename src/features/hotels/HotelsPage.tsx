@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -53,15 +54,34 @@ interface HotelsPageProps {
   ) => void;
 }
 
+
 export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
   const t = useTranslations("Hotels");
+  const tMock = useTranslations("MockData");
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { symbol, symbolText, CurrencySymbol } = useCurrency();
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
-  const [hotels] = useState<Hotel[]>(t.raw("mockData"));
-  const [searchQuery, setSearchQuery] = useState("Dubai");
+  const [hotels] = useState<Hotel[]>(tMock.raw("hotels"));
+  const [searchQuery, setSearchQuery] = useState("");
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
+
+  useEffect(() => {
+    const search = searchParams.get("search");
+    if (search) {
+      setSearchQuery(search);
+    }
+    const date = searchParams.get("date");
+    if (date) {
+      setCheckInDate(date);
+      const outDate = new Date(date);
+      outDate.setDate(outDate.getDate() + 3);
+      setCheckOutDate(outDate.toISOString().split("T")[0]);
+    }
+  }, [searchParams]);
   const [showFilters, setShowFilters] = useState(false);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 25000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 150000]);
   const [selectedStars, setSelectedStars] = useState<number[]>([]);
   const [sortBy, setSortBy] = useState<"price" | "rating" | "distance">(
     "rating",
@@ -88,9 +108,12 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
         hotelPrice >= priceRange[0] && hotelPrice <= priceRange[1];
       const matchesStars =
         selectedStars.length === 0 || selectedStars.includes(hotel.stars || 0);
-      const matchesSearch = searchQuery === "" || 
-        hotel.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        hotel.location.toLowerCase().includes(searchQuery.toLowerCase());
+      const query = searchQuery.toLowerCase();
+      const matchesSearch = query === "" || 
+        hotel.name.toLowerCase().includes(query) ||
+        hotel.location.toLowerCase().includes(query) ||
+        (hotel.city && (hotel.city.toLowerCase().includes(query) || query.includes(hotel.city.toLowerCase()))) ||
+        (hotel.country && (hotel.country.toLowerCase().includes(query) || query.includes(hotel.country.toLowerCase())));
       
       return matchesPrice && matchesStars && matchesSearch;
     })
@@ -130,7 +153,12 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
               </label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <Input type="date" className="pl-10" />
+                <Input 
+                  type="date" 
+                  className="pl-10" 
+                  value={checkInDate}
+                  onChange={(e: any) => setCheckInDate(e.target.value)}
+                />
               </div>
             </div>
             <div className="w-48">
@@ -139,7 +167,12 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
               </label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <Input type="date" className="pl-10" />
+                <Input 
+                  type="date" 
+                  className="pl-10" 
+                  value={checkOutDate}
+                  onChange={(e: any) => setCheckOutDate(e.target.value)}
+                />
               </div>
             </div>
             <Button onClick={handleSearch} className="h-11">
@@ -154,14 +187,17 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
         {/* Controls Bar */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">
-              {t("hotelsFound", {
-                count: filteredHotels.length,
-                location: searchQuery || "Dubai",
-              })}
+            <h1 className="text-2xl font-bold text-gray-900 capitalize">
+              {searchQuery 
+                ? t("hotelsFound", { count: filteredHotels.length, location: searchQuery })
+                : `${t("allHotels")}: ${filteredHotels.length}`
+              }
             </h1>
             <p className="text-sm text-gray-600 mt-1">
-              {t("savingsSubtitle", { location: searchQuery || "Dubai" })}
+              {searchQuery
+                ? t("savingsSubtitle", { location: searchQuery })
+                : t("savingsSubtitleAll")
+              }
             </p>
           </div>
 
@@ -232,7 +268,7 @@ export function HotelsPage({ onHotelSelect }: HotelsPageProps) {
                   <input
                     type="range"
                     min="0"
-                    max="25000"
+                    max="150000"
                     step="1000"
                     value={priceRange[1]}
                     onChange={(e) => setPriceRange([0, Number(e.target.value)])}
@@ -420,7 +456,10 @@ function HotelCard({ hotel, viewMode, index, onSelect }: HotelCardProps) {
             </h3>
             <div className="flex items-center gap-1.5 text-sm text-gray-600 mt-1.5">
               <MapPin className="h-4 w-4" />
-              <span>{hotel.location}</span>
+              <span>
+                {hotel.location}
+                {hotel.country && `, ${hotel.country}`}
+              </span>
               {hotel.distance && (
                 <>
                   <span className="text-gray-400">•</span>

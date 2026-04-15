@@ -9,7 +9,8 @@ import type { VisaRequirement } from "@/types";
 export default function VisaDetailRoute({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const t = useTranslations("Visa");
-  const visas = t.raw("mockData") as VisaRequirement[];
+  const tMock = useTranslations("MockData");
+  const visas = tMock.raw("visa") as VisaRequirement[];
   const visa = visas.find((v) => v.id === id);
   const router = useRouter();
 

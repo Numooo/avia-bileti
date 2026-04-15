@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Truck, MapPin, Calendar, Scale, ChevronDown } from "lucide-react";
 import { format } from "date-fns";
-import { AIRPORTS } from "@/shared/mocks/data";
 import { useTranslations } from "next-intl";
 
 interface CargoSearchProps {
@@ -57,17 +56,17 @@ export function CargoSearch({ onSearch }: CargoSearchProps) {
           minDate={new Date()}
         />
         <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
+          <label className="mb-1.5 block text-xs font-semibold text-gray-500 capitalize px-1">
             {t("Search.cargo.weight")}
           </label>
           <div className="relative group">
-            <Scale className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors" />
+            <Scale className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors z-10" />
             <input
               type="number"
               min="1"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all"
+              className="w-full appearance-none rounded-2xl border-none bg-gray-50 py-3.5 pl-11 pr-4 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-brand-primary/20 transition-all placeholder:text-gray-400"
             />
           </div>
         </div>
@@ -86,7 +85,7 @@ export function CargoSearch({ onSearch }: CargoSearchProps) {
       </div>
       <button
         onClick={handleSearch}
-        className="w-full rounded-2xl bg-brand-primary py-4 text-lg font-semibold text-white shadow-lg shadow-brand-primary/20 transition-all hover:bg-brand-secondary flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99]"
+        className="w-full rounded-2xl bg-brand-primary py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-brand-secondary hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2"
       >
         <Truck className="h-5 w-5" />
         {t("Search.cargo.calculate")}

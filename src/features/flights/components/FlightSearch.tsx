@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Plane, MapPin, Calendar, ChevronDown } from "lucide-react";
 import { format } from "date-fns";
-import { AIRPORTS } from "@/shared/mocks/data";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { PassengerSelector } from "@/shared/ui/passenger-selector";
@@ -116,7 +115,7 @@ export function FlightSearch({ onSearch }: FlightSearchProps) {
         />
 
         <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
+          <label className="mb-1.5 block text-xs font-semibold text-gray-500 capitalize px-1">
             {t("Search.flights.cabinClass")}
           </label>
           <div className="flex p-1 bg-gray-100 rounded-2xl">
@@ -127,7 +126,7 @@ export function FlightSearch({ onSearch }: FlightSearchProps) {
               <button
                 key={cabin.id}
                 onClick={() => setCabinClass(cabin.id)}
-                className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase transition-all ${
+                className={`flex-1 py-2.5 rounded-xl text-sm font-bold capitalize transition-all ${
                   cabinClass === cabin.id
                     ? "bg-white text-brand-primary shadow-sm"
                     : "text-gray-500 hover:text-gray-700"

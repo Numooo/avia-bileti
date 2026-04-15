@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Train, MapPin, Calendar, Users, ChevronDown } from "lucide-react";
 import { format } from "date-fns";
-import { AIRPORTS } from "@/shared/mocks/data";
 import { useTranslations } from "next-intl";
 
 interface TrainSearchProps {
@@ -18,7 +17,7 @@ export function TrainSearch({ onSearch }: TrainSearchProps) {
   const t = useTranslations();
   const [tripType, setTripType] = useState<"oneway" | "roundtrip">("oneway");
   const [origin, setOrigin] = useState("FRU");
-  const [destination, setDestination] = useState("DXB");
+  const [destination, setDestination] = useState("MOW");
   const [date, setDate] = useState(format(new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), "yyyy-MM-dd"));
   const [passengers, setPassengers] = useState(1);
 
@@ -62,6 +61,8 @@ export function TrainSearch({ onSearch }: TrainSearchProps) {
           value={origin}
           onChange={setOrigin}
           placeholder={t("Search.trains.from")}
+          mode="train"
+          icon={<Train className="h-5 w-5" />}
         />
 
         {/* Destination */}
@@ -70,6 +71,8 @@ export function TrainSearch({ onSearch }: TrainSearchProps) {
           value={destination}
           onChange={setDestination}
           placeholder={t("Search.trains.to")}
+          mode="train"
+          icon={<Train className="h-5 w-5" />}
         />
 
         {/* Date */}
@@ -95,7 +98,7 @@ export function TrainSearch({ onSearch }: TrainSearchProps) {
 
       <button
         onClick={handleSearch}
-        className="w-full rounded-2xl bg-brand-primary py-4 text-lg font-semibold text-white shadow-lg shadow-brand-primary/20 transition-all hover:bg-brand-secondary flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99]"
+        className="w-full rounded-2xl bg-brand-primary py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-brand-secondary hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2"
       >
         <Train className="h-5 w-5" />
         {t("Search.trains.search")}

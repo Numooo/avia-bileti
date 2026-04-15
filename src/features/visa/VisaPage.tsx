@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -28,9 +28,10 @@ interface VisaPageProps {
 
 export function VisaPage({ onVisaSelect }: VisaPageProps) {
   const t = useTranslations("Visa");
+  const tMock = useTranslations("MockData");
   const router = useRouter();
   const { symbol, CurrencyIcon } = useCurrency();
-  const [visas] = useState<VisaRequirement[]>(t.raw("mockData"));
+  const visas = useMemo(() => tMock.raw("visa") as VisaRequirement[], [tMock]);
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredVisas = searchQuery

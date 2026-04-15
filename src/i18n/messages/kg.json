@@ -1,4 +1,705 @@
 {
+  "MockData": {
+    "airports": [
+      {
+        "code": "FRU",
+        "city": "Бишкек",
+        "name": "Манас"
+      },
+      {
+        "code": "OSS",
+        "city": "Ош",
+        "name": "Ош"
+      },
+      {
+        "code": "ALA",
+        "city": "Алматы",
+        "name": "Алматы"
+      },
+      {
+        "code": "TAS",
+        "city": "Ташкент",
+        "name": "Ислам Каримов"
+      },
+      {
+        "code": "NQZ",
+        "city": "Астана",
+        "name": "Нурсултан Назарбаев"
+      },
+      {
+        "code": "SVO",
+        "city": "Москва",
+        "name": "Шереметьево"
+      },
+      {
+        "code": "DME",
+        "city": "Москва",
+        "name": "Домодедово"
+      },
+      {
+        "code": "LED",
+        "city": "Санкт-Петербург",
+        "name": "Пулково"
+      },
+      {
+        "code": "DXB",
+        "city": "Дубай",
+        "name": "Дубай"
+      },
+      {
+        "code": "SHJ",
+        "city": "Шарджа",
+        "name": "Шарджа"
+      },
+      {
+        "code": "IST",
+        "city": "Стамбул",
+        "name": "Стамбул"
+      },
+      {
+        "code": "SAW",
+        "city": "Стамбул",
+        "name": "Сабиха Гөкчен"
+      },
+      {
+        "code": "AYT",
+        "city": "Анталья",
+        "name": "Анталья"
+      },
+      {
+        "code": "JED",
+        "city": "Джидда",
+        "name": "Король Абдул-Азиз"
+      },
+      {
+        "code": "LHR",
+        "city": "Лондон",
+        "name": "Хитроу"
+      },
+      {
+        "code": "CDG",
+        "city": "Париж",
+        "name": "Шарль-де-Голль"
+      },
+      {
+        "code": "FRA",
+        "city": "Франкфурт",
+        "name": "Франкфурт"
+      },
+      {
+        "code": "JFK",
+        "city": "Нью-Йорк",
+        "name": "Джон Ф. Кеннеди"
+      },
+      {
+        "code": "PEK",
+        "city": "Пекин",
+        "name": "Борбордук"
+      },
+      {
+        "code": "BKK",
+        "city": "Бангкок",
+        "name": "Суварнабхуми"
+      },
+      {
+        "code": "BOM",
+        "city": "Мумбаи",
+        "name": "Чхатрапати Шиваджи"
+      },
+      {
+        "code": "DEL",
+        "city": "Дели",
+        "name": "Индира Ганди"
+      },
+      {
+        "code": "BLR",
+        "city": "Бангалор",
+        "name": "Кемпеговда"
+      },
+      {
+        "code": "HYD",
+        "city": "Хайдарабад",
+        "name": "Раджив Ганди"
+      },
+      {
+        "code": "MAA",
+        "city": "Ченнаи",
+        "name": "Ченнаи"
+      },
+      {
+        "code": "MOW",
+        "city": "Москва",
+        "name": "Бардык аэропорттор"
+      },
+      {
+        "code": "GOI",
+        "city": "Гоа",
+        "name": "Даболим"
+      },
+      {
+        "code": "MLE",
+        "city": "Мальдив",
+        "name": "Велана"
+      }
+    ],
+    "hotels": [
+      {
+        "id": "1",
+        "name": "The Taj Mahal Palace",
+        "city": "Мумбаи",
+        "country": "Индия",
+        "location": "Колаба, Мумбаи",
+        "distance": "борбордон 2.5 км",
+        "coordinates": {
+          "lat": 18.9217,
+          "lng": 72.8332
+        },
+        "rating": 4.8,
+        "reviewCount": 1234,
+        "reviewScore": "Эң сонун",
+        "stars": 5,
+        "price": 15000,
+        "pricePerNight": 15000,
+        "hero": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200",
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200",
+          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Спа",
+          "Ресторан",
+          "Спортзал",
+          "Унаа токтотуучу жай"
+        ],
+        "description": "Индиянын дарбазасын караган легендарлуу люкс мейманкана"
+      },
+      {
+        "id": "2",
+        "name": "The Oberoi",
+        "city": "Мумбаи",
+        "country": "Индия",
+        "location": "Нариман-Пойнт, Мумбаи",
+        "distance": "борбордон 1.2 км",
+        "coordinates": {
+          "lat": 18.9256,
+          "lng": 72.8242
+        },
+        "rating": 4.9,
+        "reviewCount": 892,
+        "reviewScore": "Абдан жакшы",
+        "stars": 5,
+        "price": 18000,
+        "pricePerNight": 18000,
+        "hero": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+          "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Спа",
+          "Ресторан",
+          "Спортзал"
+        ],
+        "description": "Араб деңизинин укмуштуудай көрүнүшү жана теңдешсиз меймандостук"
+      },
+      {
+        "id": "burj-al-arab",
+        "name": "Burj Al Arab Jumeirah",
+        "city": "Дубай",
+        "country": "БАЭ",
+        "location": "Умм Сукейм 3, Дубай",
+        "distance": "борбордон 12 км",
+        "coordinates": {
+          "lat": 25.1412,
+          "lng": 55.1852
+        },
+        "rating": 5,
+        "reviewCount": 1240,
+        "reviewScore": "Өзгөчө",
+        "stars": 5,
+        "price": 120000,
+        "pricePerNight": 120000,
+        "hero": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+          "https://images.unsplash.com/photo-1544161515-4ae6ce6ca606?w=800"
+        ],
+        "amenities": [
+          "Люкс Спа",
+          "Жеке пляж",
+          "Дворецкий кызматы",
+          "Вертолёт аянтчасы"
+        ],
+        "description": "Дүйнөдөгү эң кымбат жана люкс мейманкана"
+      },
+      {
+        "id": "atlantis",
+        "name": "Atlantis, The Palm",
+        "city": "Дубай",
+        "country": "БАЭ",
+        "location": "Палм-Джумейра, Дубай",
+        "distance": "борбордон 15 км",
+        "coordinates": {
+          "lat": 25.1304,
+          "lng": 55.1171
+        },
+        "rating": 4.9,
+        "reviewCount": 5420,
+        "reviewScore": "Мыкты",
+        "stars": 5,
+        "price": 45000,
+        "pricePerNight": 45000,
+        "hero": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Аквапарк",
+          "Спа",
+          "Ресторан",
+          "Спортзал"
+        ],
+        "description": "Палм-Джумейра аралынын чокусундагы люкс курорт"
+      },
+      {
+        "id": "sheraton-bishkek",
+        "name": "Sheraton Bishkek",
+        "city": "Бишкек",
+        "country": "Кыргызстан",
+        "location": "Киев көчөсү, Бишкек",
+        "distance": "борбордон 0.1 км",
+        "coordinates": {
+          "lat": 42.8746,
+          "lng": 74.5919
+        },
+        "rating": 4.7,
+        "reviewCount": 320,
+        "reviewScore": "Абдан жакшы",
+        "stars": 5,
+        "price": 11000,
+        "pricePerNight": 11000,
+        "hero": "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1200",
+          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
+        ],
+        "amenities": [
+          "Шаардын көрүнүшү",
+          "Конференц-залдар",
+          "Фитнес-борбору",
+          "Бассейн"
+        ],
+        "description": "Бишкектин чок ортосундагы премиум эс алуу"
+      },
+      {
+        "id": "karven-four-seasons",
+        "name": "Karven Four Seasons",
+        "city": "Сары-Ой",
+        "country": "Кыргызстан",
+        "location": "Ысык-Көл",
+        "distance": "Чолпон-Атадан 12 км",
+        "coordinates": {
+          "lat": 42.6167,
+          "lng": 77.0833
+        },
+        "rating": 4.6,
+        "reviewCount": 850,
+        "reviewScore": "Жакшы",
+        "stars": 5,
+        "price": 12000,
+        "pricePerNight": 12000,
+        "hero": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Жеке пляж",
+          "Теннис корту"
+        ],
+        "description": "Ысык-Көлдөгү эң мыкты эс алуу борборлорунун бири"
+      },
+      {
+        "id": "plaza",
+        "name": "The Plaza Hotel",
+        "city": "Нью-Йорк",
+        "country": "АКШ",
+        "location": "Бешинчи авеню, Нью-Йорк",
+        "distance": "Борбордук парктан 0.1 км",
+        "coordinates": {
+          "lat": 40.7644,
+          "lng": -73.9744
+        },
+        "rating": 4.7,
+        "reviewCount": 3210,
+        "reviewScore": "Мыкты",
+        "stars": 5,
+        "price": 65000,
+        "pricePerNight": 65000,
+        "hero": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+          "https://images.unsplash.com/photo-1455587734955-081b22074882?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Ресторан",
+          "Спа",
+          "Спортзал",
+          "Консьерж-кызматы"
+        ],
+        "description": "Манхэттендеги легендарлуу мейманкана"
+      },
+      {
+        "id": "w-yas",
+        "name": "W Abu Dhabi - Yas Island",
+        "city": "Яс Марина",
+        "country": "БАЭ",
+        "location": "Яс аралы, Абу-Даби",
+        "distance": "F1 трассасынан 0.1 км",
+        "coordinates": {
+          "lat": 24.4672,
+          "lng": 54.6031
+        },
+        "rating": 4.8,
+        "reviewCount": 1540,
+        "reviewScore": "Эң сонун",
+        "stars": 5,
+        "price": 25000,
+        "pricePerNight": 25000,
+        "hero": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=1200",
+          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Спа",
+          "Ресторан",
+          "Трасса көрүнүшү"
+        ],
+        "description": "Формула-1 жарыш трассасынын үстүндө жайгашкан дүйнөдөгү жалгыз мейманкана"
+      },
+      {
+        "id": "yas-rotana",
+        "name": "Yas Island Rotana",
+        "city": "Яс Марина",
+        "country": "БАЭ",
+        "location": "Яс Плаза, Абу-Даби",
+        "distance": "Ferrari World'дон 0.5 км",
+        "coordinates": {
+          "lat": 24.4655,
+          "lng": 54.5988
+        },
+        "rating": 4.5,
+        "reviewCount": 2100,
+        "reviewScore": "Абдан жакшы",
+        "stars": 4,
+        "price": 12000,
+        "pricePerNight": 12000,
+        "hero": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Трансфер",
+          "Ресторан"
+        ],
+        "description": "Яс аралынын негизги оюн-зоок борборлорунун жанындагы ыңгайлуу эс алуу"
+      },
+      {
+        "id": "ritz-ny",
+        "name": "The Ritz-Carlton New York, Central Park",
+        "city": "Нью-Йорк",
+        "country": "АКШ",
+        "location": "Централ Парк Саут, Нью-Йорк",
+        "distance": "Парктан 0.05 км",
+        "coordinates": {
+          "lat": 40.7654,
+          "lng": -73.9754
+        },
+        "rating": 4.9,
+        "reviewCount": 940,
+        "reviewScore": "Мыкты",
+        "stars": 5,
+        "price": 85000,
+        "pricePerNight": 85000,
+        "hero": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200"
+        ],
+        "amenities": [
+          "WiFi",
+          "Спа",
+          "Ресторан",
+          "Консьерж",
+          "Парк көрүнүшү"
+        ],
+        "description": "Борбордук парктын легендарлуу көрүнүшү менен кооз люкс"
+      }
+    ],
+    "packages": [
+      {
+        "id": "1",
+        "title": "Гоа пляж эс алуусу",
+        "destination": "Гоа, Индия",
+        "duration": {
+          "days": 5,
+          "nights": 4
+        },
+        "price": 35000,
+        "rating": 4.9,
+        "reviewCount": 234,
+        "image": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+        "highlights": [
+          "Пляж курорттору",
+          "Суу спорттору",
+          "Креиз",
+          "Жергиликтүү ашкана"
+        ],
+        "inclusions": [
+          "Учуулар",
+          "Мейманканалар",
+          "Трансферлер",
+          "Эртең мененки тамак"
+        ],
+        "theme": [
+          "Beach",
+          "Leisure"
+        ]
+      },
+      {
+        "id": "2",
+        "title": "Гималай укмуштуу окуясы",
+        "destination": "Манали, Индия",
+        "duration": {
+          "days": 6,
+          "nights": 5
+        },
+        "price": 28000,
+        "rating": 4.8,
+        "reviewCount": 189,
+        "image": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800",
+        "highlights": [
+          "Рохтанг ашуусу",
+          "Соланг өрөөнү",
+          "Треккинг",
+          "Парапланеризм"
+        ],
+        "inclusions": [
+          "Жашоо",
+          "Тамак-аш",
+          "Трансферлер",
+          "Иш-чаралар"
+        ],
+        "theme": [
+          "Adventure",
+          "Mountains"
+        ]
+      }
+    ],
+    "visa": [
+      {
+        "id": "1",
+        "country": "АКШ",
+        "countryCode": "US",
+        "visaType": "Туристтик (B-2)",
+        "processingTime": "7-10 жумуш күнү",
+        "validity": "10 жыл",
+        "price": 15500,
+        "image": "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800",
+        "description": "Эс алуу же үй-бүлөгө баруу үчүн туристтик виза",
+        "requirements": [
+          "Жарактуу чет элдик паспорт",
+          "5x5 см сүрөт",
+          "Кирешени тастыктоо",
+          "Саякат планы"
+        ]
+      },
+      {
+        "id": "3",
+        "country": "Дубай (БАЭ)",
+        "countryCode": "AE",
+        "visaType": "Туристтик",
+        "processingTime": "2-3 жумуш күнү",
+        "validity": "60 күн",
+        "price": 6500,
+        "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
+        "description": "Дубайга кыска мөөнөттүү туристтик виза",
+        "requirements": [
+          "Паспорттун биринчи барагынын сканери",
+          "Түстүү сүрөт",
+          "Авиабилеттерди брондоо"
+        ]
+      }
+    ],
+    "flights": [
+      {
+        "id": "6E-2045",
+        "airline": "IndiGo",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200&h=200&fit=crop&q=80",
+        "flightNumber": "6E-2045",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "DXB",
+            "departure": "2026-05-15T09:00:00",
+            "arrival": "2026-05-15T11:05:00",
+            "duration": 125,
+            "cabin": "Эконом",
+            "flightNumber": "6E-2045"
+          }
+        ],
+        "duration": 125,
+        "price": 5499,
+        "cabin": "Эконом",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "7 кг",
+          "checked": "15 кг"
+        },
+        "amenities": [
+          "WiFi",
+          "Көңүл ачуу",
+          "Тамак-аш кошулган"
+        ]
+      },
+      {
+        "id": "event-1",
+        "airline": "United Airlines",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200",
+        "flightNumber": "UA-2026",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "JFK",
+            "departure": "2026-07-18T08:00:00",
+            "arrival": "2026-07-18T20:30:00",
+            "duration": 750,
+            "cabin": "Эконом",
+            "flightNumber": "UA-2026"
+          }
+        ],
+        "duration": 750,
+        "price": 85000,
+        "cabin": "Эконом",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "10 кг",
+          "checked": "23 кг"
+        },
+        "amenities": [
+          "WiFi",
+          "Тамак-аш",
+          "Фильмдер"
+        ]
+      },
+      {
+        "id": "event-2",
+        "airline": "Emirates",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200",
+        "flightNumber": "EK-2026",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "DXB",
+            "departure": "2026-12-05T14:00:00",
+            "arrival": "2026-12-05T18:30:00",
+            "duration": 270,
+            "cabin": "Бизнес",
+            "flightNumber": "EK-2026"
+          }
+        ],
+        "duration": 270,
+        "price": 45000,
+        "cabin": "Бизнес",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "15 кг",
+          "checked": "40 кг"
+        },
+        "amenities": [
+          "WiFi",
+          "Люкс меню",
+          "Борттогу спа"
+        ]
+      },
+      {
+        "id": "event-3",
+        "airline": "Aeroflot",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200",
+        "flightNumber": "SU-2026",
+        "segments": [
+          {
+            "from": "SVO",
+            "to": "FRU",
+            "departure": "2026-09-08T10:00:00",
+            "arrival": "2026-09-08T14:45:00",
+            "duration": 285,
+            "cabin": "Эконом",
+            "flightNumber": "SU-2026"
+          }
+        ],
+        "duration": 285,
+        "price": 18500,
+        "cabin": "Эконом",
+        "refundable": false,
+        "changeable": true,
+        "baggage": {
+          "cabin": "10 кг",
+          "checked": "23 кг"
+        },
+        "amenities": [
+          "Тамак-аш",
+          "Көңүл ачуу"
+        ]
+      }
+    ],
+    "trains": [
+      {
+        "id": "1",
+        "number": "001А",
+        "name": "Бишкек - Балыкчы",
+        "from": "FRU",
+        "to": "GOI",
+        "departureTime": "06:30",
+        "arrivalTime": "11:00",
+        "duration": "4с 30м",
+        "price": 150,
+        "availableSeats": 45,
+        "type": "Стандарт"
+      },
+      {
+        "id": "2",
+        "number": "017Ф",
+        "name": "Бишкек - Москва",
+        "from": "FRU",
+        "to": "SVO",
+        "departureTime": "10:15",
+        "arrivalTime": "08:45",
+        "duration": "74с 30м",
+        "price": 12500,
+        "availableSeats": 12,
+        "type": "Купе"
+      }
+    ]
+  },
   "Metadata": {
     "title": "AviaTravelClub - Бишкектеги авиакаттамдар жана турлар",
     "description": "Саякатыңыз ушул жерден башталат"
@@ -300,6 +1001,8 @@
   },
   "Flights": {
     "editSearch": "Издөөнү өзгөртүү",
+    "allOrigins": "Бардык шаарлар",
+    "allDestinations": "Бардык багыттар",
     "foundFlights": "Табылган авиабилеттер: {count}",
     "oneFlightFound": "1 авиабилет табылды",
     "filters": "Чыпкалар",
@@ -377,7 +1080,9 @@
     "checkOut": "ЧЫГУУ",
     "search": "Издөө",
     "hotelsFound": "{location} шаарындагы мейманканалар: {count}",
+    "allHotels": "Бардык мейманканалар",
     "savingsSubtitle": "{location} шаарындагы мейманканаларга онлайн эң мыкты сунуштар",
+    "savingsSubtitleAll": "Бардык багыттар боюнча мейманканаларга эң мыкты сунуштар",
     "sortBy": {
       "label": "Сорттоо",
       "rating": "Рейтинг боюнча",
@@ -393,377 +1098,7 @@
     "viewDetails": "Кененирээк",
     "bookNow": "Брондоо",
     "starCount": "{count} жылдыз",
-    "more": "+ дагы {count}",
-    "mockData": [
-      {
-        "id": "1",
-        "name": "The Taj Mahal Palace",
-        "location": "Колаба, Мумбаи",
-        "distance": "Борбордон 2.5 км",
-        "coordinates": {
-          "lat": 18.9217,
-          "lng": 72.8332
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200",
-          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200",
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200",
-          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
-          "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800",
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-          "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
-          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
-          "https://images.unsplash.com/photo-1469796466635-455ede028ca2?w=800",
-          "https://images.unsplash.com/photo-1517840901100-8179e982acb7?w=800"
-        ],
-        "rating": 4.8,
-        "reviewCount": 1234,
-        "reviewScore": "Эң сонун",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Спа",
-          "Ресторан",
-          "Спорт зал",
-          "Унаа токтотуучу жай",
-          "Бар",
-          "Номерлерди тейлөө"
-        ],
-        "price": 15000,
-        "availableRooms": 5,
-        "description": "Индия дарбазасына караган атактуу люкс мейманкана"
-      },
-      {
-        "id": "2",
-        "name": "The Oberoi",
-        "location": "Нариман-Пойнт, Мумбаи",
-        "distance": "Борбордон 1.2 км",
-        "coordinates": {
-          "lat": 18.9256,
-          "lng": 72.8242
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
-          "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800",
-          "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800"
-        ],
-        "rating": 4.9,
-        "reviewCount": 892,
-        "reviewScore": "Мыкты",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Спа",
-          "Ресторан",
-          "Спорт зал",
-          "Аэропортко трансфер"
-        ],
-        "price": 18000,
-        "availableRooms": 3,
-        "description": "Жогорку деңгээлдеги меймандостук жана Араб деңизине укмуштуудай көрүнүш"
-      },
-      {
-        "id": "3",
-        "name": "Trident BKC",
-        "location": "Бандра-Курла Комплекси",
-        "distance": "Борбордон 8 км",
-        "coordinates": {
-          "lat": 19.0653,
-          "lng": 72.8672
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-          "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800",
-          "https://images.unsplash.com/photo-1455587734955-081b22074882?w=800"
-        ],
-        "rating": 4.6,
-        "reviewCount": 567,
-        "reviewScore": "Абдан жакшы",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Ресторан",
-          "Спорт зал",
-          "Бизнес-борбор"
-        ],
-        "price": 12000,
-        "availableRooms": 8,
-        "description": "Мумбаинин бизнес районунун чок ортосундагы заманбап люкс"
-      },
-      {
-        "id": "4",
-        "name": "ITC Maratha",
-        "location": "Андхери-Ист, Мумбаи",
-        "distance": "Аэропорттон 6 км",
-        "coordinates": {
-          "lat": 19.099,
-          "lng": 72.874
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
-          "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
-          "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
-        ],
-        "rating": 4.7,
-        "reviewCount": 743,
-        "reviewScore": "Эң сонун",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Спа",
-          "Ресторан",
-          "Спорт зал",
-          "Аэропортко трансфер",
-          "Бар"
-        ],
-        "price": 10000,
-        "availableRooms": 12,
-        "description": "Маратха династиясынын улуулугун сезиңиз"
-      },
-      {
-        "id": "5",
-        "name": "JW Marriott Juhu",
-        "location": "Джуху-Бич, Мумбаи",
-        "distance": "Борбордон 15 км",
-        "coordinates": {
-          "lat": 19.0936,
-          "lng": 72.8267
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
-          "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800",
-          "https://images.unsplash.com/photo-1562790351-d273a961e0e9?w=800"
-        ],
-        "rating": 4.8,
-        "reviewCount": 1089,
-        "reviewScore": "Эң сонун",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Жээкке чыгуу",
-          "Бассейн",
-          "Спа",
-          "Ресторан",
-          "Спорт зал",
-          "Бар"
-        ],
-        "price": 14000,
-        "availableRooms": 6,
-        "description": "Атактуу Джуху жээгине түз чыгуу жолу"
-      },
-      {
-        "id": "6",
-        "name": "Hotel Sea Green",
-        "location": "Марин-Драйв, Мумбаи",
-        "distance": "Борбордон 0.8 км",
-        "coordinates": {
-          "lat": 18.9432,
-          "lng": 72.8235
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
-          "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
-          "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800"
-        ],
-        "rating": 4.3,
-        "reviewCount": 445,
-        "reviewScore": "Жакшы",
-        "stars": 3,
-        "amenities": [
-          "WiFi",
-          "Ресторан",
-          "Номерлерди тейлөө",
-          "Кир жуучу жай"
-        ],
-        "price": 5000,
-        "availableRooms": 15,
-        "description": "Ханышанын шурусуна (Queen's Necklace) панорамалык көрүнүшү бар бутик-мейманкана"
-      },
-      {
-        "id": "7",
-        "name": "Atlantis, The Palm",
-        "location": "Палм-Жумейра, Дубай",
-        "distance": "Борбордон 15 км",
-        "coordinates": {
-          "lat": 25.1304,
-          "lng": 55.1171
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800"
-        ],
-        "rating": 4.9,
-        "reviewCount": 5420,
-        "reviewScore": "Эң сонун",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Аквапарк",
-          "Спа",
-          "Ресторан",
-          "Спортзал",
-          "Бар"
-        ],
-        "price": 45000,
-        "availableRooms": 10,
-        "description": "Палм-Жумейра аралынын чокусундагы люкс курорт"
-      },
-      {
-        "id": "8",
-        "name": "Burj Al Arab Jumeirah",
-        "location": "Умм-Сукейм, Дубай",
-        "distance": "Борбордон 12 км",
-        "coordinates": {
-          "lat": 25.1412,
-          "lng": 55.1852
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
-          "https://images.unsplash.com/photo-1544161515-4ae6ce6ca606?w=800",
-          "https://images.unsplash.com/photo-1517840901100-8179e982acb7?w=800"
-        ],
-        "rating": 5.0,
-        "reviewCount": 1240,
-        "reviewScore": "Өзгөчө",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Спа",
-          "Ресторан",
-          "Спортзал",
-          "Аэропортко трансфер",
-          "Тик учак аянтчасы"
-        ],
-        "price": 120000,
-        "availableRooms": 2,
-        "description": "Дүйнөдөгү эң заңгыраган мейманкана"
-      },
-      {
-        "id": "9",
-        "name": "The Plaza Hotel",
-        "location": "Бешинчи авеню, Нью-Йорк",
-        "distance": "Борбордук сейил бактан 0.1 км",
-        "coordinates": {
-          "lat": 40.7644,
-          "lng": -73.9744
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
-          "https://images.unsplash.com/photo-1455587734955-081b22074882?w=800",
-          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800"
-        ],
-        "rating": 4.7,
-        "reviewCount": 3210,
-        "reviewScore": "Мыкты",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Ресторан",
-          "Спа",
-          "Спортзал",
-          "Консьерж кызматы",
-          "Бар"
-        ],
-        "price": 65000,
-        "availableRooms": 4,
-        "description": "Манхэттендеги легендарлуу мейманкана"
-      },
-      {
-        "id": "10",
-        "name": "W Abu Dhabi - Yas Island",
-        "location": "Яс Марина, Абу-Даби",
-        "distance": "F1 трассасынан 0.5 км",
-        "coordinates": {
-          "lat": 24.4671,
-          "lng": 54.6064
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800",
-          "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
-          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800"
-        ],
-        "rating": 4.8,
-        "reviewCount": 2150,
-        "reviewScore": "Мыкты",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Трассага көрүнүш",
-          "Спа",
-          "Ресторан",
-          "Бар"
-        ],
-        "price": 25000,
-        "availableRooms": 7,
-        "description": "Өзгөчө дизайн жана Яс Марина трассасына көрүнүш"
-      },
-      {
-        "id": "11",
-        "name": "Karven Four Seasons",
-        "location": "Сары-Ой, Ысык-Көл",
-        "distance": "Чолпон-Атадан 12 км",
-        "coordinates": {
-          "lat": 42.6167,
-          "lng": 77.0833
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
-          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800",
-          "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=800"
-        ],
-        "rating": 4.6,
-        "reviewCount": 850,
-        "reviewScore": "Абдан жакшы",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Жеке пляж",
-          "Теннис корту",
-          "Ресторан"
-        ],
-        "price": 12000,
-        "availableRooms": 15,
-        "description": "Ысык-Көлдөгү эң мыкты эс алуу борборлорунун бири"
-      },
-      {
-        "id": "12",
-        "name": "Kapriz Issyk-Kul",
-        "location": "Бактуу-Долоноту, Ысык-Көл",
-        "distance": "Чолпон-Атадан 5 км",
-        "coordinates": {
-          "lat": 42.65,
-          "lng": 77.1667
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800",
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
-          "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800"
-        ],
-        "rating": 4.5,
-        "reviewCount": 620,
-        "reviewScore": "Жакшы",
-        "stars": 4,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Жеке пляж",
-          "Балдар аянтчасы",
-          "Ресторан"
-        ],
-        "price": 8500,
-        "availableRooms": 20,
-        "description": "Бүт үй-бүлө үчүн ыңгайлуу эс алуу"
-      }
-    ]
+    "more": "+ дагы {count}"
   },
   "Holidays": {
     "title": "Турпакеттер",
@@ -787,149 +1122,7 @@
       "Wildlife": "Жапайы жаратылыш",
       "Honeymoon": "Бал айы",
       "Family": "Үй-бүлөлүк эс алуу"
-    },
-    "mockData": [
-      {
-        "id": "1",
-        "title": "Гоага жээк саякаты",
-        "destination": "Гоа, Индия",
-        "coordinates": {
-          "lat": 15.2993,
-          "lng": 74.124
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
-          "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=800",
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
-          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800",
-          "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=800",
-          "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800",
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800"
-        ],
-        "duration": {
-          "days": 5,
-          "nights": 4
-        },
-        "price": 35000,
-        "rating": 4.9,
-        "reviewCount": 234,
-        "theme": [
-          "Beach",
-          "Leisure"
-        ],
-        "inclusions": [
-          "Учуулар",
-          "Мейманканалар",
-          "Трансферлер",
-          "Эртең мененки тамак"
-        ],
-        "highlights": [
-          "Жээк курорттору",
-          "Суу спортунун түрлөрү",
-          "Күн батыштагы круиз",
-          "Жергиликтүү ашкана"
-        ],
-        "itinerary": [
-          {
-            "day": 1,
-            "title": "Келүү жана жээкте эс алуу",
-            "desc": "Гоага кош келиңиз! Жээктеги курортуңузга трансфер жана эс алуу."
-          },
-          {
-            "day": 2,
-            "title": "Түндүк Гоанын кооз жерлери",
-            "desc": "Агуада фортуна, Чапора фортуна жана атактуу Калангут жана Бага жээктерине барыңыз."
-          },
-          {
-            "day": 3,
-            "title": "Суу спорту жана укмуштуу окуялар",
-            "desc": "Калангут жээгинде парасейлинг, гидроцикл жана банан тебүүнү байкап көрүңүз."
-          },
-          {
-            "day": 4,
-            "title": "Түштүк Гоаны изилдөө",
-            "desc": "Палолем жээгин жана байыркы Кабо-де-Рама фортун ачыңыз."
-          },
-          {
-            "day": 5,
-            "title": "Кетүү",
-            "desc": "Акыркы эртең мененки тамак жана аэропортко трансфер."
-          }
-        ]
-      },
-      {
-        "id": "2",
-        "title": "Гималай укмуштуу окуясы",
-        "destination": "Манали, Гб",
-        "coordinates": {
-          "lat": 32.2396,
-          "lng": 77.1887
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800",
-          "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800",
-          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800",
-          "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800",
-          "https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?w=800",
-          "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800"
-        ],
-        "duration": {
-          "days": 6,
-          "nights": 5
-        },
-        "price": 28000,
-        "rating": 4.8,
-        "reviewCount": 189,
-        "theme": [
-          "Adventure",
-          "Mountains"
-        ],
-        "inclusions": [
-          "Жатакана",
-          "Тамак-аш",
-          "Трансферлер",
-          "Иш-чаралар"
-        ],
-        "highlights": [
-          "Рохтанг ашуусу",
-          "Соланг өрөөнү",
-          "Треккинг",
-          "Парапланеризм"
-        ],
-        "itinerary": [
-          {
-            "day": 1,
-            "title": "Маналиге келүү",
-            "desc": "Мейманканага жайгашуу жана кечинде Мол Роудда сейилдөө."
-          },
-          {
-            "day": 2,
-            "title": "Жергиликтүү кооз жерлерди көрүү",
-            "desc": "Хадимба Деви храмына жана Вашишт ысык булактарына барыңыз."
-          },
-          {
-            "day": 3,
-            "title": "Рохтанг ашуусундагы укмуштуу окуя",
-            "desc": "Рохтанг ашуусунда толук күн бою кар укмуштуу окуялары."
-          },
-          {
-            "day": 4,
-            "title": "Соланг өрөөнү",
-            "desc": "Соланг өрөөнүндө парапланеризм жана зорбингди байкап көрүңүз."
-          },
-          {
-            "day": 5,
-            "title": "Куллуну изилдөө",
-            "desc": "дарыя рафтинги үчүн Куллу өрөөнүнө барыңыз."
-          },
-          {
-            "day": 6,
-            "title": "Кетүү",
-            "desc": "Бхунтар аэропортуна трансфер."
-          }
-        ]
-      }
-    ]
+    }
   },
   "Visa": {
     "title": "Виза кызматтары",
@@ -961,166 +1154,22 @@
     "requirements": "Талаптар",
     "viewDetails": "Кененирээк",
     "hide": "Жашыруу",
-    "view": "Көрсөтүү",
-    "mockData": [
-      {
-        "id": "1",
-        "country": "АКШ",
-        "countryCode": "US",
-        "visaType": "Туристтик (B-2)",
-        "processingTime": "7-10 жумуш күнү",
-        "validity": "10 жыл (көп жолку кирүү)",
-        "price": 15500,
-        "image": "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800",
-        "description": "Эс алуу, үй-бүлөгө баруу же дарылануу үчүн туристтик виза",
-        "requirements": [
-          "Жарактуу чет өлкөлүк паспорт (6 ай мөөнөтү менен)",
-          "Жакында тартылган паспорт өлчөмүндөгү сүрөт",
-          "Финансылык туруктуулукту тастыктоо",
-          "Саякат маршруту жана мейманкана брондоосу",
-          "Иштеген жеринен маалымкат же бизнести тастыктоо",
-          "Мурунку саякаттардын тарыхы"
-        ]
-      },
-      {
-        "id": "2",
-        "country": "Улуу Британия",
-        "countryCode": "GB",
-        "visaType": "Стандарттык конок визасы",
-        "processingTime": "15 жумуш күнү",
-        "validity": "6 ай (көп жолку кирүү)",
-        "price": 12000,
-        "image": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800",
-        "description": "Эс алуу, бизнес же үй-бүлө менен жолугушуу үчүн Улуу Британияга барыңыз",
-        "requirements": [
-          "Учурдагы чет өлкөлүк паспорт",
-          "Банктык эсептин көчүрмөлөрү (акыркы 6 ай үчүн)",
-          "Салык декларациялары",
-          "Жашоо тууралуу маалыматтар",
-          "Күндөр боюнча деталдуу саякат планы"
-        ]
-      },
-      {
-        "id": "3",
-        "country": "Дубай (БАЭ)",
-        "countryCode": "AE",
-        "visaType": "30 күндүк туристтик виза",
-        "processingTime": "2-3 жумуш күнү",
-        "validity": "Берилген күндөн тартып 60 күн",
-        "price": 6500,
-        "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
-        "description": "Дубай менен таанышуу үчүн кыска мөөнөттүү туристтик виза",
-        "requirements": [
-          "Паспорттун сканерленген көчүрмөсү",
-          "Ак фондогу сүрөт",
-          "Тастыкталган кайтуу билети",
-          "PAN-картанын көчүрмөсү (эгер бар болсо)"
-        ]
-      }
-    ]
+    "view": "Көрсөтүү"
   },
   "VisaDetail": {
-    "back": "Виза кызматтарына кайтуу",
-    "thankYou": "Рахмат! Биздин виза консультантыбыз 24 сааттын ичинде сиз менен байланышат.",
-    "documentRequirements": "Документтерге талаптар",
-    "processingTimeline": "Тариздөө мөөнөттөрү",
-    "feesBreakdown": "Баалардын чечмелениши",
-    "importantInformation": "Маанилүү маалымат",
-    "faqs": "Көп берилүүчү суроолор",
-    "enquiryTitle": "Арыз калтыруу",
-    "enquiryDesc": "Виза тариздөө боюнча эксперттик жардам алыңыз",
-    "itemsCount": "{count} пункт",
-    "day": "{count}-күн",
-    "bookNow": "Арыз берүү",
-    "labels": {
-      "perApplicant": "арыз берүүчү үчүн",
-      "workingHours": "Дш-Жм: 09:00 - 18:00"
-    },
+    "back": "Артка",
+    "bookNow": "Азыр тапшыруу",
+    "enquiryTitle": "Суроо берүү",
     "helpTitle": "Жардам керекпи?",
-    "fees": {
-      "embassy": "Консулдук жыйым",
-      "service": "Сервистик жыйым",
-      "processing": "Кароо үчүн жыйым",
-      "total": "Жалпы сумма"
-    },
-    "form": {
-      "name": "Толук аты-жөнү",
-      "email": "Электрондук почта",
-      "phone": "Телефон номери",
-      "travelDate": "Саякат күнү",
-      "message": "Билдирүү",
-      "submit": "Сурам жөнөтүү",
-      "cancel": "Жокко чыгаруу"
-    },
-    "timeline": {
-      "step1": {
-        "title": "Арыз берүү",
-        "desc": "Бардык керектүү документтер менен арызыңызды тапшырыңыз"
-      },
-      "step2": {
-        "title": "Документтерди текшерүү",
-        "desc": "Биздин команда бардык документтердин толуктугун текшерет"
-      },
-      "step3": {
-        "title": "Элчиликке тапшыруу",
-        "desc": "Арыз элчиликке/консулдукка өткөрүлүп берилди"
-      },
-      "step4": {
-        "title": "Кароо",
-        "desc": "Элчилик сиздин виза арызыңызды карап жатат"
-      },
-      "step5": {
-        "title": "Виза берүү",
-        "desc": "Тастыкталган виза сиздин электрондук почтаңызга жөнөтүлдү"
-      }
-    },
-    "info": {
-      "approval": {
-        "title": "Визаны бекитүү",
-        "desc": "Визаны бекитүү элчиликтин каалоосу боюнча болот. Биз документтер боюнча жардам беребиз, бирок бекитүүгө кепилдик бере албайбыз."
-      },
-      "validity": {
-        "title": "Паспорттун жарактуулугу",
-        "desc": "Паспортуңуз саякат аяктагандан кийин кеминде 6 ай бою жарактуу болушу керек."
-      },
-      "format": {
-        "title": "Документтердин форматы",
-        "desc": "Бардык документтер PDF форматында так сканерленген болушу керек, ар бир файл 2 МБдан ашпашы керек."
-      },
-      "delivery": {
-        "title": "Визаны жеткирүү",
-        "desc": "Тастыкталган виза сиздин e-mail дарегиңизге жөнөтүлөт. Визаны чаптоо үчүн паспортту тапшыруу талап кылынышы мүмкүн."
-      }
-    },
+    "thankYou": "Сурооңуз үчүн рахмат! Биз сиз менен жакында байланышабыз.",
     "trust": {
       "expertAssistance": "Эксперттик жардам",
       "verification": "Документтерди текшерүү",
-      "tracking": "24/7 көзөмөлдөө",
-      "secure": "Коопсуз төлөм",
-      "secureTitle": "Бизге ишенишет",
-      "stats": "10,000ден ашуун ийгиликтүү берилген визалар"
+      "tracking": "Статусту көзөмөлдөө",
+      "secure": "Коопсуз төлөм"
     },
-    "faqsList": [
-      {
-        "q": "Виза арызымды көзөмөлдөй аламбы?",
-        "a": "Ооба, арыз тапшыргандан кийин сиз анын статусун реалдуу убакыт режиминде көзөмөлдөө үчүн ID аласыз."
-      },
-      {
-        "q": "Виза берилбей калса эмне болот?",
-        "a": "Консулдук жыйым кайтарылбайт, бирок биздин сервистик жыйымды 6 ай ичинде кайра тапшыруу үчүн колдонсо болот."
-      },
-      {
-        "q": "Элчиликке жеке баруу керекпи?",
-        "a": "Өлкөлөрдүн көбү үчүн биометрия же маектешүү талап кылынышы мүмкүн. Биз ар бир этапта сизге жол көрсөтөбүз."
-      },
-      {
-        "q": "Виза тариздөө процессин тездетсе болобу?",
-        "a": "Ооба, айрым өлкөлөр үчүн кошумча төлөм менен шашылыш тариздөө мүмкүнчүлүгү бар. Кененирээк маалымат үчүн биз менен байланышыңыз."
-      }
-    ],
     "labels": {
-      "perApplicant": "бир өтүнмө ээси үчүн",
-      "workingHours": "Дш-Иш: 9:00 - 18:00"
+      "perApplicant": "бир өтүнмө ээси үчүн"
     }
   },
   "Airports": {
@@ -1216,9 +1265,18 @@
     "noResults": "Эч нерсе табылган жок",
     "noResultsDesc": "Издөө сурооңузду өзгөртүп же башка категорияны тандап көрүңүз",
     "trustBar": {
-      "support": { "title": "24/7 Колдоо", "desc": "Биз сизге жардам берүү үчүн ар дайым даярбыз" },
-      "reliability": { "title": "Ишенимдүүлүк", "desc": "Рынокто 15 жылдык кемчиликсиз иш тажрыйбасы" },
-      "destinations": { "title": "Ар кандай багыттар", "desc": "Дүйнөнүн бардык булуң-бурчуна эң жакшы баада билеттер" }
+      "support": {
+        "title": "24/7 Колдоо",
+        "desc": "Биз сизге жардам берүү үчүн ар дайым даярбыз"
+      },
+      "reliability": {
+        "title": "Ишенимдүүлүк",
+        "desc": "Рынокто 15 жылдык кемчиликсиз иш тажрыйбасы"
+      },
+      "destinations": {
+        "title": "Ар кандай багыттар",
+        "desc": "Дүйнөнүн бардык булуң-бурчуна эң жакшы баада билеттер"
+      }
     },
     "categories": [
       {
@@ -1426,22 +1484,6 @@
       "Баалар сезондун кызуу учурунда өзгөрүшү мүмкүн"
     ]
   },
-  "VisaDetail": {
-    "back": "Артка",
-    "bookNow": "Азыр тапшыруу",
-    "enquiryTitle": "Суроо берүү",
-    "helpTitle": "Жардам керекпи?",
-    "thankYou": "Сурооңуз үчүн рахмат! Биз сиз менен жакында байланышабыз.",
-    "trust": {
-      "expertAssistance": "Эксперттик жардам",
-      "verification": "Документтерди текшерүү",
-      "tracking": "Статусту көзөмөлдөө",
-      "secure": "Коопсуз төлөм"
-    },
-    "labels": {
-      "perApplicant": "бир өтүнмө ээси үчүн"
-    }
-  },
   "AITripPlanner": {
     "title": "AI Тур планировщиги",
     "subtitle": "AI негизинде иштейт • Идеалдуу маршрутуңузду түзүңүз",
@@ -1576,9 +1618,9 @@
       }
     },
     "durationOptions": {
+      "7": "1 жума",
       "3-4": "3-4 күн",
       "5-7": "5-7 күн",
-      "7": "1 жума",
       "10-14": "10-14 күн"
     },
     "budgetOptions": {
@@ -1808,7 +1850,8 @@
         "date": "19-июль, 2026",
         "description": "Дүйнөлүк футболдун туу чокусун сезиңиз. Өз ордуңузду камсыз кылуу үчүн азыр учууну жана мейманкананы брондоңуз!",
         "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80",
-        "category": "Спорт"
+        "category": "Спорт",
+        "startDate": "2026-07-19"
       },
       {
         "id": "f1dubai",
@@ -1818,7 +1861,8 @@
         "date": "6-декабрь, 2026",
         "description": "Формула-1 сезонунун финалы. Абу-Дабидеги ылдамдыкка жана сулуулукка күбө болуңуз.",
         "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=1200&q=80",
-        "category": "Жарыш"
+        "category": "Жарыш",
+        "startDate": "2026-12-06"
       },
       {
         "id": "wng2026",
@@ -1828,7 +1872,8 @@
         "date": "8-14-сентябрь, 2026",
         "description": "Көчмөн маданиятынын жана кызыктуу улуттук спорт түрлөрүнүн атмосферасына сүңгүңүз. Ысык-Көлдөгү эс алууну азыр брондоңуз!",
         "image": "https://kappa.lol/9ApZh8",
-        "category": "Маданият жана спорт"
+        "category": "Маданият жана спорт",
+        "startDate": "2026-09-08"
       }
     ]
   },

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Clock, MapPin, Search, Train, Users, CreditCard, ChevronRight, Check, X, Calendar, Plus, Minus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { AIRPORTS, getAirportLabel } from "@/shared/mocks/data";
 import { useCurrency } from "@/CurrencyContext";
+import type { Airport } from "@/types";
 
 interface TrainResult {
   id: string;
@@ -19,61 +19,6 @@ interface TrainResult {
   type: string;
 }
 
-const MOCK_TRAINS: TrainResult[] = [
-  {
-    id: "1",
-    number: "001А",
-    name: "Бишкек - Балыкчы",
-    from: "FRU",
-    to: "GOI",
-    departureTime: "06:30",
-    arrivalTime: "11:00",
-    duration: "4ч 30м",
-    price: 150,
-    availableSeats: 45,
-    type: "Стандарт",
-  },
-  {
-    id: "2",
-    number: "017Ф",
-    name: "Бишкек - Москва",
-    from: "FRU",
-    to: "SVO",
-    departureTime: "10:15",
-    arrivalTime: "08:45",
-    duration: "74ч 30м",
-    price: 12500,
-    availableSeats: 12,
-    type: "Купе",
-  },
-  {
-    id: "3",
-    number: "305Ф",
-    name: "Бишкек - Ташкент",
-    from: "FRU",
-    to: "TAS",
-    departureTime: "18:40",
-    arrivalTime: "12:20",
-    duration: "17ч 40м",
-    price: 3200,
-    availableSeats: 28,
-    type: "Плацкарт",
-  },
-   {
-    id: "4",
-    number: "023Х",
-    name: "Бишкек - Алматы",
-    from: "FRU",
-    to: "ALA",
-    departureTime: "22:10",
-    arrivalTime: "06:15",
-    duration: "8ч 05м",
-    price: 1800,
-    availableSeats: 15,
-    type: "Купе",
-  },
-];
-
 interface TrainsPageProps {
   onBack?: () => void;
   initialOrigin?: string | null;
@@ -83,7 +28,18 @@ interface TrainsPageProps {
 export function TrainsPage({ onBack, initialOrigin, initialDestination }: TrainsPageProps) {
   const t = useTranslations("Search.trains");
   const tTrains = useTranslations("Trains");
+  const tMock = useTranslations("MockData");
   const tCommon = useTranslations("Flights");
+
+  const MOCK_TRAINS = useMemo(() => tMock.raw("trains") as TrainResult[], [tMock]);
+  const AIRPORTS = useMemo(() => tMock.raw("airports") as Airport[], [tMock]);
+
+  const getAirportLabel = useCallback((code: string) => {
+    const airport = AIRPORTS.find((a) => a.code === code);
+    return airport ? airport.city : code;
+  }, [AIRPORTS]);
+
+
   const [isLoading, setIsLoading] = useState(true);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 20000]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);

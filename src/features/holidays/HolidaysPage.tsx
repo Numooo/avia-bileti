@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -49,9 +49,10 @@ interface HolidaysPageProps {
 
 export function HolidaysPage({ onPackageSelect }: HolidaysPageProps) {
   const t = useTranslations("Holidays");
+  const tMock = useTranslations("MockData");
   const router = useRouter();
   const { symbol, CurrencyIcon } = useCurrency();
-  const [packages] = useState<Package[]>(t.raw("mockData"));
+  const packages = useMemo(() => tMock.raw("packages") as Package[], [tMock]);
   const [activeTheme, setActiveTheme] = useState("All");
 
   // Filter packages by theme

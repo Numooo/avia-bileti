@@ -48,6 +48,7 @@ export interface Hotel {
   id: string;
   name: string;
   city?: string;
+  country?: string;
   location: string;
   distance?: string; // distance from center
   coordinates?: { lat: number; lng: number };

@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, SlidersHorizontal, X, Calendar, Users, Briefcase, Plus, Minus } from "lucide-react";
-import type { FlightOffer, FilterState } from "../../types";
+import type { FlightOffer, FilterState, Airport } from "../../types";
 import { FlightFilters } from "./FlightFilters";
 import { FlightResultCard } from "./FlightResultCard";
 import { FlightCardSkeletonList } from "./FlightCardSkeleton";
 import { FiltersSkeleton } from "./FiltersSkeleton";
-import {
-  MOCK_FLIGHTS,
-  formatCurrency,
-  getAirportLabel,
-  AIRPORTS,
-} from "@/shared/mocks/data";
 import { useTranslations } from "next-intl";
+import { DatePicker } from "@/shared/ui/DatePicker";
 
 interface SearchParams {
   from: string;
@@ -28,6 +23,7 @@ interface FlightsPageProps {
   onBack?: () => void;
   initialOrigin?: string | null;
   initialDestination?: string | null;
+  initialDate?: string | null;
 }
 
 export function FlightsPage({
@@ -35,9 +31,22 @@ export function FlightsPage({
   onBack,
   initialOrigin,
   initialDestination,
+  initialDate,
 }: FlightsPageProps = {}) {
   const t = useTranslations("Flights");
+  const tMock = useTranslations("MockData");
   const tSearch = useTranslations("Search.flights");
+
+  const MOCK_FLIGHTS = useMemo(() => tMock.raw("flights") as FlightOffer[], [tMock]);
+  const AIRPORTS = useMemo(() => tMock.raw("airports") as Airport[], [tMock]);
+
+  const getAirportLabel = useCallback((code: string) => {
+    const airport = AIRPORTS.find((a) => a.code === code);
+    return airport ? airport.city : code;
+  }, [AIRPORTS]);
+
+  const formatCurrency = (amount: number) =>
+    amount.toLocaleString("ru-RU"); // Simplified for now, could be improved
   const [filters, setFilters] = useState<FilterState>({
     priceRange: [0, 50000],
     stops: [],
@@ -56,10 +65,10 @@ export function FlightsPage({
   const [isEditingSearch, setIsEditingSearch] = useState(false);
   const [editTab, setEditTab] = useState<"from" | "to">("from");
   const [currentDestination, setCurrentDestination] = useState(
-    initialDestination || "DXB",
+    initialDestination || "",
   );
-  const [currentOrigin, setCurrentOrigin] = useState(initialOrigin || "FRU");
-  const [currentDate, setCurrentDate] = useState("2024-01-15");
+  const [currentOrigin, setCurrentOrigin] = useState(initialOrigin || "");
+  const [currentDate, setCurrentDate] = useState(initialDate || new Date().toISOString().split("T")[0]);
   const [currentPassengers, setCurrentPassengers] = useState(1);
   const [currentCabin, setCurrentCabin] = useState("Economy");
 
@@ -71,7 +80,10 @@ export function FlightsPage({
     if (initialOrigin) {
       setCurrentOrigin(initialOrigin);
     }
-  }, [initialDestination, initialOrigin]);
+    if (initialDate) {
+      setCurrentDate(initialDate);
+    }
+  }, [initialDestination, initialOrigin, initialDate]);
 
   // Simulate loading state only once on mount
   useEffect(() => {
@@ -98,10 +110,9 @@ export function FlightsPage({
     let filtered = [...MOCK_FLIGHTS].filter((f) => {
       const firstSegment = f.segments[0];
       const lastSegment = f.segments[f.segments.length - 1];
-      return (
-        firstSegment.from === currentOrigin &&
-        lastSegment.to === currentDestination
-      );
+      const matchesOrigin = !currentOrigin || firstSegment.from === currentOrigin;
+      const matchesDest = !currentDestination || lastSegment.to === currentDestination;
+      return matchesOrigin && matchesDest;
     });
 
     // Price filter
@@ -214,9 +225,9 @@ export function FlightsPage({
               </button>
               <div>
                 <div className="flex items-center gap-2 text-lg font-bold text-gray-900">
-                  <span>{getAirportLabel(currentOrigin)}</span>
+                  <span>{currentOrigin ? getAirportLabel(currentOrigin) : t("allOrigins")}</span>
                   <span className="text-gray-400">→</span>
-                  <span>{getAirportLabel(currentDestination)}</span>
+                  <span>{currentDestination ? getAirportLabel(currentDestination) : t("allDestinations")}</span>
                 </div>
                 <div className="text-sm text-gray-600">
                   {searchParams.depart} • {searchParams.passengers}{" "}
@@ -313,6 +324,8 @@ export function FlightsPage({
                     <FlightResultCard
                       flight={flight}
                       onBook={handleBookFlight}
+                      getAirportLabel={getAirportLabel}
+                      formatCurrency={formatCurrency}
                     />
                   </motion.div>
                 ))}
@@ -420,7 +433,7 @@ export function FlightsPage({
                       : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
-                  {tSearch("from")}
+                  <span className="capitalize">{tSearch("from")}</span>
                 </button>
                 <button
                   onClick={() => setEditTab("to")}
@@ -430,7 +443,7 @@ export function FlightsPage({
                       : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
-                  {tSearch("to")}
+                  <span className="capitalize">{tSearch("to")}</span>
                 </button>
               </div>
 
@@ -442,6 +455,8 @@ export function FlightsPage({
                       const isSelected = editTab === "from" 
                         ? currentOrigin === code 
                         : currentDestination === code;
+                      
+                      const airport = AIRPORTS.find(a => a.code === code);
                         
                       return (
                         <button
@@ -460,10 +475,15 @@ export function FlightsPage({
                               : "border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50"
                           }`}
                         >
-                          <span className="font-bold">
-                            {getAirportLabel(code)}
-                          </span>
-                          <span className="text-xs font-black opacity-50 uppercase">
+                          <div className="flex flex-col text-left">
+                            <span className="font-bold">
+                              {airport?.city}
+                            </span>
+                            <span className="text-[10px] font-medium opacity-60">
+                              {airport?.name}
+                            </span>
+                          </div>
+                          <span className="text-xs font-black opacity-30 uppercase">
                             {code}
                           </span>
                         </button>
@@ -474,25 +494,20 @@ export function FlightsPage({
 
                 {/* Search Details Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
-                  {/* Date Input */}
-                  <div className="space-y-1.5">
-                    <label className="text-[11px] font-black uppercase text-gray-400 tracking-wider">
-                      {tSearch("departure")}
-                    </label>
-                    <div className="relative">
-                      <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      <input
-                        type="date"
-                        value={currentDate}
-                        onChange={(e) => setCurrentDate(e.target.value)}
-                        className="w-full bg-gray-50 border-none rounded-2xl py-3 pl-11 pr-4 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-brand-primary/20 outline-none"
-                      />
-                    </div>
-                  </div>
+                {/* Date Input */}
+                <div className="space-y-1.5">
+                  <DatePicker
+                    label={tSearch("departure")}
+                    value={currentDate}
+                    onChange={setCurrentDate}
+                    minDate={new Date()}
+                    position="top"
+                  />
+                </div>
 
                   {/* Passengers */}
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-black uppercase text-gray-400 tracking-wider">
+                    <label className="mb-1.5 block text-xs font-semibold text-gray-500 capitalize px-1">
                       {tSearch("passengers")}
                     </label>
                     <div className="flex items-center justify-between bg-gray-50 rounded-2xl p-1.5 h-[46px]">
@@ -515,21 +530,24 @@ export function FlightsPage({
 
                   {/* Cabin Class */}
                   <div className="md:col-span-2 space-y-1.5">
-                    <label className="text-[11px] font-black uppercase text-gray-400 tracking-wider">
+                    <label className="mb-1.5 block text-xs font-semibold text-gray-500 capitalize px-1">
                       {tSearch("cabin")}
                     </label>
-                    <div className="grid grid-cols-2 gap-2">
-                       {["Economy", "Business"].map((cabin) => (
+                    <div className="flex p-1 bg-gray-100 rounded-2xl">
+                       {[
+                         { id: "Economy", label: tSearch("economy") },
+                         { id: "Business", label: tSearch("business") },
+                       ].map((cabin) => (
                          <button
-                           key={cabin}
-                           onClick={() => setCurrentCabin(cabin)}
-                           className={`py-2.5 rounded-xl text-sm font-bold transition-all border ${
-                             currentCabin === cabin
-                               ? "border-brand-primary bg-brand-primary/5 text-brand-primary text-xs uppercase"
-                               : "border-gray-100 bg-gray-50 text-gray-500 hover:bg-gray-100 text-xs uppercase"
+                           key={cabin.id}
+                           onClick={() => setCurrentCabin(cabin.id)}
+                           className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase transition-all ${
+                             currentCabin === cabin.id
+                               ? "bg-white text-gray-900 shadow-sm"
+                               : "text-gray-500 hover:text-gray-700"
                            }`}
                          >
-                           {cabin}
+                           {cabin.label}
                          </button>
                        ))}
                     </div>

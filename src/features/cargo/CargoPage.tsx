@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Truck,
@@ -15,12 +15,13 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
-import { AIRPORTS } from "@/shared/mocks/data";
-import { useEffect } from "react";
+import type { Airport } from "@/types";
 
 export function CargoPage({ initialData }: { initialData?: any }) {
   const t = useTranslations("Cargo");
+  const tMock = useTranslations("MockData");
   const { symbol, CurrencySymbol } = useCurrency();
+  const AIRPORTS = useMemo(() => tMock.raw("airports") as Airport[], [tMock]);
   const [trackingId, setTrackingId] = useState("");
 
   // Calculator State

@@ -1,4 +1,735 @@
 {
+  "MockData": {
+    "airports": [
+      {
+        "code": "FRU",
+        "city": "Bishkek",
+        "name": "Manas"
+      },
+      {
+        "code": "OSS",
+        "city": "Osh",
+        "name": "Osh"
+      },
+      {
+        "code": "ALA",
+        "city": "Almaty",
+        "name": "Almaty"
+      },
+      {
+        "code": "TAS",
+        "city": "Tashkent",
+        "name": "Islam Karimov"
+      },
+      {
+        "code": "NQZ",
+        "city": "Astana",
+        "name": "Nursultan Nazarbayev"
+      },
+      {
+        "code": "SVO",
+        "city": "Moscow",
+        "name": "Sheremetyevo"
+      },
+      {
+        "code": "DME",
+        "city": "Moscow",
+        "name": "Domodedovo"
+      },
+      {
+        "code": "LED",
+        "city": "Saint Petersburg",
+        "name": "Pulkovo"
+      },
+      {
+        "code": "DXB",
+        "city": "Dubai",
+        "name": "Dubai"
+      },
+      {
+        "code": "SHJ",
+        "city": "Sharjah",
+        "name": "Sharjah"
+      },
+      {
+        "code": "IST",
+        "city": "Istanbul",
+        "name": "Istanbul"
+      },
+      {
+        "code": "SAW",
+        "city": "Istanbul",
+        "name": "Sabiha Gokcen"
+      },
+      {
+        "code": "AYT",
+        "city": "Antalya",
+        "name": "Antalya"
+      },
+      {
+        "code": "JED",
+        "city": "Jeddah",
+        "name": "King Abdulaziz"
+      },
+      {
+        "code": "LHR",
+        "city": "London",
+        "name": "Heathrow"
+      },
+      {
+        "code": "CDG",
+        "city": "Paris",
+        "name": "Charles de Gaulle"
+      },
+      {
+        "code": "FRA",
+        "city": "Frankfurt",
+        "name": "Frankfurt"
+      },
+      {
+        "code": "JFK",
+        "city": "New York",
+        "name": "John F. Kennedy"
+      },
+      {
+        "code": "PEK",
+        "city": "Beijing",
+        "name": "Capital"
+      },
+      {
+        "code": "BKK",
+        "city": "Bangkok",
+        "name": "Suvarnabhumi"
+      },
+      {
+        "code": "BOM",
+        "city": "Mumbai",
+        "name": "Chhatrapati Shivaji"
+      },
+      {
+        "code": "DEL",
+        "city": "Delhi",
+        "name": "Indira Gandhi"
+      },
+      {
+        "code": "BLR",
+        "city": "Bangalore",
+        "name": "Kempegowda"
+      },
+      {
+        "code": "HYD",
+        "city": "Hyderabad",
+        "name": "Rajiv Gandhi"
+      },
+      {
+        "code": "MAA",
+        "city": "Chennai",
+        "name": "Chennai"
+      },
+      {
+        "code": "MOW",
+        "city": "Moscow",
+        "name": "All Airports"
+      },
+      {
+        "code": "GOI",
+        "city": "Goa",
+        "name": "Dabolim"
+      },
+      {
+        "code": "MLE",
+        "city": "Maldives",
+        "name": "Velana"
+      }
+    ],
+    "hotels": [
+      {
+        "id": "1",
+        "name": "The Taj Mahal Palace",
+        "city": "Mumbai",
+        "country": "India",
+        "location": "Colaba, Mumbai",
+        "distance": "2.5 km from center",
+        "coordinates": {
+          "lat": 18.9217,
+          "lng": 72.8332
+        },
+        "rating": 4.8,
+        "reviewCount": 1234,
+        "reviewScore": "Excellent",
+        "stars": 5,
+        "price": 15000,
+        "pricePerNight": 15000,
+        "hero": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200",
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200",
+          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200"
+        ],
+        "amenities": [
+          "WiFi",
+          "Pool",
+          "Spa",
+          "Restaurant",
+          "Gym",
+          "Parking"
+        ],
+        "description": "Iconic luxury hotel overlooking the Gateway of India"
+      },
+      {
+        "id": "2",
+        "name": "The Oberoi",
+        "city": "Mumbai",
+        "country": "India",
+        "location": "Nariman Point, Mumbai",
+        "distance": "1.2 km from center",
+        "coordinates": {
+          "lat": 18.9256,
+          "lng": 72.8242
+        },
+        "rating": 4.9,
+        "reviewCount": 892,
+        "reviewScore": "Superb",
+        "stars": 5,
+        "price": 18000,
+        "pricePerNight": 18000,
+        "hero": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+          "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Pool",
+          "Spa",
+          "Restaurant",
+          "Gym"
+        ],
+        "description": "Unmatched hospitality and stunning views of the Arabian Sea"
+      },
+      {
+        "id": "burj-al-arab",
+        "name": "Burj Al Arab Jumeirah",
+        "city": "Dubai",
+        "country": "UAE",
+        "location": "Umm Suqeim 3, Dubai",
+        "distance": "12 km from center",
+        "coordinates": {
+          "lat": 25.1412,
+          "lng": 55.1852
+        },
+        "rating": 5,
+        "reviewCount": 1240,
+        "reviewScore": "Exceptional",
+        "stars": 5,
+        "price": 120000,
+        "pricePerNight": 120000,
+        "hero": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+          "https://images.unsplash.com/photo-1544161515-4ae6ce6ca606?w=800"
+        ],
+        "amenities": [
+          "Luxury Spa",
+          "Private Beach",
+          "Butler Service",
+          "Helipad"
+        ],
+        "description": "The world's most luxurious hotel"
+      },
+      {
+        "id": "atlantis",
+        "name": "Atlantis, The Palm",
+        "city": "Dubai",
+        "country": "UAE",
+        "location": "Palm Jumeirah, Dubai",
+        "distance": "15 km from center",
+        "coordinates": {
+          "lat": 25.1304,
+          "lng": 55.1171
+        },
+        "rating": 4.9,
+        "reviewCount": 5420,
+        "reviewScore": "Superb",
+        "stars": 5,
+        "price": 45000,
+        "pricePerNight": 45000,
+        "hero": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Pool",
+          "Waterpark",
+          "Spa",
+          "Restaurant",
+          "Gym"
+        ],
+        "description": "Luxury resort at the crown of Palm Jumeirah"
+      },
+      {
+        "id": "sheraton-bishkek",
+        "name": "Sheraton Bishkek",
+        "city": "Bishkek",
+        "country": "Kyrgyzstan",
+        "location": "Kievskaya St, Bishkek",
+        "distance": "0.1 km from center",
+        "coordinates": {
+          "lat": 42.8746,
+          "lng": 74.5919
+        },
+        "rating": 4.7,
+        "reviewCount": 320,
+        "reviewScore": "Excellent",
+        "stars": 5,
+        "price": 11000,
+        "pricePerNight": 11000,
+        "hero": "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1200",
+          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
+        ],
+        "amenities": [
+          "City View",
+          "Meeting Rooms",
+          "Fitness Center",
+          "Pool"
+        ],
+        "description": "Premium stay in the heart of Bishkek"
+      },
+      {
+        "id": "karven-four-seasons",
+        "name": "Karven Four Seasons",
+        "city": "Sary-Oy",
+        "country": "Kyrgyzstan",
+        "location": "Issyk-Kul",
+        "distance": "12 km from Cholpon-Ata",
+        "coordinates": {
+          "lat": 42.6167,
+          "lng": 77.0833
+        },
+        "rating": 4.6,
+        "reviewCount": 850,
+        "reviewScore": "Very Good",
+        "stars": 5,
+        "price": 12000,
+        "pricePerNight": 12000,
+        "hero": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Pool",
+          "Private Beach",
+          "Tennis Court"
+        ],
+        "description": "One of the best resorts on Issyk-Kul lake"
+      },
+      {
+        "id": "plaza",
+        "name": "The Plaza Hotel",
+        "city": "New York",
+        "country": "USA",
+        "location": "Fifth Avenue, New York",
+        "distance": "0.1 km from Central Park",
+        "coordinates": {
+          "lat": 40.7644,
+          "lng": -73.9744
+        },
+        "rating": 4.7,
+        "reviewCount": 3210,
+        "reviewScore": "Excellent",
+        "stars": 5,
+        "price": 65000,
+        "pricePerNight": 65000,
+        "hero": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+          "https://images.unsplash.com/photo-1455587734955-081b22074882?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Restaurant",
+          "Spa",
+          "Gym",
+          "Concierge Service"
+        ],
+        "description": "Legendary hotel in Manhattan"
+      },
+      {
+        "id": "w-yas",
+        "name": "W Abu Dhabi - Yas Island",
+        "city": "Yas Marina",
+        "country": "UAE",
+        "location": "Yas Island, Abu Dhabi",
+        "distance": "0.1 km from F1 track",
+        "coordinates": {
+          "lat": 24.4672,
+          "lng": 54.6031
+        },
+        "rating": 4.8,
+        "reviewCount": 1540,
+        "reviewScore": "Excellent",
+        "stars": 5,
+        "price": 25000,
+        "pricePerNight": 25000,
+        "hero": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=1200",
+          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Pool",
+          "Spa",
+          "Restaurant",
+          "Track View"
+        ],
+        "description": "The world's only hotel located over a Formula 1 race track"
+      },
+      {
+        "id": "yas-rotana",
+        "name": "Yas Island Rotana",
+        "city": "Yas Marina",
+        "country": "UAE",
+        "location": "Yas Plaza, Abu Dhabi",
+        "distance": "0.5 km from Ferrari World",
+        "coordinates": {
+          "lat": 24.4655,
+          "lng": 54.5988
+        },
+        "rating": 4.5,
+        "reviewCount": 2100,
+        "reviewScore": "Very Good",
+        "stars": 4,
+        "price": 12000,
+        "pricePerNight": 12000,
+        "hero": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Pool",
+          "Park Shuttle",
+          "Restaurant"
+        ],
+        "description": "Comfortable stay near the main attractions of Yas Island"
+      },
+      {
+        "id": "ritz-ny",
+        "name": "The Ritz-Carlton New York, Central Park",
+        "city": "New York",
+        "country": "USA",
+        "location": "Central Park South, New York",
+        "distance": "0.05 km from park",
+        "coordinates": {
+          "lat": 40.7654,
+          "lng": -73.9754
+        },
+        "rating": 4.9,
+        "reviewCount": 940,
+        "reviewScore": "Exceptional",
+        "stars": 5,
+        "price": 85000,
+        "pricePerNight": 85000,
+        "hero": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200"
+        ],
+        "amenities": [
+          "WiFi",
+          "Spa",
+          "Restaurant",
+          "Concierge",
+          "Park View"
+        ],
+        "description": "Elegant luxury with legendary views of Central Park"
+      }
+    ],
+    "packages": [
+      {
+        "id": "1",
+        "title": "Goa Beach Escape",
+        "destination": "Goa, India",
+        "duration": {
+          "days": 5,
+          "nights": 4
+        },
+        "price": 35000,
+        "rating": 4.9,
+        "reviewCount": 234,
+        "image": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+        "highlights": [
+          "Beach Resorts",
+          "Water Sports",
+          "Sunset Cruise",
+          "Local Cuisine"
+        ],
+        "inclusions": [
+          "Flights",
+          "Hotels",
+          "Transfers",
+          "Breakfast"
+        ],
+        "theme": [
+          "Beach",
+          "Leisure"
+        ]
+      },
+      {
+        "id": "2",
+        "title": "Himalayan Adventure",
+        "destination": "Manali, India",
+        "duration": {
+          "days": 6,
+          "nights": 5
+        },
+        "price": 28000,
+        "rating": 4.8,
+        "reviewCount": 189,
+        "highlights": [
+          "Rohtang Pass",
+          "Solang Valley",
+          "Trekking",
+          "Paragliding"
+        ],
+        "inclusions": [
+          "Accommodation",
+          "Meals",
+          "Transfers",
+          "Activities"
+        ],
+        "theme": [
+          "Adventure",
+          "Mountains"
+        ]
+      }
+    ],
+    "visa": [
+      {
+        "id": "1",
+        "country": "USA",
+        "countryCode": "US",
+        "visaType": "Tourist (B-2)",
+        "processingTime": "7-10 working days",
+        "validity": "10 years",
+        "price": 15500,
+        "image": "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800",
+        "description": "Tourist visa for leisure or visiting family",
+        "requirements": [
+          "Valid Passport",
+          "5x5 cm Photo",
+          "Proof of Income",
+          "Travel Itinerary"
+        ]
+      },
+      {
+        "id": "3",
+        "country": "Dubai (UAE)",
+        "countryCode": "AE",
+        "visaType": "Tourist",
+        "processingTime": "2-3 working days",
+        "validity": "60 days",
+        "price": 6500,
+        "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
+        "description": "Short-term tourist visa to Dubai",
+        "requirements": [
+          "Passport Copy",
+          "Photo",
+          "Flight Booking"
+        ]
+      }
+    ],
+    "flights": [
+      {
+        "id": "6E-2045",
+        "airline": "IndiGo",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200&h=200&fit=crop&q=80",
+        "flightNumber": "6E-2045",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "DXB",
+            "departure": "2026-05-15T09:00:00",
+            "arrival": "2026-05-15T11:05:00",
+            "duration": 125,
+            "cabin": "Economy",
+            "flightNumber": "6E-2045"
+          }
+        ],
+        "duration": 125,
+        "price": 5499,
+        "cabin": "Economy",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "7 kg",
+          "checked": "15 kg"
+        },
+        "amenities": [
+          "WiFi",
+          "Entertainment",
+          "Meals included"
+        ]
+      },
+      {
+        "id": "TK-402",
+        "airline": "Turkish Airlines",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200&h=200&fit=crop&q=80",
+        "flightNumber": "TK-402",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "IST",
+            "departure": "2026-05-15T10:30:00",
+            "arrival": "2026-05-15T14:35:00",
+            "duration": 375,
+            "cabin": "Economy",
+            "flightNumber": "TK-402"
+          }
+        ],
+        "duration": 375,
+        "price": 24500,
+        "cabin": "Economy",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "8 kg",
+          "checked": "23 kg"
+        },
+        "amenities": [
+          "WiFi",
+          "Meals",
+          "Entertainment"
+        ]
+      },
+      {
+        "id": "event-1",
+        "airline": "United Airlines",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200",
+        "flightNumber": "UA-2026",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "JFK",
+            "departure": "2026-07-18T08:00:00",
+            "arrival": "2026-07-18T20:30:00",
+            "duration": 750,
+            "cabin": "Economy",
+            "flightNumber": "UA-2026"
+          }
+        ],
+        "duration": 750,
+        "price": 85000,
+        "cabin": "Economy",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "10 kg",
+          "checked": "23 kg"
+        },
+        "amenities": [
+          "WiFi",
+          "Meals",
+          "Movies"
+        ]
+      },
+      {
+        "id": "event-2",
+        "airline": "Emirates",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200",
+        "flightNumber": "EK-2026",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "DXB",
+            "departure": "2026-12-05T14:00:00",
+            "arrival": "2026-12-05T18:30:00",
+            "duration": 270,
+            "cabin": "Business",
+            "flightNumber": "EK-2026"
+          }
+        ],
+        "duration": 270,
+        "price": 45000,
+        "cabin": "Business",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "15 kg",
+          "checked": "40 kg"
+        },
+        "amenities": [
+          "WiFi",
+          "Gourmet Menu",
+          "Onboard Spa"
+        ]
+      },
+      {
+        "id": "event-3",
+        "airline": "Aeroflot",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200",
+        "flightNumber": "SU-2026",
+        "segments": [
+          {
+            "from": "SVO",
+            "to": "FRU",
+            "departure": "2026-09-08T10:00:00",
+            "arrival": "2026-09-08T14:45:00",
+            "duration": 285,
+            "cabin": "Economy",
+            "flightNumber": "SU-2026"
+          }
+        ],
+        "duration": 285,
+        "price": 18500,
+        "cabin": "Economy",
+        "refundable": false,
+        "changeable": true,
+        "baggage": {
+          "cabin": "10 kg",
+          "checked": "23 kg"
+        },
+        "amenities": [
+          "Meals",
+          "Entertainment"
+        ]
+      }
+    ],
+    "trains": [
+      {
+        "id": "1",
+        "number": "001А",
+        "name": "Bishkek - Balykchy",
+        "from": "FRU",
+        "to": "GOI",
+        "departureTime": "06:30",
+        "arrivalTime": "11:00",
+        "duration": "4h 30m",
+        "price": 150,
+        "availableSeats": 45,
+        "type": "Standard"
+      },
+      {
+        "id": "2",
+        "number": "017Ф",
+        "name": "Bishkek - Moscow",
+        "from": "FRU",
+        "to": "SVO",
+        "departureTime": "10:15",
+        "arrivalTime": "08:45",
+        "duration": "74h 30m",
+        "price": 12500,
+        "availableSeats": 12,
+        "type": "Coach"
+      }
+    ]
+  },
   "Metadata": {
     "title": "AviaTravelClub - air travel and tours in Bishkek",
     "description": "Your Journey Begins"
@@ -21,7 +752,7 @@
     "collapse": "Collapse"
   },
   "Hero": {
-    "title": "Discover Your Next Adventure",
+    "title": "Discover Your New Adventure",
     "subtitle": "Book flights, hotels, and holiday packages at the best prices"
   },
   "Search": {
@@ -197,7 +928,7 @@
       "fact": "fact."
     }
   },
-"Featured": {
+  "Featured": {
     "badge": "Trending Now",
     "title": "Featured Holiday Packages",
     "subtitle": "Handpicked destinations for your next unforgettable vacation",
@@ -300,6 +1031,8 @@
   },
   "Flights": {
     "editSearch": "Edit Search",
+    "allOrigins": "All Cities",
+    "allDestinations": "All Destinations",
     "foundFlights": "{count} flights found",
     "oneFlightFound": "1 flight found",
     "filters": "Filters",
@@ -376,8 +1109,10 @@
     "checkIn": "CHECK-IN",
     "checkOut": "CHECK-OUT",
     "search": "Search",
-    "hotelsFound": "{count} Hotels in {location}",
-    "savingsSubtitle": "Great savings on hotels in {location} online",
+    "hotelsFound": "Hotels in {location}: {count}",
+    "allHotels": "All Hotels",
+    "savingsSubtitle": "Best hotel deals in {location} online",
+    "savingsSubtitleAll": "Best hotel deals across all destinations",
     "sortBy": {
       "label": "Sort by",
       "rating": "Rating",
@@ -393,377 +1128,7 @@
     "viewDetails": "View Details",
     "bookNow": "Book Now",
     "starCount": "{count} star",
-    "more": "+{count} more",
-    "mockData": [
-      {
-        "id": "1",
-        "name": "The Taj Mahal Palace",
-        "location": "Colaba, Mumbai",
-        "distance": "2.5 km from center",
-        "coordinates": {
-          "lat": 18.9217,
-          "lng": 72.8332
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200",
-          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200",
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200",
-          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
-          "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800",
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-          "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
-          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
-          "https://images.unsplash.com/photo-1469796466635-455ede028ca2?w=800",
-          "https://images.unsplash.com/photo-1517840901100-8179e982acb7?w=800"
-        ],
-        "rating": 4.8,
-        "reviewCount": 1234,
-        "reviewScore": "Excellent",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Pool",
-          "Spa",
-          "Restaurant",
-          "Gym",
-          "Parking",
-          "Bar",
-          "Room Service"
-        ],
-        "price": 15000,
-        "availableRooms": 5,
-        "description": "Iconic luxury hotel overlooking the Gateway of India"
-      },
-      {
-        "id": "2",
-        "name": "The Oberoi",
-        "location": "Nariman Point, Mumbai",
-        "distance": "1.2 km from center",
-        "coordinates": {
-          "lat": 18.9256,
-          "lng": 72.8242
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
-          "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800",
-          "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800"
-        ],
-        "rating": 4.9,
-        "reviewCount": 892,
-        "reviewScore": "Outstanding",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Pool",
-          "Spa",
-          "Restaurant",
-          "Gym",
-          "Airport Shuttle"
-        ],
-        "price": 18000,
-        "availableRooms": 3,
-        "description": "Unmatched hospitality and stunning views of the Arabian Sea"
-      },
-      {
-        "id": "3",
-        "name": "Trident BKC",
-        "location": "Bandra Kurla Complex",
-        "distance": "8 km from center",
-        "coordinates": {
-          "lat": 19.0653,
-          "lng": 72.8672
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-          "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800",
-          "https://images.unsplash.com/photo-1455587734955-081b22074882?w=800"
-        ],
-        "rating": 4.6,
-        "reviewCount": 567,
-        "reviewScore": "Very Good",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Pool",
-          "Restaurant",
-          "Gym",
-          "Business Center"
-        ],
-        "price": 12000,
-        "availableRooms": 8,
-        "description": "Contemporary luxury in the heart of Mumbai's business district"
-      },
-      {
-        "id": "4",
-        "name": "ITC Maratha",
-        "location": "Andheri East, Mumbai",
-        "distance": "6 km from airport",
-        "coordinates": {
-          "lat": 19.099,
-          "lng": 72.874
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
-          "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
-          "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
-        ],
-        "rating": 4.7,
-        "reviewCount": 743,
-        "reviewScore": "Excellent",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Pool",
-          "Spa",
-          "Restaurant",
-          "Gym",
-          "Airport Shuttle",
-          "Bar"
-        ],
-        "price": 10000,
-        "availableRooms": 12,
-        "description": "Experience the grandeur of Maratha dynasty"
-      },
-      {
-        "id": "5",
-        "name": "JW Marriott Juhu",
-        "location": "Juhu Beach, Mumbai",
-        "distance": "15 km from center",
-        "coordinates": {
-          "lat": 19.0936,
-          "lng": 72.8267
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
-          "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800",
-          "https://images.unsplash.com/photo-1562790351-d273a961e0e9?w=800"
-        ],
-        "rating": 4.8,
-        "reviewCount": 1089,
-        "reviewScore": "Excellent",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Beach Access",
-          "Pool",
-          "Spa",
-          "Restaurant",
-          "Gym",
-          "Bar"
-        ],
-        "price": 14000,
-        "availableRooms": 6,
-        "description": "Direct access to the famous Juhu Beach"
-      },
-      {
-        "id": "6",
-        "name": "Hotel Sea Green",
-        "location": "Marine Drive, Mumbai",
-        "distance": "0.8 km from center",
-        "coordinates": {
-          "lat": 18.9432,
-          "lng": 72.8235
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
-          "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
-          "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800"
-        ],
-        "rating": 4.3,
-        "reviewCount": 445,
-        "reviewScore": "Good",
-        "stars": 3,
-        "amenities": [
-          "WiFi",
-          "Restaurant",
-          "Room Service",
-          "Laundry"
-        ],
-        "price": 5000,
-        "availableRooms": 15,
-        "description": "Boutique hotel with panoramic views of the Queen's Necklace"
-      },
-      {
-        "id": "7",
-        "name": "Atlantis, The Palm",
-        "location": "Palm Jumeirah, Dubai",
-        "distance": "15 km from center",
-        "coordinates": {
-          "lat": 25.1304,
-          "lng": 55.1171
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800"
-        ],
-        "rating": 4.9,
-        "reviewCount": 5420,
-        "reviewScore": "Superb",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Pool",
-          "Waterpark",
-          "Spa",
-          "Restaurant",
-          "Gym",
-          "Bar"
-        ],
-        "price": 45000,
-        "availableRooms": 10,
-        "description": "Luxury resort on the crescent of the Palm Jumeirah island"
-      },
-      {
-        "id": "8",
-        "name": "Burj Al Arab Jumeirah",
-        "location": "Umm Suqeim, Dubai",
-        "distance": "12 km from center",
-        "coordinates": {
-          "lat": 25.1412,
-          "lng": 55.1852
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
-          "https://images.unsplash.com/photo-1544161515-4ae6ce6ca606?w=800",
-          "https://images.unsplash.com/photo-1517840901100-8179e982acb7?w=800"
-        ],
-        "rating": 5.0,
-        "reviewCount": 1240,
-        "reviewScore": "Exceptional",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Pool",
-          "Spa",
-          "Restaurant",
-          "Gym",
-          "Airport Shuttle",
-          "Helipad"
-        ],
-        "price": 120000,
-        "availableRooms": 2,
-        "description": "The world's most luxurious hotel"
-      },
-      {
-        "id": "9",
-        "name": "The Plaza Hotel",
-        "location": "Fifth Avenue, New York",
-        "distance": "0.1 km from Central Park",
-        "coordinates": {
-          "lat": 40.7644,
-          "lng": -73.9744
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
-          "https://images.unsplash.com/photo-1455587734955-081b22074882?w=800",
-          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800"
-        ],
-        "rating": 4.7,
-        "reviewCount": 3210,
-        "reviewScore": "Excellent",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Restaurant",
-          "Spa",
-          "Gym",
-          "Concierge Service",
-          "Bar"
-        ],
-        "price": 65000,
-        "availableRooms": 4,
-        "description": "Legendary hotel on Manhattan"
-      },
-      {
-        "id": "10",
-        "name": "W Abu Dhabi - Yas Island",
-        "location": "Yas Marina, Abu Dhabi",
-        "distance": "0.5 km from F1 track",
-        "coordinates": {
-          "lat": 24.4671,
-          "lng": 54.6064
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800",
-          "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
-          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800"
-        ],
-        "rating": 4.8,
-        "reviewCount": 2150,
-        "reviewScore": "Excellent",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Pool",
-          "Track view",
-          "Spa",
-          "Restaurant",
-          "Bar"
-        ],
-        "price": 25000,
-        "availableRooms": 7,
-        "description": "Unique design and Yas Marina circuit views"
-      },
-      {
-        "id": "11",
-        "name": "Karven Four Seasons",
-        "location": "Sary-Oi, Issyk-Kul",
-        "distance": "12 km from Cholpon-Ata",
-        "coordinates": {
-          "lat": 42.6167,
-          "lng": 77.0833
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
-          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800",
-          "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=800"
-        ],
-        "rating": 4.6,
-        "reviewCount": 850,
-        "reviewScore": "Very Good",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Pool",
-          "Private Beach",
-          "Tennis Court",
-          "Restaurant"
-        ],
-        "price": 12000,
-        "availableRooms": 15,
-        "description": "One of the best resorts on Issyk-Kul"
-      },
-      {
-        "id": "12",
-        "name": "Kapriz Issyk-Kul",
-        "location": "Baktuu-Dolonotu, Issyk-Kul",
-        "distance": "5 km from Cholpon-Ata",
-        "coordinates": {
-          "lat": 42.65,
-          "lng": 77.1667
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800",
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
-          "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800"
-        ],
-        "rating": 4.5,
-        "reviewCount": 620,
-        "reviewScore": "Good",
-        "stars": 4,
-        "amenities": [
-          "WiFi",
-          "Pool",
-          "Private Beach",
-          "Playground",
-          "Restaurant"
-        ],
-        "price": 8500,
-        "availableRooms": 20,
-        "description": "Comfortable vacation for the whole family"
-      }
-    ]
+    "more": "+{count} more"
   },
   "Holidays": {
     "title": "Holiday Packages",
@@ -787,149 +1152,7 @@
       "Wildlife": "Wildlife",
       "Honeymoon": "Honeymoon",
       "Family": "Family"
-    },
-    "mockData": [
-      {
-        "id": "1",
-        "title": "Goa Beach Escape",
-        "destination": "Goa, India",
-        "coordinates": {
-          "lat": 15.2993,
-          "lng": 74.124
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
-          "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=800",
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
-          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800",
-          "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=800",
-          "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800",
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800"
-        ],
-        "duration": {
-          "days": 5,
-          "nights": 4
-        },
-        "price": 35000,
-        "rating": 4.9,
-        "reviewCount": 234,
-        "theme": [
-          "Beach",
-          "Leisure"
-        ],
-        "inclusions": [
-          "Flights",
-          "Hotels",
-          "Transfers",
-          "Breakfast"
-        ],
-        "highlights": [
-          "Beach resorts",
-          "Water sports",
-          "Sunset cruise",
-          "Local cuisine"
-        ],
-        "itinerary": [
-          {
-            "day": 1,
-            "title": "Arrival & Beach Relaxation",
-            "desc": "Welcome to Goa! Transfer to your beach resort and spend the afternoon relaxing."
-          },
-          {
-            "day": 2,
-            "title": "North Goa Sightseeing",
-            "desc": "Visit Fort Aguada, Chapora Fort, and famous beaches like Calangute and Baga."
-          },
-          {
-            "day": 3,
-            "title": "Water Sports & Adventure",
-            "desc": "Try parasailing, jet skiing, and banana boat rides at Calangute Beach."
-          },
-          {
-            "day": 4,
-            "title": "South Goa Exploration",
-            "desc": "Discover Palolem Beach and the ancient Cabo de Rama Fort."
-          },
-          {
-            "day": 5,
-            "title": "Departure",
-            "desc": "Final breakfast and transfer to the airport."
-          }
-        ]
-      },
-      {
-        "id": "2",
-        "title": "Himalayan Adventure",
-        "destination": "Manali, HP",
-        "coordinates": {
-          "lat": 32.2396,
-          "lng": 77.1887
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800",
-          "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800",
-          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800",
-          "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800",
-          "https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?w=800",
-          "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800"
-        ],
-        "duration": {
-          "days": 6,
-          "nights": 5
-        },
-        "price": 28000,
-        "rating": 4.8,
-        "reviewCount": 189,
-        "theme": [
-          "Adventure",
-          "Mountains"
-        ],
-        "inclusions": [
-          "Accommodation",
-          "Meals",
-          "Transfers",
-          "Activities"
-        ],
-        "highlights": [
-          "Rohtang Pass",
-          "Solang Valley",
-          "Trekking",
-          "Paragliding"
-        ],
-        "itinerary": [
-          {
-            "day": 1,
-            "title": "Arrival in Manali",
-            "desc": "Check-in and evening walk at Mall Road."
-          },
-          {
-            "day": 2,
-            "title": "Local Sightseeing",
-            "desc": "Visit Hadimba Devi Temple and Vashisht springs."
-          },
-          {
-            "day": 3,
-            "title": "Rohtang Pass",
-            "desc": "Full day snow adventure at Rohtang Pass."
-          },
-          {
-            "day": 4,
-            "title": "Solang Valley",
-            "desc": "Try paragliding and zorbing in Solang Valley."
-          },
-          {
-            "day": 5,
-            "title": "Kullu Exploration",
-            "desc": "Visit Kullu Valley for river rafting."
-          },
-          {
-            "day": 6,
-            "title": "Departure",
-            "desc": "Transfer to Bhuntar Airport."
-          }
-        ]
-      }
-    ]
+    }
   },
   "Visa": {
     "title": "Visa Services",
@@ -961,127 +1184,22 @@
     "requirements": "Requirements",
     "viewDetails": "View Details",
     "hide": "Hide",
-    "view": "View",
-    "mockData": [
-      {
-        "id": "1",
-        "country": "United States",
-        "countryCode": "US",
-        "visaType": "Tourist (B-2)",
-        "processingTime": "7-10 business days",
-        "validity": "10 years (multiple entry)",
-        "price": 15500,
-        "image": "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800",
-        "description": "Tourist visa for leisure, visiting family, or medical treatment",
-        "requirements": [
-          "Valid passport (6 months validity)",
-          "Recent passport-size photograph",
-          "Proof of financial stability",
-          "Travel itinerary and hotel bookings",
-          "Employment letter or business proof",
-          "Previous travel history"
-        ]
-      },
-      {
-        "id": "2",
-        "country": "United Kingdom",
-        "countryCode": "GB",
-        "visaType": "Standard Visitor Visa",
-        "processingTime": "15 business days",
-        "validity": "6 months (multiple entry)",
-        "price": 12000,
-        "image": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800",
-        "description": "Visit the UK for leisure, business, or to see family",
-        "requirements": [
-          "Current passport",
-          "Bank statements (Last 6 months)",
-          "Income tax returns",
-          "Accommodation details",
-          "Day-wise itinerary"
-        ]
-      },
-      {
-        "id": "3",
-        "country": "Dubai (UAE)",
-        "countryCode": "AE",
-        "visaType": "30 Days Tourist Visa",
-        "processingTime": "2-3 business days",
-        "validity": "60 days from issue",
-        "price": 6500,
-        "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
-        "description": "Short term tourist visa for exploring Dubai",
-        "requirements": [
-          "Passport scanned copy",
-          "White background photograph",
-          "Confirmed return ticket",
-          "Pan card copy"
-        ]
-      }
-    ]
+    "view": "View"
   },
   "VisaDetail": {
-    "back": "Back to Visa Services",
-    "thankYou": "Thank you! Our visa consultant will contact you within 24 hours.",
-    "documentRequirements": "Document Requirements",
-    "processingTimeline": "Processing Timeline",
-    "feesBreakdown": "Fees Breakdown",
-    "importantInformation": "Important Information",
-    "faqs": "Frequently Asked Questions",
-    "enquiryTitle": "Enquire Now",
-    "enquiryDesc": "Get expert guidance for your visa application",
-    "itemsCount": "{count} items",
-    "day": "Day {count}",
-    "bookNow": "Apply Now",
-    "labels": {
-      "perApplicant": "per applicant",
-      "workingHours": "Mon-Fri: 09:00 - 18:00"
-    },
+    "back": "Back",
+    "bookNow": "Book Now",
+    "enquiryTitle": "Enquiry Now",
     "helpTitle": "Need Help?",
-    "fees": {
-      "embassy": "Embassy Fee",
-      "service": "Service Charge",
-      "processing": "Processing Fee",
-      "total": "Total Amount"
-    },
-    "form": {
-      "name": "Full Name",
-      "email": "Email Address",
-      "phone": "Phone Number",
-      "travelDate": "Travel Date",
-      "message": "Message",
-      "submit": "Send Enquiry",
-      "cancel": "Cancel"
-    },
-    "timeline": {
-      "step1": { "title": "Application Submission", "desc": "Submit your application with all required documents" },
-      "step2": { "title": "Document Verification", "desc": "Our team verifies all documents for completeness" },
-      "step3": { "title": "Embassy Submission", "desc": "Application forwarded to embassy/consulate" },
-      "step4": { "title": "Processing", "desc": "Embassy processes your visa application" },
-      "step5": { "title": "Visa Issuance", "desc": "Approved visa sent to your email" }
-    },
-    "info": {
-      "approval": { "title": "Visa Approval", "desc": "Visa approval is at the discretion of the embassy. We assist with documentation but cannot guarantee approval." },
-      "validity": { "title": "Passport Validity", "desc": "Your passport must be valid for at least 6 months beyond your intended stay." },
-      "format": { "title": "Document Format", "desc": "All documents should be clear scanned copies in PDF format, not exceeding 2MB per file." },
-      "delivery": { "title": "Visa Delivery", "desc": "Approved visa will be sent to your registered email address. Physical stamps may require passport submission." }
-    },
+    "thankYou": "Thank you for your enquiry! We will get back to you soon.",
     "trust": {
-      "expertAssistance": "Expert visa assistance",
-      "verification": "Document verification",
-      "tracking": "24/7 application tracking",
-      "secure": "Secure payment",
-      "secureTitle": "Secure & Trusted",
-      "stats": "10,000+ visas processed successfully"
+      "expertAssistance": "Expert Assistance",
+      "verification": "Document Verification",
+      "tracking": "Application Tracking",
+      "secure": "Secure Payment"
     },
-    "faqsList": [
-      { "q": "Can I track my visa application?", "a": "Yes, once submitted, you'll receive a tracking ID to monitor your application status in real-time." },
-      { "q": "What if my visa gets rejected?", "a": "Embassy fees are non-refundable, but our service charges can be used towards a reapplication within 6 months." },
-      { "q": "Do I need to visit the embassy in person?", "a": "For most countries, biometrics or an interview may be required. We'll guide you through the process." },
-      { "q": "Can I expedite my visa processing?", "a": "Yes, expedited processing is available for select countries at additional cost. Contact us for details." }
-    ],
     "labels": {
-      "perApplicant": "per applicant",
-      "workingHours": "Mon-Sat: 9:00 AM - 6:00 PM"
+      "perApplicant": "per applicant"
     }
   },
   "Airports": {
@@ -1177,9 +1295,18 @@
     "noResults": "Nothing found",
     "noResultsDesc": "Try changing your search query or selecting a different category",
     "trustBar": {
-      "support": { "title": "24/7 Support", "desc": "We are always available to help you" },
-      "reliability": { "title": "Reliability", "desc": "15 years of impeccable work in the market" },
-      "destinations": { "title": "Any destinations", "desc": "Tickets to all points of the world at best prices" }
+      "support": {
+        "title": "24/7 Support",
+        "desc": "We are always available to help you"
+      },
+      "reliability": {
+        "title": "Reliability",
+        "desc": "15 years of impeccable work in the market"
+      },
+      "destinations": {
+        "title": "Any destinations",
+        "desc": "Tickets to all points of the world at best prices"
+      }
     },
     "categories": [
       {
@@ -1386,22 +1513,6 @@
       "Valid government ID required for all travelers",
       "Package prices may vary during peak season"
     ]
-  },
-  "VisaDetail": {
-    "back": "Back",
-    "bookNow": "Book Now",
-    "enquiryTitle": "Enquiry Now",
-    "helpTitle": "Need Help?",
-    "thankYou": "Thank you for your enquiry! We will get back to you soon.",
-    "trust": {
-      "expertAssistance": "Expert Assistance",
-      "verification": "Document Verification",
-      "tracking": "Application Tracking",
-      "secure": "Secure Payment"
-    },
-    "labels": {
-      "perApplicant": "per applicant"
-    }
   },
   "AITripPlanner": {
     "title": "AI Trip Planner",
@@ -1769,7 +1880,8 @@
         "date": "July 19, 2026",
         "description": "Experience the pinnacle of world football. Book your flight and hotel now to secure your spot!",
         "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80",
-        "category": "Sport"
+        "category": "Sport",
+        "startDate": "2026-07-19"
       },
       {
         "id": "f1dubai",
@@ -1779,7 +1891,8 @@
         "date": "December 6, 2026",
         "description": "The season finale of Formula 1. Witness the speed and glamour in Abu Dhabi.",
         "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=1200&q=80",
-        "category": "Racing"
+        "category": "Racing",
+        "startDate": "2026-12-06"
       },
       {
         "id": "wng2026",
@@ -1789,7 +1902,8 @@
         "date": "September 8-14, 2026",
         "description": "Experience the thrill of nomadic sports and the beauty of Central Asian traditions. Book your stay at Issyk-Kul now!",
         "image": "https://kappa.lol/9ApZh8",
-        "category": "Culture & Sport"
+        "category": "Culture & Sport",
+        "startDate": "2026-09-08"
       }
     ]
   },

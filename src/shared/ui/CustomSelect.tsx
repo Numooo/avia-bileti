@@ -35,15 +35,15 @@ export function CustomSelect({ label, value, onChange, options, icon }: CustomSe
 
   return (
     <div className="relative" ref={containerRef}>
-      <label className="mb-1 block text-sm font-medium text-gray-700">
+      <label className="mb-1.5 block text-xs font-semibold text-gray-500 capitalize px-1">
         {label}
       </label>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between gap-3 rounded-lg border border-gray-300 bg-white py-3 px-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all text-left"
+        className="w-full flex items-center justify-between gap-3 rounded-2xl border-none bg-gray-50 py-3.5 px-4 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-brand-primary/20 transition-all text-left hover:bg-gray-100"
       >
         <div className="flex items-center gap-3 overflow-hidden">
-          {icon && <div className="text-gray-400 flex-shrink-0">{icon}</div>}
+          {icon && <div className="text-gray-400 opacity-70 flex-shrink-0">{icon}</div>}
           <span className="truncate">{selectedOption?.label || "Select..."}</span>
         </div>
         <ChevronDown className={`h-4 w-4 text-gray-400 transition-transform duration-200 flex-shrink-0 ${isOpen ? "rotate-180" : ""}`} />

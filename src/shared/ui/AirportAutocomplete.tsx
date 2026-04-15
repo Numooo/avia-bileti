@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import { MapPin, Search, Star, Plane } from "lucide-react";
+import { MapPin, Search, Star, Plane, Train } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AIRPORTS } from "@/shared/mocks/data";
+import { useTranslations } from "next-intl";
+import { Airport } from "@/types";
 
 interface AirportAutocompleteProps {
   label: string;
@@ -11,6 +12,7 @@ interface AirportAutocompleteProps {
   onChange: (code: string) => void;
   placeholder?: string;
   icon?: React.ReactNode;
+  mode?: "airport" | "train";
 }
 
 const POPULAR_AIRPORTS = ["FRU", "MOW", "IST", "DXB", "ALA"];
@@ -21,7 +23,11 @@ export function AirportAutocomplete({
   onChange,
   placeholder,
   icon,
+  mode = "airport",
 }: AirportAutocompleteProps) {
+  const t = useTranslations();
+  const AIRPORTS = useMemo(() => t.raw("MockData.airports") as Airport[], [t]);
+  
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,28 +40,42 @@ export function AirportAutocomplete({
   // Initialize search text with current value
   useEffect(() => {
     if (selectedAirport && !isOpen) {
-      setSearch(`${selectedAirport.city}, ${selectedAirport.name}`);
+      setSearch(mode === "train" ? selectedAirport.city : `${selectedAirport.city}, ${selectedAirport.name}`);
     } else if (!value && !isOpen) {
       setSearch("");
     }
-  }, [selectedAirport, value, isOpen]);
+  }, [selectedAirport, value, isOpen, mode]);
 
   const filteredAirports = useMemo(() => {
     const query = search.toLowerCase().trim();
     
+    let results = AIRPORTS;
+    
     // If empty, show popular
     if (!query) {
-      return AIRPORTS.filter((a) => POPULAR_AIRPORTS.includes(a.code)).slice(0, 5);
+      results = results.filter((a) => POPULAR_AIRPORTS.includes(a.code));
+    } else {
+      // If typing, filter by city, code, or name
+      results = results.filter(
+        (a) =>
+          a.city.toLowerCase().includes(query) ||
+          a.code.toLowerCase().includes(query) ||
+          (mode === "airport" && a.name.toLowerCase().includes(query))
+      );
     }
 
-    // If typing, filter by city, code, or name
-    return AIRPORTS.filter(
-      (a) =>
-        a.city.toLowerCase().includes(query) ||
-        a.code.toLowerCase().includes(query) ||
-        a.name.toLowerCase().includes(query)
-    ).slice(0, 5);
-  }, [search]);
+    if (mode === "train") {
+      // Return only unique cities for train mode
+      const uniqueCities = new Set();
+      return results.filter(a => {
+        if (uniqueCities.has(a.city)) return false;
+        uniqueCities.add(a.city);
+        return true;
+      }).slice(0, 5);
+    }
+
+    return results.slice(0, 5);
+  }, [search, mode]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -69,12 +89,12 @@ export function AirportAutocomplete({
 
   return (
     <div className="relative" ref={containerRef}>
-      <label className="mb-1 block text-sm font-medium text-gray-700">
+      <label className="mb-1.5 block text-xs font-semibold text-gray-500 capitalize px-1">
         {label}
       </label>
       <div className="relative group">
-        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors z-10">
-          {icon || <MapPin className="h-5 w-5" />}
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors z-10">
+          {icon || <MapPin className="h-4 w-4" />}
         </div>
         <input
           type="text"
@@ -85,7 +105,7 @@ export function AirportAutocomplete({
           }}
           onChange={(e) => setSearch(e.target.value)}
           placeholder={placeholder}
-          className="w-full appearance-none rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all placeholder:text-gray-400"
+          className="w-full appearance-none rounded-2xl border-none bg-gray-50 py-3.5 pl-11 pr-4 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-brand-primary/20 transition-all placeholder:text-gray-400"
         />
       </div>
 
@@ -106,26 +126,34 @@ export function AirportAutocomplete({
                       key={airport.code}
                       onClick={() => {
                         onChange(airport.code);
-                        setSearch(`${airport.city}, ${airport.name}`);
+                        setSearch(mode === "train" ? airport.city : `${airport.city}, ${airport.name}`);
                         setIsOpen(false);
                       }}
                       className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left transition-all hover:bg-gray-50 group"
                     >
                       <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-gray-50 text-gray-400 group-hover:bg-brand-primary group-hover:text-white transition-all">
-                        <Plane className="h-4 w-4 -rotate-45" />
+                        {mode === "train" ? (
+                          <Train className="h-4 w-4" />
+                        ) : (
+                          <Plane className="h-4 w-4 -rotate-45" />
+                        )}
                       </div>
                       <div className="flex-1 overflow-hidden">
                         <div className="flex items-center justify-between">
                           <span className="truncate font-bold text-gray-900">
                             {airport.city}
                           </span>
-                          <span className="ml-2 font-mono text-[10px] font-bold text-gray-400">
-                            {airport.code}
-                          </span>
+                          {mode === "airport" && (
+                            <span className="ml-2 font-mono text-[10px] font-bold text-gray-400">
+                              {airport.code}
+                            </span>
+                          )}
                         </div>
-                        <p className="truncate text-xs text-gray-500">
-                          {airport.name}
-                        </p>
+                        {mode === "airport" && (
+                          <p className="truncate text-xs text-gray-500">
+                            {airport.name}
+                          </p>
+                        )}
                       </div>
                     </button>
                   ))

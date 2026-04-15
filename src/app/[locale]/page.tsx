@@ -7,11 +7,12 @@ import { useRouter } from "@/i18n/routing";
 export default function Home() {
   const router = useRouter();
 
-  const handleSearchFlights = (from?: string, to?: string) => {
+  const handleSearchFlights = (from?: string, to?: string, date?: string) => {
     // Instead of setting state, navigate to the new page with search params
     const searchParams = new URLSearchParams();
     if (from) searchParams.set("origin", from);
     if (to) searchParams.set("destination", to);
+    if (date) searchParams.set("date", date);
     
     router.push(`/flights?${searchParams.toString()}`);
   };
@@ -29,6 +30,13 @@ export default function Home() {
     router.push(`/trains?${searchParams.toString()}`);
   };
 
+  const handleSearchHotels = (location?: string, date?: string) => {
+    const searchParams = new URLSearchParams();
+    if (location) searchParams.set("search", location);
+    if (date) searchParams.set("date", date);
+    router.push(`/hotels?${searchParams.toString()}`);
+  };
+
   const handleNavigate = (page: string) => {
     router.push(page === "home" ? "/" : `/${page}`);
   };
@@ -38,6 +46,7 @@ export default function Home() {
       onSearchFlights={handleSearchFlights}
       onSearchCargo={handleSearchCargo}
       onSearchTrains={handleSearchTrains}
+      onSearchHotels={handleSearchHotels}
       onNavigate={handleNavigate}
     />
   );

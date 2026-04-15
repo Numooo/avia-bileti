@@ -56,3 +56,18 @@ input:-webkit-autofill:active {
     scrollbar-width: none;
   }
 }
+
+/* Custom Date Picker Styles */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+input[type="date"] {
+  position: relative;
+}

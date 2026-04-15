@@ -10,7 +10,8 @@ import type { Hotel } from "@/types";
 export default function HotelDetailRoute({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const t = useTranslations("Hotels");
-  const hotels = t.raw("mockData") as Hotel[];
+  const tMock = useTranslations("MockData");
+  const hotels = tMock.raw("hotels") as Hotel[];
   const hotel = hotels.find((h) => h.id === id);
   const router = useRouter();
   const setBooking = useBookingStore((state) => state.setBooking);

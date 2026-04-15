@@ -242,7 +242,7 @@ export function PassengerSelector({
                     exit={{ opacity: 0, height: 0 }}
                     className="overflow-hidden pt-4 px-2 border-t border-gray-100 space-y-2"
                   >
-                    <div className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    <div className="flex items-center gap-2 text-xs font-bold text-gray-500 capitalize tracking-wider">
                       <MessageSquare size={14} />
                       Комментарий к детали животного
                     </div>

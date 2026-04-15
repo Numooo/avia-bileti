@@ -1,4 +1,736 @@
 {
+  "MockData": {
+    "airports": [
+      {
+        "code": "FRU",
+        "city": "Бишкек",
+        "name": "Манас"
+      },
+      {
+        "code": "OSS",
+        "city": "Ош",
+        "name": "Ош"
+      },
+      {
+        "code": "ALA",
+        "city": "Алматы",
+        "name": "Алматы"
+      },
+      {
+        "code": "TAS",
+        "city": "Ташкент",
+        "name": "Ислам Каримов"
+      },
+      {
+        "code": "NQZ",
+        "city": "Астана",
+        "name": "Нурсултан Назарбаев"
+      },
+      {
+        "code": "SVO",
+        "city": "Москва",
+        "name": "Шереметьево"
+      },
+      {
+        "code": "DME",
+        "city": "Москва",
+        "name": "Домодедово"
+      },
+      {
+        "code": "LED",
+        "city": "Санкт-Петербург",
+        "name": "Пулково"
+      },
+      {
+        "code": "DXB",
+        "city": "Дубай",
+        "name": "Дубай"
+      },
+      {
+        "code": "SHJ",
+        "city": "Шарджа",
+        "name": "Шарджа"
+      },
+      {
+        "code": "IST",
+        "city": "Стамбул",
+        "name": "Стамбул"
+      },
+      {
+        "code": "SAW",
+        "city": "Стамбул",
+        "name": "Сабиха Гёкчен"
+      },
+      {
+        "code": "AYT",
+        "city": "Анталья",
+        "name": "Анталья"
+      },
+      {
+        "code": "JED",
+        "city": "Джидда",
+        "name": "Король Абдул-Азиз"
+      },
+      {
+        "code": "LHR",
+        "city": "Лондон",
+        "name": "Хитроу"
+      },
+      {
+        "code": "CDG",
+        "city": "Париж",
+        "name": "Шарль-де-Голль"
+      },
+      {
+        "code": "FRA",
+        "city": "Франкфурт",
+        "name": "Франкфурт"
+      },
+      {
+        "code": "JFK",
+        "city": "Нью-Йорк",
+        "name": "Джон Ф. Кеннеди"
+      },
+      {
+        "code": "PEK",
+        "city": "Пекин",
+        "name": "Шоуду"
+      },
+      {
+        "code": "BKK",
+        "city": "Бангкок",
+        "name": "Суварнабхуми"
+      },
+      {
+        "code": "BOM",
+        "city": "Мумбаи",
+        "name": "Чхатрапати Шиваджи"
+      },
+      {
+        "code": "DEL",
+        "city": "Дели",
+        "name": "Индира Ганди"
+      },
+      {
+        "code": "BLR",
+        "city": "Бангалор",
+        "name": "Кемпеговда"
+      },
+      {
+        "code": "HYD",
+        "city": "Хайдарабад",
+        "name": "Раджив Ганди"
+      },
+      {
+        "code": "MAA",
+        "city": "Ченнаи",
+        "name": "Ченнаи"
+      },
+      {
+        "code": "MOW",
+        "city": "Москва",
+        "name": "Все аэропорты"
+      },
+      {
+        "code": "GOI",
+        "city": "Гоа",
+        "name": "Даболим"
+      },
+      {
+        "code": "MLE",
+        "city": "Мальдивы",
+        "name": "Велана"
+      }
+    ],
+    "hotels": [
+      {
+        "id": "1",
+        "name": "The Taj Mahal Palace",
+        "city": "Мумбаи",
+        "country": "Индия",
+        "location": "Колаба, Мумбаи",
+        "distance": "2.5 км от центра",
+        "coordinates": {
+          "lat": 18.9217,
+          "lng": 72.8332
+        },
+        "rating": 4.8,
+        "reviewCount": 1234,
+        "reviewScore": "Отлично",
+        "stars": 5,
+        "price": 15000,
+        "pricePerNight": 15000,
+        "hero": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200",
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200",
+          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Спа",
+          "Ресторан",
+          "Спортзал",
+          "Парковка"
+        ],
+        "description": "Культовый роскошный отель с видом на Ворота Индии"
+      },
+      {
+        "id": "2",
+        "name": "The Oberoi",
+        "city": "Мумбаи",
+        "country": "Индия",
+        "location": "Нариман-Пойнт, Мумбаи",
+        "distance": "1.2 км от центра",
+        "coordinates": {
+          "lat": 18.9256,
+          "lng": 72.8242
+        },
+        "rating": 4.9,
+        "reviewCount": 892,
+        "reviewScore": "Превосходно",
+        "stars": 5,
+        "price": 18000,
+        "pricePerNight": 18000,
+        "hero": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+          "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Спа",
+          "Ресторан",
+          "Спортзал"
+        ],
+        "description": "Непревзойденное гостеприимство и потрясающий вид на Аравийское море"
+      },
+      {
+        "id": "burj-al-arab",
+        "name": "Burj Al Arab Jumeirah",
+        "city": "Дубай",
+        "country": "ОАЭ",
+        "location": "Умм Сукейм 3, Дубай",
+        "distance": "12 км от центра",
+        "coordinates": {
+          "lat": 25.1412,
+          "lng": 55.1852
+        },
+        "rating": 5,
+        "reviewCount": 1240,
+        "reviewScore": "Исключительно",
+        "stars": 5,
+        "price": 120000,
+        "pricePerNight": 120000,
+        "hero": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800"
+        ],
+        "amenities": [
+          "Роскошный Спа",
+          "Частный пляж",
+          "Услуги дворецкого",
+          "Вертолётная площадка"
+        ],
+        "description": "Самый роскошный отель в мире"
+      },
+      {
+        "id": "atlantis",
+        "name": "Atlantis, The Palm",
+        "city": "Дубай",
+        "country": "ОАЭ",
+        "location": "Палм-Джумейра, Дубай",
+        "distance": "15 км от центра",
+        "coordinates": {
+          "lat": 25.1304,
+          "lng": 55.1171
+        },
+        "rating": 4.9,
+        "reviewCount": 5420,
+        "reviewScore": "Превосходно",
+        "stars": 5,
+        "price": 45000,
+        "pricePerNight": 45000,
+        "hero": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Аквапарк",
+          "Спа",
+          "Ресторан",
+          "Спортзал"
+        ],
+        "description": "Роскошный курорт на вершине острова Палм-Джумейра"
+      },
+      {
+        "id": "sheraton-bishkek",
+        "name": "Sheraton Bishkek",
+        "city": "Бишкек",
+        "country": "Кыргызстан",
+        "location": "ул. Киевская, Бишкек",
+        "distance": "0.1 км от центра",
+        "coordinates": {
+          "lat": 42.8746,
+          "lng": 74.5919
+        },
+        "rating": 4.7,
+        "reviewCount": 320,
+        "reviewScore": "Отлично",
+        "stars": 5,
+        "price": 11000,
+        "pricePerNight": 11000,
+        "hero": "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1200",
+          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800"
+        ],
+        "amenities": [
+          "Вид на город",
+          "Конференц-залы",
+          "Фитнес-центр",
+          "Бассейн"
+        ],
+        "description": "Премиальный отдых в самом центре Бишкека"
+      },
+      {
+        "id": "karven-four-seasons",
+        "name": "Karven Four Seasons",
+        "city": "Сары-Ой",
+        "country": "Кыргызстан",
+        "location": "Иссык-Куль",
+        "distance": "12 км от Чолпон-Аты",
+        "coordinates": {
+          "lat": 42.6167,
+          "lng": 77.0833
+        },
+        "rating": 4.6,
+        "reviewCount": 850,
+        "reviewScore": "Очень хорошо",
+        "stars": 5,
+        "price": 12000,
+        "pricePerNight": 12000,
+        "hero": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Собственный пляж",
+          "Теннисный корт"
+        ],
+        "description": "Один из лучших центров отдыха на Иссык-Куле"
+      },
+      {
+        "id": "plaza",
+        "name": "The Plaza Hotel",
+        "city": "Нью-Йорк",
+        "country": "США",
+        "location": "Пятая авеню, Нью-Йорк",
+        "distance": "0.1 км от Центрального парка",
+        "coordinates": {
+          "lat": 40.7644,
+          "lng": -73.9744
+        },
+        "rating": 4.7,
+        "reviewCount": 3210,
+        "reviewScore": "Отлично",
+        "stars": 5,
+        "price": 65000,
+        "pricePerNight": 65000,
+        "hero": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+          "https://images.unsplash.com/photo-1455587734955-081b22074882?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Ресторан",
+          "Спа",
+          "Спортзал",
+          "Консьерж-сервис"
+        ],
+        "description": "Легендарный отель на Манхэттене"
+      },
+      {
+        "id": "w-yas",
+        "name": "W Abu Dhabi - Yas Island",
+        "city": "Яс Марина",
+        "country": "ОАЭ",
+        "location": "Остров Яс, Абу-Даби",
+        "distance": "0.1 км от трассы F1",
+        "coordinates": {
+          "lat": 24.4672,
+          "lng": 54.6031
+        },
+        "rating": 4.8,
+        "reviewCount": 1540,
+        "reviewScore": "Отлично",
+        "stars": 5,
+        "price": 25000,
+        "pricePerNight": 25000,
+        "hero": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=1200",
+          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Спа",
+          "Ресторан",
+          "Вид на трассу"
+        ],
+        "description": "Единственный в мире отель, расположенный над гоночной трассой Формулы-1"
+      },
+      {
+        "id": "yas-rotana",
+        "name": "Yas Island Rotana",
+        "city": "Яс Марина",
+        "country": "ОАЭ",
+        "location": "Яс Плаза, Абу-Даби",
+        "distance": "0.5 км от Ferrari World",
+        "coordinates": {
+          "lat": 24.4655,
+          "lng": 54.5988
+        },
+        "rating": 4.5,
+        "reviewCount": 2100,
+        "reviewScore": "Очень хорошо",
+        "stars": 4,
+        "price": 12000,
+        "pricePerNight": 12000,
+        "hero": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+        "images": [
+          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800"
+        ],
+        "amenities": [
+          "WiFi",
+          "Бассейн",
+          "Трансфер в парки",
+          "Ресторан"
+        ],
+        "description": "Комфортный отдых рядом с главными развлечениями острова Яс"
+      },
+      {
+        "id": "ritz-ny",
+        "name": "The Ritz-Carlton New York, Central Park",
+        "city": "Нью-Йорк",
+        "country": "США",
+        "location": "Центральный парк Саут, Нью-Йорк",
+        "distance": "0.05 км от парка",
+        "coordinates": {
+          "lat": 40.7654,
+          "lng": -73.9754
+        },
+        "rating": 4.9,
+        "reviewCount": 940,
+        "reviewScore": "Превосходно",
+        "stars": 5,
+        "price": 85000,
+        "pricePerNight": 85000,
+        "hero": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200",
+        "images": [
+          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200"
+        ],
+        "amenities": [
+          "WiFi",
+          "Спа",
+          "Ресторан",
+          "Консьерж",
+          "Вид на парк"
+        ],
+        "description": "Элегантная роскошь с легендарным видом на Центральный парк"
+      }
+    ],
+    "packages": [
+      {
+        "id": "1",
+        "title": "Пляжный побег в Гоа",
+        "destination": "Гоа, Индия",
+        "duration": {
+          "days": 5,
+          "nights": 4
+        },
+        "price": 35000,
+        "rating": 4.9,
+        "reviewCount": 234,
+        "image": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+        "highlights": [
+          "Пляжные курорты",
+          "Водные виды спорта",
+          "Круиз на закате",
+          "Местная кухня"
+        ],
+        "inclusions": [
+          "Перелеты",
+          "Отели",
+          "Трансферы",
+          "Завтрак"
+        ],
+        "theme": [
+          "Beach",
+          "Leisure"
+        ]
+      },
+      {
+        "id": "2",
+        "title": "Гималайское приключение",
+        "destination": "Манали, Индия",
+        "duration": {
+          "days": 6,
+          "nights": 5
+        },
+        "price": 28000,
+        "rating": 4.8,
+        "reviewCount": 189,
+        "image": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800",
+        "highlights": [
+          "Перевал Рохтанг",
+          "Долина Соланг",
+          "Треккинг",
+          "Парапланеризм"
+        ],
+        "inclusions": [
+          "Проживание",
+          "Питание",
+          "Трансферы",
+          "Мероприятия"
+        ],
+        "theme": [
+          "Adventure",
+          "Mountains"
+        ]
+      }
+    ],
+    "visa": [
+      {
+        "id": "1",
+        "country": "США",
+        "countryCode": "US",
+        "visaType": "Туристическая (B-2)",
+        "processingTime": "7-10 рабочих дней",
+        "validity": "10 лет",
+        "price": 15500,
+        "image": "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800",
+        "description": "Туристическая виза для отдыха или посещения семьи",
+        "requirements": [
+          "Действующий загранпаспорт",
+          "Фотография 5x5 см",
+          "Подтверждение дохода",
+          "План поездки"
+        ]
+      },
+      {
+        "id": "3",
+        "country": "Дубай (ОАЭ)",
+        "countryCode": "AE",
+        "visaType": "Туристическая",
+        "processingTime": "2-3 рабочих дня",
+        "validity": "60 дней",
+        "price": 6500,
+        "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
+        "description": "Краткосрочная туристическая виза в Дубай",
+        "requirements": [
+          "Скан первой страницы паспорта",
+          "Цветное фото",
+          "Бронь авиабилетов"
+        ]
+      }
+    ],
+    "flights": [
+      {
+        "id": "6E-2045",
+        "airline": "IndiGo",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200&h=200&fit=crop&q=80",
+        "flightNumber": "6E-2045",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "DXB",
+            "departure": "2026-05-15T09:00:00",
+            "arrival": "2026-05-15T11:05:00",
+            "duration": 125,
+            "cabin": "Эконом",
+            "flightNumber": "6E-2045"
+          }
+        ],
+        "duration": 125,
+        "price": 5499,
+        "cabin": "Эконом",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "7 кг",
+          "checked": "15 кг"
+        },
+        "amenities": [
+          "WiFi",
+          "Развлечения",
+          "Питание включено"
+        ]
+      },
+      {
+        "id": "TK-402",
+        "airline": "Turkish Airlines",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200&h=200&fit=crop&q=80",
+        "flightNumber": "TK-402",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "IST",
+            "departure": "2026-05-15T10:30:00",
+            "arrival": "2026-05-15T14:35:00",
+            "duration": 375,
+            "cabin": "Эконом",
+            "flightNumber": "TK-402"
+          }
+        ],
+        "duration": 375,
+        "price": 24500,
+        "cabin": "Эконом",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "8 кг",
+          "checked": "23 кг"
+        },
+        "amenities": [
+          "WiFi",
+          "Питание",
+          "Развлечения"
+        ]
+      },
+      {
+        "id": "event-1",
+        "airline": "United Airlines",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200",
+        "flightNumber": "UA-2026",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "JFK",
+            "departure": "2026-07-18T08:00:00",
+            "arrival": "2026-07-18T20:30:00",
+            "duration": 750,
+            "cabin": "Эконом",
+            "flightNumber": "UA-2026"
+          }
+        ],
+        "duration": 750,
+        "price": 85000,
+        "cabin": "Эконом",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "10 кг",
+          "checked": "23 кг"
+        },
+        "amenities": [
+          "WiFi",
+          "Питание",
+          "Фильмы"
+        ]
+      },
+      {
+        "id": "event-2",
+        "airline": "Emirates",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200",
+        "flightNumber": "EK-2026",
+        "segments": [
+          {
+            "from": "FRU",
+            "to": "DXB",
+            "departure": "2026-12-05T14:00:00",
+            "arrival": "2026-12-05T18:30:00",
+            "duration": 270,
+            "cabin": "Бизнес",
+            "flightNumber": "EK-2026"
+          }
+        ],
+        "duration": 270,
+        "price": 45000,
+        "cabin": "Бизнес",
+        "refundable": true,
+        "changeable": true,
+        "baggage": {
+          "cabin": "15 кг",
+          "checked": "40 кг"
+        },
+        "amenities": [
+          "WiFi",
+          "Люкс меню",
+          "Спа на борту"
+        ]
+      },
+      {
+        "id": "event-3",
+        "airline": "Aeroflot",
+        "airlineLogo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200",
+        "flightNumber": "SU-2026",
+        "segments": [
+          {
+            "from": "SVO",
+            "to": "FRU",
+            "departure": "2026-09-08T10:00:00",
+            "arrival": "2026-09-08T14:45:00",
+            "duration": 285,
+            "cabin": "Эконом",
+            "flightNumber": "SU-2026"
+          }
+        ],
+        "duration": 285,
+        "price": 18500,
+        "cabin": "Эконом",
+        "refundable": false,
+        "changeable": true,
+        "baggage": {
+          "cabin": "10 кг",
+          "checked": "23 кг"
+        },
+        "amenities": [
+          "Питание",
+          "Развлечения"
+        ]
+      }
+    ],
+    "trains": [
+      {
+        "id": "1",
+        "number": "001А",
+        "name": "Бишкек - Балыкчы",
+        "from": "FRU",
+        "to": "GOI",
+        "departureTime": "06:30",
+        "arrivalTime": "11:00",
+        "duration": "4ч 30м",
+        "price": 150,
+        "availableSeats": 45,
+        "type": "Стандарт"
+      },
+      {
+        "id": "2",
+        "number": "017Ф",
+        "name": "Бишкек - Москва",
+        "from": "FRU",
+        "to": "SVO",
+        "departureTime": "10:15",
+        "arrivalTime": "08:45",
+        "duration": "74ч 30м",
+        "price": 12500,
+        "availableSeats": 12,
+        "type": "Купе"
+      }
+    ]
+  },
   "Metadata": {
     "title": "AviaTravelClub - авиаперелеты и туры в Бишкеке",
     "description": "Ваше путешествие начинается"
@@ -21,7 +753,7 @@
     "collapse": "Свернуть"
   },
   "Hero": {
-    "title": "Откройте для себя следующее приключение",
+    "title": "Откройте для себя новое приключение",
     "subtitle": "Бронируйте авиабилеты, отели и турпакеты по лучшим ценам"
   },
   "Search": {
@@ -300,6 +1032,8 @@
   },
   "Flights": {
     "editSearch": "Изменить поиск",
+    "allOrigins": "Все города",
+    "allDestinations": "Все направления",
     "foundFlights": "Найдено авиабилетов: {count}",
     "oneFlightFound": "Найден 1 авиабилет",
     "filters": "Фильтры",
@@ -376,8 +1110,10 @@
     "checkIn": "ЗАЕЗД",
     "checkOut": "ВЫЕЗД",
     "search": "Найти",
-    "hotelsFound": "Отелей в городе {location}: {count}",
-    "savingsSubtitle": "Лучшие предложения на отели в городе {location} онлайн",
+    "hotelsFound": "Отели в г. {location}: {count}",
+    "allHotels": "Все отели",
+    "savingsSubtitle": "Лучшие предложения на отели в г. {location} онлайн",
+    "savingsSubtitleAll": "Лучшие предложения на отели по всем направлениям",
     "sortBy": {
       "label": "Сортировать",
       "rating": "По рейтингу",
@@ -393,377 +1129,7 @@
     "viewDetails": "Подробнее",
     "bookNow": "Забронировать",
     "starCount": "{count} звезд",
-    "more": "+ еще {count}",
-    "mockData": [
-      {
-        "id": "1",
-        "name": "The Taj Mahal Palace",
-        "location": "Колаба, Мумбаи",
-        "distance": "2.5 км от центра",
-        "coordinates": {
-          "lat": 18.9217,
-          "lng": 72.8332
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200",
-          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200",
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200",
-          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
-          "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800",
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-          "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
-          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
-          "https://images.unsplash.com/photo-1469796466635-455ede028ca2?w=800",
-          "https://images.unsplash.com/photo-1517840901100-8179e982acb7?w=800"
-        ],
-        "rating": 4.8,
-        "reviewCount": 1234,
-        "reviewScore": "Отлично",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Спа",
-          "Ресторан",
-          "Спортзал",
-          "Парковка",
-          "Бар",
-          "Обслуживание номеров"
-        ],
-        "price": 15000,
-        "availableRooms": 5,
-        "description": "Культовый роскошный отель с видом на Ворота Индии"
-      },
-      {
-        "id": "2",
-        "name": "The Oberoi",
-        "location": "Нариман-Пойнт, Мумбаи",
-        "distance": "1.2 км от центра",
-        "coordinates": {
-          "lat": 18.9256,
-          "lng": 72.8242
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
-          "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800",
-          "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800"
-        ],
-        "rating": 4.9,
-        "reviewCount": 892,
-        "reviewScore": "Превосходно",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Спа",
-          "Ресторан",
-          "Спортзал",
-          "Трансфер в аэропорт"
-        ],
-        "price": 18000,
-        "availableRooms": 3,
-        "description": "Непревзойденное гостеприимство и потрясающий вид на Аравийское море"
-      },
-      {
-        "id": "3",
-        "name": "Trident BKC",
-        "location": "Бандра-Курла Комплекс",
-        "distance": "8 км от центра",
-        "coordinates": {
-          "lat": 19.0653,
-          "lng": 72.8672
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-          "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800",
-          "https://images.unsplash.com/photo-1455587734955-081b22074882?w=800"
-        ],
-        "rating": 4.6,
-        "reviewCount": 567,
-        "reviewScore": "Очень хорошо",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Ресторан",
-          "Спортзал",
-          "Бизнес-центр"
-        ],
-        "price": 12000,
-        "availableRooms": 8,
-        "description": "Современная роскошь в самом сердце делового района Мумбаи"
-      },
-      {
-        "id": "4",
-        "name": "ITC Maratha",
-        "location": "Андхери-Ист, Мумбаи",
-        "distance": "6 км от аэропорта",
-        "coordinates": {
-          "lat": 19.099,
-          "lng": 72.874
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
-          "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
-          "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800"
-        ],
-        "rating": 4.7,
-        "reviewCount": 743,
-        "reviewScore": "Отлично",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Спа",
-          "Ресторан",
-          "Спортзал",
-          "Трансфер в аэропорт",
-          "Бар"
-        ],
-        "price": 10000,
-        "availableRooms": 12,
-        "description": "Ощутите величие династии Маратхов"
-      },
-      {
-        "id": "5",
-        "name": "JW Marriott Juhu",
-        "location": "Джуху-Бич, Мумбаи",
-        "distance": "15 км от центра",
-        "coordinates": {
-          "lat": 19.0936,
-          "lng": 72.8267
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
-          "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800",
-          "https://images.unsplash.com/photo-1562790351-d273a961e0e9?w=800"
-        ],
-        "rating": 4.8,
-        "reviewCount": 1089,
-        "reviewScore": "Отлично",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Выход к пляжу",
-          "Бассейн",
-          "Спа",
-          "Ресторан",
-          "Спортзал",
-          "Бар"
-        ],
-        "price": 14000,
-        "availableRooms": 6,
-        "description": "Прямой доступ к знаменитому пляжу Джуху"
-      },
-      {
-        "id": "6",
-        "name": "Hotel Sea Green",
-        "location": "Марин-Драйв, Мумбаи",
-        "distance": "0.8 км от центра",
-        "coordinates": {
-          "lat": 18.9432,
-          "lng": 72.8235
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
-          "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
-          "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800"
-        ],
-        "rating": 4.3,
-        "reviewCount": 445,
-        "reviewScore": "Хорошо",
-        "stars": 3,
-        "amenities": [
-          "WiFi",
-          "Ресторан",
-          "Обслуживание номеров",
-          "Прачечная"
-        ],
-        "price": 5000,
-        "availableRooms": 15,
-        "description": "Бутик-отель с панорамным видом на Ожерелье Королевы"
-      },
-      {
-        "id": "7",
-        "name": "Atlantis, The Palm",
-        "location": "Палм-Джумейра, Дубай",
-        "distance": "15 км от центра",
-        "coordinates": {
-          "lat": 25.1304,
-          "lng": 55.1171
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800"
-        ],
-        "rating": 4.9,
-        "reviewCount": 5420,
-        "reviewScore": "Превосходно",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Аквапарк",
-          "Спа",
-          "Ресторан",
-          "Спортзал",
-          "Бар"
-        ],
-        "price": 45000,
-        "availableRooms": 10,
-        "description": "Роскошный курорт на вершине острова Палм-Джумейра"
-      },
-      {
-        "id": "8",
-        "name": "Burj Al Arab Jumeirah",
-        "location": "Умм-Сукейм, Дубай",
-        "distance": "12 км от центра",
-        "coordinates": {
-          "lat": 25.1412,
-          "lng": 55.1852
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
-          "https://images.unsplash.com/photo-1544161515-4ae6ce6ca606?w=800",
-          "https://images.unsplash.com/photo-1517840901100-8179e982acb7?w=800"
-        ],
-        "rating": 5.0,
-        "reviewCount": 1240,
-        "reviewScore": "Исключительно",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Спа",
-          "Ресторан",
-          "Спортзал",
-          "Трансфер в аэропорт",
-          "Вертолетная площадка"
-        ],
-        "price": 120000,
-        "availableRooms": 2,
-        "description": "Самый роскошный отель в мире"
-      },
-      {
-        "id": "9",
-        "name": "The Plaza Hotel",
-        "location": "Пятая авеню, Нью-Йорк",
-        "distance": "0.1 км от Центрального парка",
-        "coordinates": {
-          "lat": 40.7644,
-          "lng": -73.9744
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
-          "https://images.unsplash.com/photo-1455587734955-081b22074882?w=800",
-          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800"
-        ],
-        "rating": 4.7,
-        "reviewCount": 3210,
-        "reviewScore": "Отлично",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Ресторан",
-          "Спа",
-          "Спортзал",
-          "Консьерж-сервис",
-          "Бар"
-        ],
-        "price": 65000,
-        "availableRooms": 4,
-        "description": "Легендарный отель на Манхэттене"
-      },
-      {
-        "id": "10",
-        "name": "W Abu Dhabi - Yas Island",
-        "location": "Яс Марина, Абу-Даби",
-        "distance": "0.5 км от трассы F1",
-        "coordinates": {
-          "lat": 24.4671,
-          "lng": 54.6064
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800",
-          "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
-          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800"
-        ],
-        "rating": 4.8,
-        "reviewCount": 2150,
-        "reviewScore": "Отлично",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Вид на трассу",
-          "Спа",
-          "Ресторан",
-          "Бар"
-        ],
-        "price": 25000,
-        "availableRooms": 7,
-        "description": "Уникальный дизайн и вид на трассу Яс Марина"
-      },
-      {
-        "id": "11",
-        "name": "Karven Four Seasons",
-        "location": "Сары-Ой, Иссык-Куль",
-        "distance": "12 км от Чолпон-Аты",
-        "coordinates": {
-          "lat": 42.6167,
-          "lng": 77.0833
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
-          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800",
-          "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=800"
-        ],
-        "rating": 4.6,
-        "reviewCount": 850,
-        "reviewScore": "Очень хорошо",
-        "stars": 5,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Собственный пляж",
-          "Теннисный корт",
-          "Ресторан"
-        ],
-        "price": 12000,
-        "availableRooms": 15,
-        "description": "Один из лучших центров отдыха на Иссык-Куле"
-      },
-      {
-        "id": "12",
-        "name": "Kapriz Issyk-Kul",
-        "location": "Бактуу-Долоноту, Иссык-Куль",
-        "distance": "5 км от Чолпон-Аты",
-        "coordinates": {
-          "lat": 42.65,
-          "lng": 77.1667
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800",
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
-          "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800"
-        ],
-        "rating": 4.5,
-        "reviewCount": 620,
-        "reviewScore": "Хорошо",
-        "stars": 4,
-        "amenities": [
-          "WiFi",
-          "Бассейн",
-          "Собственный пляж",
-          "Детская площадка",
-          "Ресторан"
-        ],
-        "price": 8500,
-        "availableRooms": 20,
-        "description": "Комфортный отдых для всей семьи"
-      }
-    ]
+    "more": "+ еще {count}"
   },
   "Holidays": {
     "title": "Турпакеты",
@@ -787,149 +1153,7 @@
       "Wildlife": "Дикая природа",
       "Honeymoon": "Медовый месяц",
       "Family": "Семейный отдых"
-    },
-    "mockData": [
-      {
-        "id": "1",
-        "title": "Пляжный побег в Гоа",
-        "destination": "Гоа, Индия",
-        "coordinates": {
-          "lat": 15.2993,
-          "lng": 74.124
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
-          "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=800",
-          "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
-          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800",
-          "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=800",
-          "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800",
-          "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800"
-        ],
-        "duration": {
-          "days": 5,
-          "nights": 4
-        },
-        "price": 35000,
-        "rating": 4.9,
-        "reviewCount": 234,
-        "theme": [
-          "Beach",
-          "Leisure"
-        ],
-        "inclusions": [
-          "Перелеты",
-          "Отели",
-          "Трансферы",
-          "Завтрак"
-        ],
-        "highlights": [
-          "Пляжные курорты",
-          "Водные виды спорта",
-          "Круиз на закате",
-          "Местная кухня"
-        ],
-        "itinerary": [
-          {
-            "day": 1,
-            "title": "Прибытие и отдых на пляже",
-            "desc": "Добро пожаловать в Гоа! Трансфер в ваш пляжный курорт и отдых."
-          },
-          {
-            "day": 2,
-            "title": "Достопримечательности Северного Гоа",
-            "desc": "Посетите форт Агуада, форт Чапора и знаменитые пляжи Калангут и Бага."
-          },
-          {
-            "day": 3,
-            "title": "Водные виды спорта и приключения",
-            "desc": "Попробуйте парасейлинг, гидроциклы и катание на банане на пляже Калангут."
-          },
-          {
-            "day": 4,
-            "title": "Исследование Южного Гоа",
-            "desc": "Откройте для себя пляж Палолем и древний форт Кабо-де-Рама."
-          },
-          {
-            "day": 5,
-            "title": "Отъезд",
-            "desc": "Заключительный завтрак и трансфер в аэропорт."
-          }
-        ]
-      },
-      {
-        "id": "2",
-        "title": "Гималайское приключение",
-        "destination": "Манали, Гб",
-        "coordinates": {
-          "lat": 32.2396,
-          "lng": 77.1887
-        },
-        "images": [
-          "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800",
-          "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800",
-          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800",
-          "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800",
-          "https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?w=800",
-          "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800"
-        ],
-        "duration": {
-          "days": 6,
-          "nights": 5
-        },
-        "price": 28000,
-        "rating": 4.8,
-        "reviewCount": 189,
-        "theme": [
-          "Adventure",
-          "Mountains"
-        ],
-        "inclusions": [
-          "Проживание",
-          "Питание",
-          "Трансферы",
-          "Мероприятия"
-        ],
-        "highlights": [
-          "Перевал Рохтанг",
-          "Долина Соланг",
-          "Треккинг",
-          "Парапланеризм"
-        ],
-        "itinerary": [
-          {
-            "day": 1,
-            "title": "Прибытие в Манали",
-            "desc": "Заселение и вечерняя прогулка по Мол Роуд."
-          },
-          {
-            "day": 2,
-            "title": "Осмотр местных достопримечательностей",
-            "desc": "Посетите храм Хадимба Деви и горячие источники Вашишт."
-          },
-          {
-            "day": 3,
-            "title": "Приключение на перевале Рохтанг",
-            "desc": "Полный день снежных приключений на перевале Рохтанг."
-          },
-          {
-            "day": 4,
-            "title": "Долина Соланг",
-            "desc": "Попробуйте парапланеризм и зорбинг в долине Соланг."
-          },
-          {
-            "day": 5,
-            "title": "Исследование Куллу",
-            "desc": "Посетите долину Куллу для речного рафтинга."
-          },
-          {
-            "day": 6,
-            "title": "Отъезд",
-            "desc": "Трансфер в аэропорт Бхунтар."
-          }
-        ]
-      }
-    ]
+    }
   },
   "Visa": {
     "title": "Визовые услуги",
@@ -961,127 +1185,22 @@
     "requirements": "Требования",
     "viewDetails": "Подробнее",
     "hide": "Скрыть",
-    "view": "Показать",
-    "mockData": [
-      {
-        "id": "1",
-        "country": "США",
-        "countryCode": "US",
-        "visaType": "Туристическая (B-2)",
-        "processingTime": "7-10 рабочих дней",
-        "validity": "10 лет (многократный въезд)",
-        "price": 15500,
-        "image": "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800",
-        "description": "Туристическая виза для отдыха, посещения семьи или лечения",
-        "requirements": [
-          "Действующий загранпаспорт (срок действия 6 месяцев)",
-          "Недавняя фотография паспортного размера",
-          "Подтверждение финансовой стабильности",
-          "Маршрут путешествия и бронь отеля",
-          "Справка с места работы или подтверждение бизнеса",
-          "История предыдущих поездок"
-        ]
-      },
-      {
-        "id": "2",
-        "country": "Великобритания",
-        "countryCode": "GB",
-        "visaType": "Стандартная гостевая виза",
-        "processingTime": "15 рабочих дней",
-        "validity": "6 месяцев (многократный въезд)",
-        "price": 12000,
-        "image": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800",
-        "description": "Посетите Великобританию для отдыха, бизнеса или встречи с семьей",
-        "requirements": [
-          "Текущий загранпаспорт",
-          "Выписки из банковского счета (за последние 6 месяцев)",
-          "Налоговые декларации",
-          "Данные о проживании",
-          "Подробный план поездки по дням"
-        ]
-      },
-      {
-        "id": "3",
-        "country": "Дубай (ОАЭ)",
-        "countryCode": "AE",
-        "visaType": "30-дневная туристическая виза",
-        "processingTime": "2-3 рабочих дня",
-        "validity": "60 дней с момента выдачи",
-        "price": 6500,
-        "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
-        "description": "Краткосрочная туристическая виза для знакомства с Дубаем",
-        "requirements": [
-          "Сканированная копия паспорта",
-          "Фотография на белом фоне",
-          "Подтвержденный обратный билет",
-          "Копия PAN-карты (если применимо)"
-        ]
-      }
-    ]
+    "view": "Показать"
   },
   "VisaDetail": {
-    "back": "Назад к визовым услугам",
-    "thankYou": "Спасибо! Наш визовый консультант свяжется с вами в течение 24 часов.",
-    "documentRequirements": "Требования к документам",
-    "processingTimeline": "Сроки оформления",
-    "feesBreakdown": "Расшифровка стоимости",
-    "importantInformation": "Важная информация",
-    "faqs": "Часто задаваемые вопросы",
-    "enquiryTitle": "Оставить заявку",
-    "enquiryDesc": "Получите экспертную помощь в оформлении визы",
-    "itemsCount": "{count} поз.",
-    "day": "День {count}",
-    "bookNow": "Подать заявку",
-    "labels": {
-      "perApplicant": "за заявителя",
-      "workingHours": "Пн-Пт: 09:00 - 18:00"
-    },
+    "back": "Назад",
+    "bookNow": "Оформить сейчас",
+    "enquiryTitle": "Задать вопрос",
     "helpTitle": "Нужна помощь?",
-    "fees": {
-      "embassy": "Консульский сбор",
-      "service": "Сервисный сбор",
-      "processing": "Сбор за обработку",
-      "total": "Итоговая сумма"
-    },
-    "form": {
-      "name": "Полное имя",
-      "email": "Электронная почта",
-      "phone": "Номер телефона",
-      "travelDate": "Дата поездки",
-      "message": "Сообщение",
-      "submit": "Отправить запрос",
-      "cancel": "Отмена"
-    },
-    "timeline": {
-      "step1": { "title": "Подача заявки", "desc": "Подайте заявку со всеми необходимыми документами" },
-      "step2": { "title": "Проверка документов", "desc": "Наша команда проверяет комплектность всех документов" },
-      "step3": { "title": "Подача в посольство", "desc": "Заявка передана в посольство/консульство" },
-      "step4": { "title": "Обработка", "desc": "Посольство обрабатывает вашу визовую заявку" },
-      "step5": { "title": "Выдача визы", "desc": "Одобренная виза отправлена на вашу электронную почту" }
-    },
-    "info": {
-      "approval": { "title": "Одобрение визы", "desc": "Одобрение визы остается на усмотрение посольства. Мы помогаем с документами, но не гарантируем одобрение." },
-      "validity": { "title": "Действие паспорта", "desc": "Ваш паспорт должен быть действителен не менее 6 месяцев после окончания поездки." },
-      "format": { "title": "Формат документов", "desc": "Все документы должны быть четкими сканами в формате PDF, не более 2 МБ на файл." },
-      "delivery": { "title": "Доставка визы", "desc": "Одобренная виза будет отправлена на ваш e-mail. Для вклеивания стикера может потребоваться подача паспорта." }
-    },
+    "thankYou": "Спасибо за ваш запрос! Мы свяжемся с вами в ближайшее время.",
     "trust": {
-      "expertAssistance": "Экспертная помощь",
+      "expertAssistance": "Помощь экспертов",
       "verification": "Проверка документов",
-      "tracking": "Отслеживание 24/7",
-      "secure": "Безопасная оплата",
-      "secureTitle": "Нам доверяют",
-      "stats": "Более 10,000 успешно оформленных виз"
+      "tracking": "Отслеживание статуса",
+      "secure": "Безопасная оплата"
     },
-    "faqsList": [
-      { "q": "Можно ли отследить мою заявку?", "a": "Да, после подачи вы получите ID для отслеживания статуса в реальном времени." },
-      { "q": "Что будет, если в визе откажут?", "a": "Консульский сбор не возвращается, но наш сервисный сбор можно использовать для повторной подачи в течение 6 месяцев." },
-      { "q": "Нужно ли личное присутствие в посольстве?", "a": "Для большинства стран могут потребоваться биометрия или интервью. Мы сопроводим вас на каждом этапе." },
-      { "q": "Можно ли ускорить процесс оформления?", "a": "Да, для некоторых стран доступно срочное оформление за доплату. Свяжитесь с нами для деталей." }
-    ],
     "labels": {
-      "perApplicant": "за заявителя",
-      "workingHours": "Пн-Сб: 9:00 - 18:00"
+      "perApplicant": "за одного заявителя"
     }
   },
   "Airports": {
@@ -1177,9 +1296,18 @@
     "noResults": "Ничего не найдено",
     "noResultsDesc": "Попробуйте изменить поисковый запрос или выбрать другую категорию",
     "trustBar": {
-      "support": { "title": "Поддержка 24/7", "desc": "Мы всегда на связи, чтобы помочь вам" },
-      "reliability": { "title": "Надежность", "desc": "15 лет безупречной работы на рынке" },
-      "destinations": { "title": "Любые направления", "desc": "Билеты во все точки мира по лучшим ценам" }
+      "support": {
+        "title": "Поддержка 24/7",
+        "desc": "Мы всегда на связи, чтобы помочь вам"
+      },
+      "reliability": {
+        "title": "Надежность",
+        "desc": "15 лет безупречной работы на рынке"
+      },
+      "destinations": {
+        "title": "Любые направления",
+        "desc": "Билеты во все точки мира по лучшим ценам"
+      }
     },
     "categories": [
       {
@@ -1386,22 +1514,6 @@
       "Необходимо удостоверение личности для всех участников",
       "Цены могут меняться в пик сезона"
     ]
-  },
-  "VisaDetail": {
-    "back": "Назад",
-    "bookNow": "Оформить сейчас",
-    "enquiryTitle": "Задать вопрос",
-    "helpTitle": "Нужна помощь?",
-    "thankYou": "Спасибо за ваш запрос! Мы свяжемся с вами в ближайшее время.",
-    "trust": {
-      "expertAssistance": "Помощь экспертов",
-      "verification": "Проверка документов",
-      "tracking": "Отслеживание статуса",
-      "secure": "Безопасная оплата"
-    },
-    "labels": {
-      "perApplicant": "за одного заявителя"
-    }
   },
   "AITripPlanner": {
     "title": "AI Планировщик туров",
@@ -1769,7 +1881,8 @@
         "date": "19 июля 2026",
         "description": "Ощутите вершину мирового футбола. Забронируйте перелет и отель сейчас, чтобы занять свое место!",
         "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80",
-        "category": "Спорт"
+        "category": "Спорт",
+        "startDate": "2026-07-19"
       },
       {
         "id": "f1dubai",
@@ -1779,7 +1892,8 @@
         "date": "6 декабря 2026",
         "description": "Финал сезона Формулы-1. Ощутите скорость и блеск в Абу-Даби.",
         "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=1200&q=80",
-        "category": "Гонки"
+        "category": "Гонки",
+        "startDate": "2026-12-06"
       },
       {
         "id": "wng2026",
@@ -1789,7 +1903,8 @@
         "date": "8-14 сентября 2026",
         "description": "Погрузитесь в атмосферу кочевой культуры и захватывающих национальных видов спорта. Забронируйте отдых на Иссык-Куле прямо сейчас!",
         "image": "https://kappa.lol/9ApZh8",
-        "category": "Культура и спорт"
+        "category": "Культура и спорт",
+        "startDate": "2026-09-08"
       }
     ]
   },

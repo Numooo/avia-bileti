@@ -10,7 +10,8 @@ import type { HolidayPackage } from "@/types";
 export default function HolidayDetailRoute({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const t = useTranslations("Holidays");
-  const packages = t.raw("mockData") as HolidayPackage[];
+  const tMock = useTranslations("MockData");
+  const packages = tMock.raw("packages") as HolidayPackage[];
   const pkg = packages.find((p) => p.id === id);
   const router = useRouter();
   const setBooking = useBookingStore((state) => state.setBooking);

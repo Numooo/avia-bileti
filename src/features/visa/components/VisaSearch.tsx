@@ -31,17 +31,17 @@ export function VisaSearch({ onSearch }: VisaSearchProps) {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {/* Destination */}
         <div className="relative">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
+          <label className="mb-1.5 block text-xs font-semibold text-gray-500 capitalize px-1">
             {t("Search.visa.country")}
           </label>
           <div className="relative group">
-            <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors" />
+            <MapPin className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors z-10" />
             <input
               type="text"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               placeholder={t("Search.visa.countryPlaceholder")}
-              className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm font-medium text-gray-900 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all"
+              className="w-full appearance-none rounded-2xl border-none bg-gray-50 py-3.5 pl-11 pr-4 text-sm font-bold text-gray-900 focus:ring-2 focus:ring-brand-primary/20 transition-all placeholder:text-gray-400"
             />
           </div>
         </div>
@@ -85,7 +85,7 @@ export function VisaSearch({ onSearch }: VisaSearchProps) {
       {/* Check Button */}
       <button
         onClick={handleSearch}
-        className="w-full rounded-2xl bg-brand-primary py-4 text-white font-bold shadow-lg shadow-brand-primary/20 hover:bg-brand-secondary transition-all flex items-center justify-center gap-3 hover:scale-[1.01] active:scale-[0.99]"
+        className="w-full rounded-2xl bg-brand-primary py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-brand-secondary hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2"
       >
         <FileText className="h-5 w-5" />
         {t("Search.visa.check")}

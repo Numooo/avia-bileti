@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Activity,
@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { format } from "date-fns";
-import { AIRPORTS } from "@/shared/mocks/data";
+import type { Airport } from "@/types";
 
 type SearchMode = "flightNumber" | "route" | "allFlights";
 
@@ -204,6 +204,8 @@ function statusColor(s: string): string {
 
 export function FlightStatusPage() {
   const t = useTranslations("Search.status");
+  const tMock = useTranslations("MockData");
+  const AIRPORTS = useMemo(() => tMock.raw("airports") as Airport[], [tMock]);
 
   const [mode, setMode] = useState<SearchMode>("flightNumber");
   const [flightNumber, setFlightNumber] = useState("");

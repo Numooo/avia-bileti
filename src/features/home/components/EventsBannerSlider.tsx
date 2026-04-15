@@ -11,6 +11,7 @@ interface EventItem {
   location: string;
   destinationCode?: string;
   date: string;
+  startDate?: string;
   description: string;
   image: string;
   category: string;
@@ -18,10 +19,11 @@ interface EventItem {
 
 interface EventsBannerSliderProps {
   onNavigate?: (path: string) => void;
-  onSearchFlights?: (from?: string, to?: string) => void;
+  onSearchFlights?: (from?: string, to?: string, date?: string) => void;
+  onSearchHotels?: (location?: string, date?: string) => void;
 }
 
-export function EventsBannerSlider({ onNavigate, onSearchFlights }: EventsBannerSliderProps) {
+export function EventsBannerSlider({ onNavigate, onSearchFlights, onSearchHotels }: EventsBannerSliderProps) {
   const t = useTranslations();
   const [currentIndex, setCurrentIndex] = useState(0);
   
@@ -46,7 +48,7 @@ export function EventsBannerSlider({ onNavigate, onSearchFlights }: EventsBanner
 
   const handleBookNow = () => {
     if (onSearchFlights) {
-      onSearchFlights(undefined, currentEvent.location);
+      onSearchFlights(undefined, currentEvent.destinationCode || currentEvent.location, currentEvent.startDate);
     } else if (onNavigate) {
       onNavigate("flights");
     }
@@ -118,7 +120,7 @@ export function EventsBannerSlider({ onNavigate, onSearchFlights }: EventsBanner
                       {t("Events.bookNow")}
                     </button>
                     <button 
-                      onClick={() => onNavigate?.("hotels")}
+                      onClick={() => onSearchHotels ? onSearchHotels(currentEvent.location, currentEvent.startDate) : onNavigate?.("hotels")}
                       className="px-8 py-3.5 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-2xl font-black text-base hover:bg-white/20 transition-all duration-300 flex items-center gap-2.5 hover:scale-105 active:scale-95"
                     >
                       <Hotel className="h-5 w-5" />

@@ -62,7 +62,7 @@ export function HeroSection({
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Hero Text */}
-        <div className="text-center mb-12">
+        <div className="text-center max-w-6xl mb-12">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

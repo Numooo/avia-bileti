@@ -8,20 +8,17 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import type { FlightOffer } from "../../types";
-import {
-  formatCurrency,
-  getAirportLabel,
-} from "@/shared/mocks/data";
 import { useTranslations, useLocale } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
-
+import type { FlightOffer } from "../../types";
 interface FlightResultCardProps {
   flight: FlightOffer;
   onBook: (flight: FlightOffer) => void;
+  getAirportLabel: (code: string) => string;
+  formatCurrency: (amount: number) => string;
 }
 
-export function FlightResultCard({ flight, onBook }: FlightResultCardProps) {
+export function FlightResultCard({ flight, onBook, getAirportLabel, formatCurrency }: FlightResultCardProps) {
   const t = useTranslations("Flights.resultCard");
   const locale = useLocale();
   const { CurrencySymbol } = useCurrency();

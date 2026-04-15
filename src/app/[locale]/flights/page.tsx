@@ -9,6 +9,7 @@ export default function FlightsRoute() {
   const searchParams = useSearchParams();
   const origin = searchParams.get("origin");
   const destination = searchParams.get("destination");
+  const date = searchParams.get("date");
 
   const setBooking = useBookingStore((state) => state.setBooking);
   const router = useRouter();
@@ -26,6 +27,7 @@ export default function FlightsRoute() {
     <FlightsPage
       initialOrigin={origin}
       initialDestination={destination}
+      initialDate={date}
       onBookFlight={handleBookFlight}
       onBack={handleBack}
     />

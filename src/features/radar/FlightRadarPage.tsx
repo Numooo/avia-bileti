@@ -109,12 +109,14 @@ const RadarMapInner = ({
     <MapContainer
       center={DEFAULT_CENTER}
       zoom={DEFAULT_ZOOM}
+      minZoom={4} // Prevent zooming out too far
+      maxZoom={12}
       className="w-full h-full z-10"
       zoomControl={false}
+      attributionControl={false} // Remove watermark/attribution
     >
       <TileLayer
         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; OpenStreetMap &copy; CARTO &copy; OpenSky Network'
       />
       <MapEvents />
       
@@ -151,16 +153,17 @@ export function FlightRadarPage() {
   const [currentZoom, setCurrentZoom] = useState<number>(DEFAULT_ZOOM);
   
   const lastFetchTimeRef = useRef<number>(0);
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const fetchFlights = useCallback(async (boundsStr: string, zoom: number) => {
+  const fetchFlights = useCallback(async (boundsStr: string, zoom: number, force = false) => {
     if (!boundsStr || zoom < MIN_ZOOM_FOR_FETCH) {
       if (zoom < MIN_ZOOM_FOR_FETCH) setFlights([]);
       return;
     }
 
-    // Rate limiting: throttle manual moves if they happen too fast (min 5 sec between fetches)
+    // Rate limiting: throttle fetches (min 10 sec between fetches unless forced)
     const now = Date.now();
-    if (now - lastFetchTimeRef.current < 5000) return;
+    if (!force && now - lastFetchTimeRef.current < 10000) return;
     lastFetchTimeRef.current = now;
 
     const [lamin, lomin, lamax, lomax] = boundsStr.split(",");
@@ -173,7 +176,13 @@ export function FlightRadarPage() {
       
       if (!response.ok) {
         setErrorStatus(response.status);
-        console.error("Flight Radar API Error:", response.status);
+        if (response.status === 429) {
+          // If 429, don't try again for at least 60 seconds (extended)
+          lastFetchTimeRef.current = now + 60000;
+          console.warn("Flight Radar: API Rate limit reached (429). Throttling requests.");
+        } else {
+          console.error("Flight Radar API Error:", response.status);
+        }
         return;
       }
       
@@ -195,15 +204,26 @@ export function FlightRadarPage() {
   const handleBoundsChange = useCallback((boundsStr: string, zoom: number) => {
     setCurrentBoundsStr(boundsStr);
     setCurrentZoom(zoom);
-  }, []);
+    
+    // Debounce manual moves
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+    debounceTimerRef.current = setTimeout(() => {
+      fetchFlights(boundsStr, zoom);
+    }, 2000); // Wait 2 seconds after move ends before fetching
+  }, [fetchFlights]);
 
   useEffect(() => {
-    if (currentBoundsStr) {
-      fetchFlights(currentBoundsStr, currentZoom);
-      const interval = setInterval(() => fetchFlights(currentBoundsStr, currentZoom), REFRESH_INTERVAL);
+    // Background auto-refresh
+    if (currentBoundsStr && !errorStatus) {
+      const interval = setInterval(() => {
+        fetchFlights(currentBoundsStr, currentZoom);
+      }, REFRESH_INTERVAL);
       return () => clearInterval(interval);
     }
-  }, [currentBoundsStr, currentZoom, fetchFlights]);
+    return () => {
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+    };
+  }, [currentBoundsStr, currentZoom, fetchFlights, errorStatus]);
 
   const filteredFlights = useMemo(() => {
     return flights.filter(f => f.callsign.toLowerCase().includes(searchQuery.toLowerCase()));

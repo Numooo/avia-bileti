@@ -20,7 +20,7 @@ export async function GET(request: Request) {
       headers: {
         'Authorization': `Basic ${auth}`,
       },
-      next: { revalidate: 10 } // Cache for 10 seconds (standard for OpenSky)
+      next: { revalidate: 30 } // Cache for 30 seconds to stay within API limits
     });
 
     if (!res.ok) {

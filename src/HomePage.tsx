@@ -9,9 +9,10 @@ import { TestimonialsSection } from "@/features/home/components/TestimonialsSect
 import { WhyChooseUsSection } from "@/features/home/components/WhyChooseUsSection";
 
 interface HomePageProps {
-  onSearchFlights?: (from?: string, to?: string) => void;
+  onSearchFlights?: (from?: string, to?: string, date?: string) => void;
   onSearchCargo?: (data: any) => void;
   onSearchTrains?: (from: string, to: string, date: string) => void;
+  onSearchHotels?: (location?: string, date?: string) => void;
   onNavigate?: (page: string) => void;
 }
 
@@ -19,6 +20,7 @@ export function HomePage({
   onSearchFlights,
   onSearchCargo,
   onSearchTrains,
+  onSearchHotels,
   onNavigate,
 }: HomePageProps) {
   return (
@@ -41,6 +43,7 @@ export function HomePage({
       <EventsBannerSlider 
         onNavigate={onNavigate}
         onSearchFlights={onSearchFlights}
+        onSearchHotels={onSearchHotels}
       />
 
       {/* Featured Holiday Packages */}

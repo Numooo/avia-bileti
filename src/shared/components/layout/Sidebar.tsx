@@ -34,10 +34,10 @@ export function Sidebar({ isPinned = true }: SidebarProps) {
     { id: "hotels", icon: Hotel, label: t("Search.tabs.hotels") },
     { id: "holidays", icon: Palmtree, label: t("Search.tabs.holidays") },
     { id: "visa", icon: FileText, label: t("Search.tabs.visa") },
-    { id: "radar", icon: Navigation, label: t("Search.tabs.radar") },
     { id: "trains", icon: Train, label: t("Search.tabs.trains") },
     { id: "cargo", icon: Truck, label: t("Search.tabs.cargo") },
     { id: "status", icon: Activity, label: t("Search.tabs.status") },
+    { id: "radar", icon: Navigation, label: t("Search.tabs.radar") },
     { id: "faq", icon: HelpCircle, label: t("Footer.links.faqs") },
   ];
 
