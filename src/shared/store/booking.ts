@@ -7,7 +7,7 @@ import type {
   VisaRequirement,
 } from "@/types";
 
-export type BookingType = "flight" | "hotel" | "package" | "visa";
+export type BookingType = "flight" | "hotel" | "package" | "visa" | "cargo" | "train";
 
 export interface BookingMetadata {
   checkInDate?: string;

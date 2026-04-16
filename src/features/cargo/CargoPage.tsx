@@ -19,11 +19,15 @@ import { useCurrency } from "@/CurrencyContext";
 import type { Airport } from "@/types";
 import { AirportAutocomplete } from "@/shared/ui/AirportAutocomplete";
 import { CustomSelect } from "@/shared/ui/CustomSelect";
+import { useBookingStore } from "@/shared/store/booking";
+import { useRouter } from "@/i18n/routing";
 
 export function CargoPage({ initialData }: { initialData?: any }) {
   const t = useTranslations("Cargo");
   const tMock = useTranslations("MockData");
   const { symbol, CurrencySymbol } = useCurrency();
+  const { setBooking } = useBookingStore();
+  const router = useRouter();
   const AIRPORTS = useMemo(() => tMock.raw("airports") as Airport[], [tMock]);
   const [trackingId, setTrackingId] = useState("");
 
@@ -60,7 +64,7 @@ export function CargoPage({ initialData }: { initialData?: any }) {
   const handleTrack = (e: React.FormEvent) => {
     e.preventDefault();
     if (trackingId.trim()) {
-      alert(`Tracking ID: ${trackingId}\nStatus: In transit`);
+      alert(t("trackingAlert", { id: trackingId }));
     }
   };
 
@@ -74,6 +78,21 @@ export function CargoPage({ initialData }: { initialData?: any }) {
     if (calcType === "train") mult = 0.8;
     const cost = 500 + w * 15 * mult + v * 50 * mult;
     setCalcResult(cost);
+  };
+
+  const handlePay = () => {
+    if (!calcOrigin || !calcDest || !calcWeight || calcResult === null) return;
+
+    setBooking("cargo", {
+      origin: calcOrigin,
+      destination: calcDest,
+      weight: calcWeight,
+      volume: calcVol,
+      transportType: calcType,
+      price: calcResult,
+    } as any);
+
+    router.push("/booking");
   };
 
   const services = t.raw("services") as Array<{
@@ -304,6 +323,13 @@ export function CargoPage({ initialData }: { initialData?: any }) {
                         maximumFractionDigits: 0,
                       })}
                     </span>
+                    <button
+                      type="button"
+                      onClick={handlePay}
+                      className="ml-auto bg-green-600 text-white font-bold px-6 py-2 rounded-lg hover:bg-green-700 transition-colors shadow-sm"
+                    >
+                      {t("pay")}
+                    </button>
                   </motion.div>
                 )}
               </div>

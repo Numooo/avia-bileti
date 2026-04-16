@@ -511,6 +511,154 @@
           "Adventure",
           "Mountains"
         ]
+      },
+      {
+        "id": "3",
+        "title": "Kerala Backwaters",
+        "destination": "Kerala, India",
+        "duration": {
+          "days": 4,
+          "nights": 3
+        },
+        "price": 21999,
+        "rating": 4.8,
+        "reviewCount": 92,
+        "image": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800",
+        "highlights": [
+          "Houseboat Cruise",
+          "Ayurvedic Spa",
+          "Backwaters",
+          "Tea Plantations"
+        ],
+        "inclusions": [
+          "Stay",
+          "Meals",
+          "Transfers",
+          "Sightseeing"
+        ],
+        "theme": [
+          "Wellness",
+          "Nature"
+        ],
+        "itinerary": [
+          { "day": 1, "title": "Arrival", "desc": "Meet and greet at airport and transfer to hotel." },
+          { "day": 2, "title": "Cruise", "desc": "Full day houseboat cruise in the backwaters." },
+          { "day": 3, "title": "Munnar", "desc": "Visit tea plantations and scenic points." },
+          { "day": 4, "title": "Departure", "desc": "Free time and transfer to airport." }
+        ]
+      },
+      {
+        "id": "4",
+        "title": "Rajasthan Heritage",
+        "destination": "Jaipur, Udaipur",
+        "duration": {
+          "days": 7,
+          "nights": 6
+        },
+        "price": 27500,
+        "rating": 4.6,
+        "reviewCount": 110,
+        "image": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800",
+        "highlights": [
+          "Amer Fort",
+          "City Palace",
+          "Lake Pichola",
+          "Local Markets"
+        ],
+        "inclusions": [
+          "Hotels",
+          "Breakfasts",
+          "Guide",
+          "Transport"
+        ],
+        "theme": [
+          "Heritage",
+          "Culture"
+        ],
+        "itinerary": [
+          { "day": 1, "title": "Jaipur", "desc": "Arrival and evening walk." },
+          { "day": 2, "title": "Forts", "desc": "Amer Fort exploration." },
+          { "day": 3, "title": "Travel", "desc": "Drive to Udaipur." },
+          { "day": 4, "title": "Lakes", "desc": "Boat ride on Lake Pichola." },
+          { "day": 5, "title": "Palaces", "desc": "Visit City Palace." },
+          { "day": 6, "title": "Temples", "desc": "Tour of ancient temples." },
+          { "day": 7, "title": "Final", "desc": "Transfer to airport." }
+        ]
+      },
+      {
+        "id": "5",
+        "title": "Paradise Andaman Islands",
+        "destination": "Port Blair, Havelock",
+        "duration": {
+          "days": 5,
+          "nights": 4
+        },
+        "price": 32999,
+        "rating": 4.9,
+        "reviewCount": 74,
+        "image": "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=800",
+        "highlights": [
+          "Radhanagar Beach",
+          "Scuba Diving",
+          "Island Hopping",
+          "Sunsets"
+        ],
+        "inclusions": [
+          "Flights",
+          "Ferry",
+          "Resorts",
+          "Breakfasts"
+        ],
+        "theme": [
+          "Beach",
+          "Adventure"
+        ],
+        "itinerary": [
+          { "day": 1, "title": "Arrival", "desc": "Arrive at Port Blair." },
+          { "day": 2, "title": "Havelock", "desc": "Crossing to Havelock Island." },
+          { "day": 3, "title": "Beach", "desc": "Relax at Radhanagar Beach." },
+          { "day": 4, "title": "Diving", "desc": "Scuba diving and corals." },
+          { "day": 5, "title": "Return", "desc": "Heading back home." }
+        ]
+      },
+      {
+        "id": "6",
+        "title": "Leh-Ladakh Expedition",
+        "destination": "Leh, Ladakh",
+        "duration": {
+          "days": 8,
+          "nights": 7
+        },
+        "price": 38500,
+        "rating": 4.8,
+        "reviewCount": 156,
+        "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800",
+        "highlights": [
+          "Pangong Lake",
+          "Nubra Valley",
+          "Khardung La Pass",
+          "Monasteries"
+        ],
+        "inclusions": [
+          "Jeep Tour",
+          "Camping",
+          "Permits",
+          "Meals"
+        ],
+        "theme": [
+          "Adventure",
+          "Mountains"
+        ],
+        "itinerary": [
+          { "day": 1, "title": "Acclimatization", "desc": "Rest in Leh to get used to altitude." },
+          { "day": 2, "title": "Monasteries", "desc": "Tour of ancient monasteries." },
+          { "day": 3, "title": "Khardung La", "desc": "Drive through the highest pass." },
+          { "day": 4, "title": "Nubra", "desc": "Camel ride in the valley." },
+          { "day": 5, "title": "Pangong", "desc": "Trip to the famous blue lake." },
+          { "day": 6, "title": "Shore", "desc": "Stay at a camp by the lake." },
+          { "day": 7, "title": "Return", "desc": "Drive back to Leh." },
+          { "day": 8, "title": "Departure", "desc": "Transfer to airport." }
+        ]
       }
     ],
     "visa": [
@@ -914,6 +1062,10 @@
         "arrival": "Arrival",
         "status": "Status"
       },
+      "truck": "Truck",
+      "plane": "Air",
+      "ship": "Ship",
+      "train": "Train",
       "prev": "Prev",
       "next": "Next",
       "showing": "Showing {from}-{to} of {total} flights",
@@ -1104,7 +1256,8 @@
     "noTrainsFound": "No trains found",
     "adjustFilters": "Try adjusting your search filters",
     "fromPrice": "from",
-    "selectSeat": "Select Seat"
+    "selectSeat": "Select Seat",
+    "bookNow": "Book Now"
   },
   "Hotels": {
     "destination": "DESTINATION",
@@ -1685,12 +1838,33 @@
     "payment": "Payment",
     "paymentSubtitle": "Choose your payment method",
     "confirmation": "Confirmation",
+    "scanQrToPay": "Scan QR code to pay",
     "basePrice": "Base Price",
     "taxes": "Taxes & Fees",
     "total": "Total Amount",
     "securePayment": "Secure payment",
     "instantConfirmation": "Instant confirmation",
     "support247": "24/7 support",
+    "checkInLabel": "Check-in",
+    "checkOutLabel": "Check-out",
+    "guestsLabel": "Guests",
+    "guestLabel": "Guest",
+    "passengersLabel": "Passengers",
+    "classLabel": "Class",
+    "travelersLabel": "Travelers",
+    "bookingDetails": "Booking Details",
+    "guestName": "Guest Name",
+    "totalAmount": "Total Amount",
+    "confirmationEmailSent": "A confirmation email has been sent to {email}",
+    "qrAlt": "QR Code for payment",
+    "flight": "Flight",
+    "hotel": "Hotel",
+    "package": "Package",
+    "cargo": "Cargo",
+    "train": "Train",
+    "details": "Details",
+    "cargoDetails": "Cargo Details",
+    "trainDetails": "Train Details",
     "processing": "Processing...",
     "completePayment": "Complete Payment",
     "confirmed": "Booking Confirmed!",
@@ -1720,13 +1894,39 @@
       "city": "City",
       "zipCode": "ZIP Code",
       "specialRequests": "Special Requests (Optional)",
-      "specialRequestsPlaceholder": "Any special requirements or preferences..."
+      "specialRequestsPlaceholder": "Any special requirements or preferences...",
+      "placeholders": {
+        "email": "you@example.com",
+        "phone": "+996 (555) 123-456",
+        "address": "123 Main Street, Apartment 4B",
+        "city": "Bishkek",
+        "zipCode": "720000"
+      }
     },
     "paymentMethods": {
       "card": "Credit / Debit Card",
       "upi": "UPI",
       "netbanking": "Net Banking",
-      "wallet": "Wallet"
+      "wallet": "Wallet",
+      "qr": "QR Code"
+    },
+    "confirmPayment": "Confirm Payment",
+    "cities": {
+      "FRU": "Bishkek",
+      "DXB": "Dubai",
+      "IST": "Istanbul",
+      "SVO": "Moscow",
+      "ALA": "Almaty",
+      "TAS": "Tashkent",
+      "JFK": "New York",
+      "LHR": "London",
+      "CDG": "Paris",
+      "SIN": "Singapore",
+      "HND": "Tokyo",
+      "GOI": "Goa",
+      "OSS": "Osh",
+      "DEL": "Delhi",
+      "BOM": "Mumbai"
     }
   },
   "SignIn": {
@@ -1801,8 +2001,11 @@
     "transportTypes": {
       "truck": "Road Transport",
       "plane": "Air Freight",
-      "ship": "Ocean Freight"
-    }
+      "ship": "Ocean Freight",
+      "train": "Train Transport"
+    },
+    "pay": "Pay Now",
+    "trackingAlert": "Tracking ID: {id}\nStatus: In transit"
   },
   "Common": {
     "back": "Back",

@@ -234,7 +234,13 @@ export function FlightsPage({
                   {searchParams.passengers === 1
                     ? tSearch("passenger")
                     : tSearch("passengers")}{" "}
-                  • {searchParams.cabin}
+                  • {
+                    searchParams.cabin === "Economy" ? tSearch("economy") :
+                    searchParams.cabin === "Premium Economy" ? tSearch("premiumEconomy") :
+                    searchParams.cabin === "Business" ? tSearch("business") :
+                    searchParams.cabin === "First" || searchParams.cabin === "First Class" ? tSearch("first") :
+                    searchParams.cabin
+                  }
                 </div>
               </div>
             </div>

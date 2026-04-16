@@ -14,6 +14,9 @@ import {
   Sparkles,
   Download,
   Home,
+  QrCode,
+  Truck,
+  Train,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
@@ -21,11 +24,11 @@ import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import type { FlightOffer, Hotel, Package } from "@/types";
 
-type BookingType = "flight" | "hotel" | "package";
+type BookingType = "flight" | "hotel" | "package" | "cargo" | "train";
 
 interface UnifiedBookingFlowProps {
   type: BookingType;
-  item: FlightOffer | Hotel | Package;
+  item: any;
   metadata?: {
     checkInDate?: string;
     checkOutDate?: string;
@@ -111,7 +114,7 @@ export function UnifiedBookingFlow({
         total: basePrice + taxes,
         label: t("nightsRooms", { nights, rooms }),
       };
-    } else {
+    } else if (type === "package") {
       const pkg = item as Package;
       const guests = metadata.guests || 1;
       const pricePerPerson = pkg.price || pkg.pricePerPerson || 0;
@@ -123,7 +126,29 @@ export function UnifiedBookingFlow({
         total: basePrice + taxes,
         label: t("travelersCount", { count: guests }),
       };
+    } else if (type === "cargo") {
+      const cargo = item as any;
+      const basePrice = cargo.price || 0;
+      const taxes = Math.round(basePrice * 0.1);
+      return {
+        basePrice,
+        taxes,
+        total: basePrice + taxes,
+        label: t("cargoDetails"),
+      };
+    } else if (type === "train") {
+      const train = item as any;
+      const passengers = metadata.passengers || 1;
+      const basePrice = (train.price || 0) * passengers;
+      const taxes = Math.round(basePrice * 0.08);
+      return {
+        basePrice,
+        taxes,
+        total: basePrice + taxes,
+        label: t("passengersLabel", { count: passengers }),
+      };
     }
+    return { basePrice: 0, taxes: 0, total: 0, label: "" };
   };
 
   const pricing = calculatePricing();
@@ -137,7 +162,16 @@ export function UnifiedBookingFlow({
     setIsProcessing(true);
     await new Promise((resolve) => setTimeout(resolve, 2500));
 
-    const prefix = type === "flight" ? "FLT" : type === "hotel" ? "HTL" : "PKG";
+    const prefix =
+      type === "flight"
+        ? "FLT"
+        : type === "hotel"
+          ? "HTL"
+          : type === "cargo"
+            ? "CRG"
+            : type === "train"
+              ? "TRN"
+              : "PKG";
     const ref = `AT-${prefix}-${Date.now().toString(36).toUpperCase()}`;
     setBookingRef(ref);
     setIsProcessing(false);
@@ -151,7 +185,7 @@ export function UnifiedBookingFlow({
       <html>
       <head>
         <meta charset="UTF-8">
-        <title>Booking Confirmation - ${bookingRef}</title>
+        <title>${t("confirmation")} - ${bookingRef}</title>
         <style>
           body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
           .header { text-align: center; border-bottom: 3px solid #0a57a1; padding-bottom: 20px; }
@@ -163,17 +197,17 @@ export function UnifiedBookingFlow({
       <body>
         <div class="header">
           <div class="logo">aviatrevel.kg</div>
-          <div>Booking Confirmation: ${bookingRef}</div>
+          <div>${t("confirmation")}: ${bookingRef}</div>
         </div>
         <div class="section">
-          <h2>Booking Summary</h2>
-          <p><strong>Item:</strong> ${getItemTitle()}</p>
-          <p><strong>Price:</strong> ${symbolText}${pricing.total.toLocaleString()}</p>
+          <h2>${t("summary")}</h2>
+          <p><strong>${t("details")}:</strong> ${getItemTitle()}</p>
+          <p><strong>${t("totalAmount")}:</strong> ${symbolText}${pricing.total.toLocaleString()}</p>
         </div>
         <div class="section">
-          <h2>Guest Details</h2>
-          <p><strong>Name:</strong> ${guestDetails.firstName} ${guestDetails.lastName}</p>
-          <p><strong>Email:</strong> ${guestDetails.email}</p>
+          <h2>${t("guestDetails")}</h2>
+          <p><strong>${t("fields.firstName")}:</strong> ${guestDetails.firstName} ${guestDetails.lastName}</p>
+          <p><strong>${t("fields.email")}:</strong> ${guestDetails.email}</p>
         </div>
       </body>
       </html>
@@ -189,14 +223,27 @@ export function UnifiedBookingFlow({
     URL.revokeObjectURL(url);
   };
 
+  const formatAirport = (code: string) => {
+    const cityName = t(`cities.${code}` as any);
+    return cityName && !cityName.includes("cities.")
+      ? `${cityName} (${code})`
+      : code;
+  };
+
   const getItemTitle = () => {
     if (type === "flight") {
       const flight = item as FlightOffer;
-      return `${flight.segments[0].from} → ${
-        flight.segments[flight.segments.length - 1].to
-      }`;
+      return `${formatAirport(flight.segments[0].from)} → ${formatAirport(
+        flight.segments[flight.segments.length - 1].to,
+      )}`;
     } else if (type === "hotel") {
       return (item as Hotel).name;
+    } else if (type === "cargo") {
+      const cargo = item as any;
+      return `${cargo.origin} → ${cargo.destination}`;
+    } else if (type === "train") {
+      const train = item as any;
+      return `${formatAirport(train.from)} → ${formatAirport(train.to)}`;
     } else {
       return (item as Package).title;
     }
@@ -207,17 +254,26 @@ export function UnifiedBookingFlow({
       return (item as FlightOffer).airline;
     } else if (type === "hotel") {
       return (item as Hotel).location;
+    } else if (type === "cargo") {
+      const cargo = item as any;
+      return `${cargo.weight} kg • ${cargo.transportType}`;
+    } else if (type === "train") {
+      const train = item as any;
+      return `${train.number} • ${train.type}`;
     } else {
       const pkg = item as Package;
-      // Handle both package and visa (visa doesn't have duration)
       const duration = pkg.duration;
+      // Handle both package and visa (visa doesn't have duration)
       if (
         duration &&
         typeof duration === "object" &&
         "days" in duration &&
         "nights" in duration
       ) {
-        return `${duration.days} Days / ${duration.nights} Nights`;
+        return t("nightsRooms", {
+          nights: (duration as any).nights,
+          rooms: (duration as any).days, // Mapping days to a field that exists in translation for now or just generic
+        });
       }
       // For visa or packages without duration, check if it has a country property
       const itemWithCountry = item as {
@@ -231,6 +287,8 @@ export function UnifiedBookingFlow({
   const getItemIcon = () => {
     if (type === "flight") return Plane;
     if (type === "hotel") return HotelIcon;
+    if (type === "cargo") return Truck;
+    if (type === "train") return Train;
     return Palmtree;
   };
 
@@ -412,7 +470,7 @@ export function UnifiedBookingFlow({
                                 email: e.target.value,
                               })
                             }
-                            placeholder="you@example.com"
+                            placeholder={t("fields.placeholders.email")}
                             className="h-12"
                           />
                         </div>
@@ -430,7 +488,7 @@ export function UnifiedBookingFlow({
                                 phone: e.target.value,
                               })
                             }
-                            placeholder="+996 (555) 123-456"
+                            placeholder={t("fields.placeholders.phone")}
                             className="h-12"
                           />
                         </div>
@@ -449,7 +507,7 @@ export function UnifiedBookingFlow({
                               address: e.target.value,
                             })
                           }
-                          placeholder="123 Main Street, Apartment 4B"
+                          placeholder={t("fields.placeholders.address")}
                           className="h-12"
                         />
                       </div>
@@ -468,7 +526,7 @@ export function UnifiedBookingFlow({
                                 city: e.target.value,
                               })
                             }
-                            placeholder="Bishkek"
+                            placeholder={t("fields.placeholders.city")}
                             className="h-12"
                           />
                         </div>
@@ -485,7 +543,7 @@ export function UnifiedBookingFlow({
                                 zipCode: e.target.value,
                               })
                             }
-                            placeholder="720000"
+                            placeholder={t("fields.placeholders.zipCode")}
                             className="h-12"
                           />
                         </div>
@@ -588,40 +646,43 @@ export function UnifiedBookingFlow({
                 {type === "hotel" && metadata.checkInDate && (
                   <div className="space-y-3 mb-6 pb-6 border-b border-gray-200">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Check-in</span>
+                      <span className="text-gray-600">{t("checkInLabel")}</span>
                       <span className="font-medium text-gray-900">
                         {new Date(metadata.checkInDate).toLocaleDateString()}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Check-out</span>
+                      <span className="text-gray-600">
+                        {t("checkOutLabel")}
+                      </span>
                       <span className="font-medium text-gray-900">
                         {metadata.checkOutDate &&
                           new Date(metadata.checkOutDate).toLocaleDateString()}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Guests</span>
+                      <span className="text-gray-600">{t("guestsLabel")}</span>
                       <span className="font-medium text-gray-900">
-                        {metadata.guests}{" "}
-                        {metadata.guests === 1 ? "Guest" : "Guests"}
+                        {t("guestsCount", { count: metadata.guests || 1 })}
                       </span>
                     </div>
                   </div>
                 )}
 
-                {type === "flight" && (
+                {(type === "flight" || type === "train") && (
                   <div className="space-y-3 mb-6 pb-6 border-b border-gray-200">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Passengers</span>
+                      <span className="text-gray-600">
+                        {t("passengersLabel")}
+                      </span>
                       <span className="font-medium text-gray-900">
                         {metadata.passengers || 1}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Class</span>
+                      <span className="text-gray-600">{t("classLabel")}</span>
                       <span className="font-medium text-gray-900">
-                        {(item as FlightOffer).cabin}
+                        {type === "flight" ? (item as FlightOffer).cabin : (item as any).type}
                       </span>
                     </div>
                   </div>
@@ -630,9 +691,11 @@ export function UnifiedBookingFlow({
                 {type === "package" && (
                   <div className="space-y-3 mb-6 pb-6 border-b border-gray-200">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Travelers</span>
+                      <span className="text-gray-600">
+                        {t("travelersLabel")}
+                      </span>
                       <span className="font-medium text-gray-900">
-                        {metadata.guests || 1}
+                        {t("travelersCount", { count: metadata.guests || 1 })}
                       </span>
                     </div>
                   </div>
@@ -706,8 +769,9 @@ function PaymentSection({
   const t = useTranslations("Booking");
   const commonT = useTranslations("Common");
   const [paymentMethod, setPaymentMethod] = useState<
-    "card" | "upi" | "netbanking" | "wallet"
+    "card" | "upi" | "netbanking" | "wallet" | "qr"
   >("card");
+  const [isQrActive, setIsQrActive] = useState(false);
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
@@ -721,72 +785,153 @@ function PaymentSection({
         </div>
       </div>
 
-      <div className="space-y-4 mb-8">
-        {[
-          { id: "card", label: t("paymentMethods.card"), icon: CreditCard },
-          { id: "upi", label: t("paymentMethods.upi"), icon: CreditCard },
-          {
-            id: "netbanking",
-            label: t("paymentMethods.netbanking"),
-            icon: Home,
-          },
-          { id: "wallet", label: t("paymentMethods.wallet"), icon: CreditCard },
-        ].map((method) => (
-          <button
-            key={method.id}
-            onClick={() =>
-              setPaymentMethod(
-                method.id as "card" | "upi" | "netbanking" | "wallet",
-              )
-            }
-            className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${
-              paymentMethod === method.id
-                ? "border-brand-primary bg-brand-primary/5"
-                : "border-gray-200 hover:border-gray-300"
-            }`}
+      <AnimatePresence mode="wait">
+        {!isQrActive ? (
+          <motion.div
+            key="selection"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
           >
-            <div
-              className={`flex h-10 w-10 items-center justify-center rounded-lg ${
-                paymentMethod === method.id
-                  ? "bg-brand-primary text-white"
-                  : "bg-gray-100 text-gray-600"
-              }`}
-            >
-              <method.icon className="h-5 w-5" />
+            <div className="space-y-4 mb-8">
+              {[
+                { id: "card", label: t("paymentMethods.card"), icon: CreditCard },
+                { id: "qr", label: t("paymentMethods.qr"), icon: QrCode },
+                { id: "upi", label: t("paymentMethods.upi"), icon: CreditCard },
+                {
+                  id: "netbanking",
+                  label: t("paymentMethods.netbanking"),
+                  icon: Home,
+                },
+                {
+                  id: "wallet",
+                  label: t("paymentMethods.wallet"),
+                  icon: CreditCard,
+                },
+              ].map((method) => (
+                <button
+                  key={method.id}
+                  onClick={() =>
+                    setPaymentMethod(
+                      method.id as
+                        | "card"
+                        | "upi"
+                        | "netbanking"
+                        | "wallet"
+                        | "qr",
+                    )
+                  }
+                  className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${
+                    paymentMethod === method.id
+                      ? "border-brand-primary bg-brand-primary/5"
+                      : "border-gray-200 hover:border-gray-300"
+                  }`}
+                >
+                  <div
+                    className={`flex h-10 w-10 items-center justify-center rounded-lg ${
+                      paymentMethod === method.id
+                        ? "bg-brand-primary text-white"
+                        : "bg-gray-100 text-gray-600"
+                    }`}
+                  >
+                    <method.icon className="h-5 w-5" />
+                  </div>
+                  <span className="font-medium text-gray-900">
+                    {method.label}
+                  </span>
+                  {paymentMethod === method.id && (
+                    <CheckCircle2 className="h-5 w-5 text-brand-primary ml-auto" />
+                  )}
+                </button>
+              ))}
             </div>
-            <span className="font-medium text-gray-900">{method.label}</span>
-            {paymentMethod === method.id && (
-              <CheckCircle2 className="h-5 w-5 text-brand-primary ml-auto" />
-            )}
-          </button>
-        ))}
-      </div>
 
-      <div className="flex gap-4">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={onBack}
-          className="flex-1 h-12"
-          disabled={isProcessing}
-        >
-          {commonT("back")}
-        </Button>
-        <Button
-          onClick={onPayment}
-          disabled={isProcessing}
-          className="flex-1 h-12 bg-brand-primary hover:bg-brand-secondary"
-        >
-          {isProcessing ? (
-            <div className="flex items-center gap-2">
-              <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              <span>{t("processing")}</span>
+            <div className="flex gap-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onBack}
+                className="flex-1 h-12"
+                disabled={isProcessing}
+              >
+                {commonT("back")}
+              </Button>
+              <Button
+                onClick={() => {
+                  if (paymentMethod === "qr") {
+                    setIsQrActive(true);
+                  } else {
+                    onPayment();
+                  }
+                }}
+                disabled={isProcessing}
+                className="flex-1 h-12 bg-brand-primary hover:bg-brand-secondary"
+              >
+                {isProcessing ? (
+                  <div className="flex items-center gap-2">
+                    <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <span>{t("processing")}</span>
+                  </div>
+                ) : (
+                  t("completePayment")
+                )}
+              </Button>
             </div>
-          ) : (
-            t("completePayment")
-          )}
-        </Button>
-      </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="qr-scan"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+          >
+            <div className="flex flex-col items-center p-8 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200 mb-8">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative bg-white p-4 rounded-xl shadow-xl">
+                  <img
+                    src="/qr.png"
+                    alt={t("qrAlt")}
+                    className="w-64 h-64 rounded-lg shadow-inner"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-8 text-center space-y-2">
+                <h3 className="text-xl font-bold text-gray-900">
+                  {t("scanQrToPay")}
+                </h3>
+                <p className="text-sm text-gray-500 max-w-xs mx-auto">
+                  {t("paymentSubtitle")}
+                </p>
+              </div>
+
+              <div className="w-full grid grid-cols-1 gap-4 mt-8">
+                <Button
+                  onClick={onPayment}
+                  disabled={isProcessing}
+                  className="w-full h-14 bg-green-600 hover:bg-green-700 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-green-900/20 transition-all"
+                >
+                  {isProcessing ? (
+                    <div className="flex items-center gap-2">
+                      <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span>{t("processing")}</span>
+                    </div>
+                  ) : (
+                    t("confirmPayment")
+                  )}
+                </Button>
+                <button
+                  onClick={() => setIsQrActive(false)}
+                  className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors py-2"
+                >
+                  {commonT("back")}
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -866,34 +1011,36 @@ function ConfirmationSection({
         <div className="space-y-6">
           <div>
             <h3 className="text-sm font-medium text-gray-600 mb-3 text-center">
-              Booking Details
+              {t("bookingDetails")}
             </h3>
             <div className="space-y-3 max-w-md mx-auto">
               <div className="flex justify-center gap-2 text-center">
                 <span className="text-gray-700">
                   {type === "flight"
-                    ? "Flight"
+                    ? t("flight")
                     : type === "hotel"
-                      ? "Hotel"
-                      : "Package"}
+                      ? t("hotel")
+                      : type === "cargo"
+                        ? t("cargo")
+                        : t("package")}
                   :
                 </span>
                 <span className="font-medium text-gray-900">{itemTitle}</span>
               </div>
               <div className="flex justify-center gap-2 text-center">
-                <span className="text-gray-700">Details:</span>
+                <span className="text-gray-700">{t("details")}:</span>
                 <span className="font-medium text-gray-900">
                   {itemSubtitle}
                 </span>
               </div>
               <div className="flex justify-center gap-2 text-center">
-                <span className="text-gray-700">Guest Name:</span>
+                <span className="text-gray-700">{t("guestName")}:</span>
                 <span className="font-medium text-gray-900">
                   {guestDetails.firstName} {guestDetails.lastName}
                 </span>
               </div>
               <div className="flex justify-center gap-2 text-center pt-3 border-t border-gray-200">
-                <span className="text-gray-700">Total Amount:</span>
+                <span className="text-gray-700">{t("totalAmount")}:</span>
                 <span className="text-xl font-bold text-green-600 flex items-center justify-center">
                   <CurrencySymbol className="h-5 w-5 mr-1" />
                   {pricing.total.toLocaleString()}
@@ -904,10 +1051,7 @@ function ConfirmationSection({
 
           <div className="pt-6 border-t border-gray-200">
             <p className="text-sm text-gray-600 mb-4 text-center">
-              A confirmation email has been sent to{" "}
-              <span className="font-medium text-gray-900">
-                {guestDetails.email}
-              </span>
+              {t("confirmationEmailSent", { email: guestDetails.email })}
             </p>
           </div>
         </div>

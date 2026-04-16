@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import { useCurrency } from "@/CurrencyContext";
 import type { Airport } from "@/types";
 import { DatePicker } from "@/shared/ui/DatePicker";
+import { useBookingStore } from "@/shared/store/booking";
+import { useRouter } from "@/i18n/routing";
 
 interface TrainResult {
   id: string;
@@ -51,11 +53,23 @@ export function TrainsPage({ onBack, initialOrigin, initialDestination }: Trains
   const [currentDate, setCurrentDate] = useState(new Date().toISOString().split("T")[0]);
   const [currentPassengers, setCurrentPassengers] = useState(1);
   const { CurrencySymbol } = useCurrency();
+  const { setBooking } = useBookingStore();
+  const router = useRouter();
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleBook = (train: TrainResult) => {
+    setBooking("train", {
+      ...train,
+      title: `${train.number} ${train.name}`,
+    } as any, {
+      passengers: currentPassengers,
+    });
+    router.push("/booking");
+  };
 
   const toggleType = (type: string) => {
     setSelectedTypes((prev) =>
@@ -246,8 +260,14 @@ export function TrainsPage({ onBack, initialOrigin, initialDestination }: Trains
                           {train.price.toLocaleString()} <CurrencySymbol className="h-4 w-4" />
                         </div>
                       </div>
-                      <button className="w-full bg-brand-primary text-white py-3 rounded-2xl font-bold text-sm group-hover:bg-brand-secondary transition-all shadow-lg shadow-gray-900/10 active:scale-95">
-                        {tTrains("selectSeat")}
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleBook(train);
+                        }}
+                        className="w-full bg-brand-primary text-white py-3 rounded-2xl font-bold text-sm group-hover:bg-brand-secondary transition-all shadow-lg shadow-gray-900/10 active:scale-95"
+                      >
+                        {tTrains("bookNow") || tTrains("selectSeat")}
                       </button>
                     </div>
                   </div>
