@@ -1425,18 +1425,7 @@
     "reviews": "({count} отзывов)",
     "inclusions": "Что включено",
     "highlights": "Особенности",
-    "bookNow": "Забронировать",
-    "themes": {
-      "All": "Все",
-      "Beach": "Пляж",
-      "Adventure": "Приключения",
-      "Heritage": "Наследие",
-      "Wellness": "Оздоровление",
-      "Mountains": "Горы",
-      "Wildlife": "Дикая природа",
-      "Honeymoon": "Медовый месяц",
-      "Family": "Семейный отдых"
-    }
+    "bookNow": "Забронировать"
   },
   "Visa": {
     "title": "Визовые услуги",

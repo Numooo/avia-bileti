@@ -166,7 +166,7 @@ function PackageCard({ package: pkg, index, onSelect }: PackageCardProps) {
   const t = useTranslations("Holidays");
   const { symbol, CurrencyIcon, CurrencySymbol } = useCurrency();
   const [isFavorite, setIsFavorite] = useState(false);
-  const packageImage = pkg.images?.[0] || pkg.image || "";
+   const packageImage = pkg.images?.[0] || pkg.image || null;
 
   return (
     <motion.div

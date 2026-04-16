@@ -1394,18 +1394,7 @@
     "reviews": "({count} пикир)",
     "inclusions": "Эмнелер камтылган",
     "highlights": "Өзгөчөлүктөрү",
-    "bookNow": "Брондоо",
-    "themes": {
-      "All": "Баары",
-      "Beach": "Жээк",
-      "Adventure": "Укмуштуу окуялар",
-      "Heritage": "Мурас",
-      "Wellness": "Ден соолукту чыңдоо",
-      "Mountains": "Тоолор",
-      "Wildlife": "Жапайы жаратылыш",
-      "Honeymoon": "Бал айы",
-      "Family": "Үй-бүлөлүк эс алуу"
-    }
+    "bookNow": "Брондоо"
   },
   "Visa": {
     "title": "Виза кызматтары",
