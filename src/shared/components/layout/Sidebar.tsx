@@ -69,12 +69,29 @@ export function Sidebar({ isPinned = true }: SidebarProps) {
               <Link
                 href={path}
                 key={item.id}
-                className={`flex items-center transition-all group relative rounded-2xl py-3.5 px-8 w-[240px] ${isActive
-                    ? "bg-brand-primary text-white shadow-[0_8px_16px_-4px_rgba(10,87,161,0.25)]"
-                    : "text-gray-500 hover:bg-brand-primary/5 hover:text-brand-primary"
-                  }`}
+                className={`flex items-center transition-all group relative rounded-2xl py-3.5 px-8 w-[240px] ${
+                  isActive ? "text-white" : "text-gray-500 hover:bg-brand-primary/5 hover:text-brand-primary"
+                }`}
               >
-                <div className="relative flex items-center justify-center w-6 min-w-[24px]">
+                {/* Active Background Highlight */}
+                {isActive && (
+                  <motion.div
+                    layoutId="sidebarActiveBg"
+                    className="absolute bg-brand-primary shadow-[0_8px_16px_-4px_rgba(10,87,161,0.25)] rounded-2xl z-0"
+                    initial={false}
+                    animate={{
+                      left: isExpanded ? 0 : 18,
+                      width: isExpanded ? 240 : 52,
+                      height: 52,
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: [0.4, 0, 0.2, 1]
+                    }}
+                  />
+                )}
+
+                <div className="relative z-10 flex items-center justify-center w-6 min-w-[24px]">
                   <item.icon className={`h-5 w-5 flex-shrink-0 transition-all duration-300 ${isActive ? "text-white scale-110" : "text-gray-400 group-hover:text-brand-primary group-hover:scale-110"
                     }`} />
 
@@ -88,7 +105,7 @@ export function Sidebar({ isPinned = true }: SidebarProps) {
                   )}
                 </div>
 
-                <div className={`transition-opacity duration-300 ${isExpanded ? "opacity-100" : "opacity-0"}`}>
+                <div className={`relative z-10 transition-opacity duration-300 ${isExpanded ? "opacity-100" : "opacity-0"}`}>
                   <span className="font-semibold whitespace-nowrap text-sm tracking-tight block ml-4">
                     {item.label}
                   </span>
