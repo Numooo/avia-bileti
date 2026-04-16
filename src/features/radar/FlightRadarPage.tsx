@@ -140,29 +140,54 @@ const RadarMapWrapper = (props: any) => {
 
 const DynamicRadarMap = dynamic(() => Promise.resolve(RadarMapWrapper), { ssr: false });
 
+// ─── Global Cache (Persists across component remounts/locale changes) ───
+let globalRadarCache: {
+  flights: Flight[];
+  boundsStr: string;
+  timestamp: number;
+} = {
+  flights: [],
+  boundsStr: "",
+  timestamp: 0
+};
+
 // ─── Main Component ─────────────────────────────────────────
 export function FlightRadarPage() {
   const t = useTranslations("Radar");
-  const [flights, setFlights] = useState<Flight[]>([]);
+  const [flights, setFlights] = useState<Flight[]>(globalRadarCache.flights);
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorStatus, setErrorStatus] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
-  const [currentBoundsStr, setCurrentBoundsStr] = useState<string>("");
+  const [lastUpdate, setLastUpdate] = useState<Date>(
+    globalRadarCache.timestamp ? new Date(globalRadarCache.timestamp) : new Date()
+  );
+  const [currentBoundsStr, setCurrentBoundsStr] = useState<string>(globalRadarCache.boundsStr);
   const [currentZoom, setCurrentZoom] = useState<number>(DEFAULT_ZOOM);
   
-  const lastFetchTimeRef = useRef<number>(0);
+  const lastFetchTimeRef = useRef<number>(globalRadarCache.timestamp);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const fetchFlights = useCallback(async (boundsStr: string, zoom: number, force = false) => {
     if (!boundsStr || zoom < MIN_ZOOM_FOR_FETCH) {
-      if (zoom < MIN_ZOOM_FOR_FETCH) setFlights([]);
+      if (zoom < MIN_ZOOM_FOR_FETCH) {
+        setFlights([]);
+        globalRadarCache.flights = [];
+      }
       return;
     }
 
     // Rate limiting: throttle fetches (min 10 sec between fetches unless forced)
     const now = Date.now();
+    
+    // If not forced, and bounds haven't changed much, and we have fresh data in cache, skip fetch
+    if (!force && boundsStr === globalRadarCache.boundsStr && now - globalRadarCache.timestamp < REFRESH_INTERVAL) {
+      if (flights.length === 0 && globalRadarCache.flights.length > 0) {
+        setFlights(globalRadarCache.flights);
+      }
+      return;
+    }
+
     if (!force && now - lastFetchTimeRef.current < 10000) return;
     lastFetchTimeRef.current = now;
 
@@ -177,11 +202,7 @@ export function FlightRadarPage() {
       if (!response.ok) {
         setErrorStatus(response.status);
         if (response.status === 429) {
-          // If 429, don't try again for at least 60 seconds (extended)
           lastFetchTimeRef.current = now + 60000;
-          console.warn("Flight Radar: API Rate limit reached (429). Throttling requests.");
-        } else {
-          console.error("Flight Radar API Error:", response.status);
         }
         return;
       }
@@ -190,8 +211,15 @@ export function FlightRadarPage() {
       if (data.states) {
         const mappedFlights = data.states.map(mapOpenSkyToPlane);
         setFlights(mappedFlights);
+        // Update global cache
+        globalRadarCache = {
+          flights: mappedFlights,
+          boundsStr: boundsStr,
+          timestamp: now
+        };
       } else {
         setFlights([]);
+        globalRadarCache.flights = [];
       }
       setLastUpdate(new Date());
     } catch (error) {
@@ -199,7 +227,7 @@ export function FlightRadarPage() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [flights.length]);
 
   const handleBoundsChange = useCallback((boundsStr: string, zoom: number) => {
     setCurrentBoundsStr(boundsStr);

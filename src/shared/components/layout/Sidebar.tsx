@@ -50,14 +50,19 @@ export function Sidebar({ isPinned = true }: SidebarProps) {
     <motion.div
       initial={false}
       animate={{
-        width: isExpanded ? "260px" : "80px",
-        backgroundColor: "rgba(255, 255, 255, 0.95)"
+        width: isExpanded ? 260 : 80,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+        mass: 1
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="sticky top-16 left-0 h-[calc(100vh-64px)] backdrop-blur-xl border-r border-gray-100 z-40 transition-all duration-500 hidden lg:flex flex-col flex-shrink-0 shadow-[4px_0_24px_-12px_rgba(0,0,0,0.05)]"
+      className="sticky top-16 left-0 h-[calc(100vh-64px)] bg-white/95 backdrop-blur-xl border-r border-gray-100 z-40 hidden lg:flex flex-col flex-shrink-0 shadow-[4px_0_24px_-12px_rgba(0,0,0,0.05)]"
     >
-      <div className="flex-1 py-8 overflow-y-auto no-scrollbar">
+      <div className="flex-1 py-8 overflow-y-auto no-scrollbar overflow-x-hidden">
         <div className="px-4 space-y-2">
           {menuItems.map((item) => {
             const path = item.id === "home" ? "/" : `/${item.id}`;
@@ -66,7 +71,9 @@ export function Sidebar({ isPinned = true }: SidebarProps) {
               <Link
                 href={path}
                 key={item.id}
-                className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all group relative ${isActive
+                className={`w-full flex items-center transition-all group relative rounded-2xl ${
+                  isExpanded ? "px-4 justify-start" : "px-0 justify-center"
+                } py-3.5 ${isActive
                     ? "bg-brand-primary text-white shadow-[0_8px_16px_-4px_rgba(10,87,161,0.25)]"
                     : "text-gray-500 hover:bg-brand-primary/5 hover:text-brand-primary"
                   }`}
@@ -85,17 +92,19 @@ export function Sidebar({ isPinned = true }: SidebarProps) {
                   )}
                 </div>
 
-                <AnimatePresence mode="wait">
+                <AnimatePresence>
                   {isExpanded && (
-                    <motion.span
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -10 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className={`font-semibold whitespace-nowrap overflow-hidden text-sm tracking-tight`}
+                    <motion.div
+                      initial={{ opacity: 0, width: 0, x: -10 }}
+                      animate={{ opacity: 1, width: "auto", x: 0 }}
+                      exit={{ opacity: 0, width: 0, x: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
                     >
-                      {item.label}
-                    </motion.span>
+                      <span className="font-semibold whitespace-nowrap text-sm tracking-tight block ml-4">
+                        {item.label}
+                      </span>
+                    </motion.div>
                   )}
                 </AnimatePresence>
 
