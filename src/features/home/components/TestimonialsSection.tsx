@@ -25,7 +25,7 @@ export function TestimonialsSection() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-2 bg-brand-accent/10 text-brand-accent rounded-full text-sm font-semibold mb-4">
-            тнР {t("Testimonials.badge")}
+            ⭐ {t("Testimonials.badge")}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             {t("Testimonials.title")}
