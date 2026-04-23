@@ -22,7 +22,7 @@ const PROVIDERS: Provider[] = [
   { 
     id: "adsb", 
     name: "ADS-B Exchange", 
-    url: "https://globe.adsbexchange.com/?hideSidebar&hideButtons",
+    url: "https://globe.adsbexchange.com/?lat=41.2044&lon=74.7661&zoom=7&hideSidebar&hideButtons",
     icon: <Globe size={18} />
   },
   { 
